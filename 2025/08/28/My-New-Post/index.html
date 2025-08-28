@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/beside/css/layout.css">
+
+		
+		<title> My First Post - study -  Hexo</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/beside/lib/mdui/mdui.min.css">
+
+		
+<script src="/beside/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/beside/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/beside/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/beside/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/beside/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/beside/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="https://kira.host/assets/Pictures/Others/116359b4ccf19917.jpg"
+			type="image/png"
+		/>
+		
+<link rel="stylesheet" href="/beside/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/beside/deps/js/APlayer.min.js"></script>
+<script src="/beside/deps/js/Meting.min.js"></script>
+
+	<meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('https:/image/127432705_p0.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/beside/" title="Hexo">
+        <img
+			src="/image/127432705_p0.png"
+			alt="xiao_zhaoz"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/127432705_p0.png" title="xiao_zhaoz">
+			<img
+				src="/image/127432705_p0.png"
+				alt="xiao_zhaoz"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>2</div>
+		<div><span>标签</span>1</div>
+		<div><span>分类</span>0</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/beside/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/beside/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/beside/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/beside/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=<去掉尖括号后填上你的QQ号>&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/<改成你的B站uid>"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/<你的github id>/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/beside/tags/s/" style="font-size: 10px;">s</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/beside/archives/2025/">2025</a><span class="archive-list-count">2</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2025
+		<a href="/beside/">xiao_zhaoz</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/beside/css/kira-image.css">
+
+
+<script src="/beside/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/beside/css/kira-code-copy.css">
+
+	
+<script src="/beside/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div
+			class="kira-post-cover"
+			style="padding-bottom: '56.25%'"
+		>
+			<img
+				data-src="https:/image/127432705_p0.png"
+				data-sizes="auto"
+				alt="My First Post - study"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>My First Post - study</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2025年08月28日</a>
+			<a><i class="kirafont icon-edit-fill"></i>1.6k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 6 分钟</a>
+		</div>
+		<html><head></head><body><p>核心目标：让处于不同私有网络（例如：你在家，朋友在公司或家）的设备，能够像在同一个局域网内一样相互访问（例如：通过 192.168.x.x 这样的内网 IP 直接访问对方的共享文件夹、游戏联机、远程桌面等）。</p>
+<p>实现原理：FRP 本身是一个内网穿透工具，它的核心模式是 TCP/UDP 流量转发。我们无法真正实现一个二层网络（数据链路层），但可以通过在公网服务器上转发特定端口的流量，来模拟出局域网设备间点对点通信的效果。</p>
+<p>FRP 服务端 (frps)：</p>
+<p>它是什么：一个拥有公网 IP 地址的服务器（通常是租用的云服务器，如阿里云、腾讯云等）。</p>
+<p>它的作用：作为“中介”或“交通枢纽”。所有想要组网的设备都需要先连接到它，由它来协调和转发数据流量。</p>
+<p>核心配置：监听一个主要端口（如 7000）用于与客户端建立控制连接。</p>
+<p>FRP 客户端 (frpc)：</p>
+<p>它是什么：运行在你和朋友各自电脑上的程序。</p>
+<p>它的作用：主动连接到公网上的 FRP 服务端，并告诉服务端：“我想把本机的某个端口映射到服务器上的某个端口”或者“我想访问服务器上的某个端口来找到另一台设备”。</p>
+<p>核心配置：指定 FRP 服务端的地址和端口，并定义转发规则。<br>这不是真正的二层局域网：这本质上是基于端口转发的应用层代理。</p>
+<p>详细步骤<br>第一步：准备公网服务器<br>购买或拥有一台云服务器：确保它有公网 IP（弹性公网IP也可）。系统推荐 Linux，如 Ubuntu 或 CentOS。</p>
+<p>开放安全组/防火墙端口：登录云服务商的控制台，配置服务器的安全组规则，放行以下端口（示例端口，可自定义）：</p>
+<p>7000：FRP 服务端与客户端的默认通信端口（必须开放）。</p>
+<p>7001-7020：预留的一批端口，用于后续转发其他服务（如游戏联机、文件共享等）。按需开放，建议先开一段范围。</p>
+<p>第二步：在公网服务器上安装并配置 FRP 服务端 (frps)<br>下载 FRP：</p>
+<h1><span id="%E8%BF%9E%E6%8E%A5%E5%88%B0%E4%BD%A0%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8-ssh">连接到你的服务器 (SSH)</span></h1><h1><span id="%E8%8E%B7%E5%8F%96%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC%E4%B8%8B%E8%BD%BD%E9%93%BE%E6%8E%A5">获取最新版本下载链接</span></h1><p>from <a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases">https://github.com/fatedier/frp/releases</a><br>wget <a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases/download/v0.52.3/frp_0.52.3_linux_amd64.tar.gz">https://github.com/fatedier/frp/releases/download/v0.52.3/frp_0.52.3_linux_amd64.tar.gz</a><br>tar -xzf frp_0.52.3_linux_amd64.tar.gz<br>cd frp_0.52.3_linux_amd64<br>wget：Linux 下载命令。</p>
+<p>tar -xzf：解压 tar.gz 压缩包。</p>
+<p>配置服务端 (frps.ini)：使用 vi 或 nano 编辑 frps.ini 文件。</p>
+<p>ini<br>[common]<br>bind_port = 7000<br>authentication_method = token<br>token = your_secure_token_here_123456<br>[common]：通用配置段。</p>
+<p>bind_port：服务端监听的端口，客户端要连接这个端口。</p>
+<p>token：用于身份验证的密钥，强烈建议设置，防止他人随意使用你的服务器。</p>
+<p>authentication_method：认证方式，设置为 token。</p>
+<p>启动 frps：</p>
+<p>bash<br>./frps -c ./frps.ini<br>如果想在后台长期运行，推荐使用 systemd 来管理：</p>
+<p>创建服务文件：sudo nano /etc/systemd/system/frps.service</p>
+<p>内容如下：</p>
+<p>ini<br>[Unit]<br>Description=Frp Server Service<br>After=network.target</p>
+<p>[Service]<br>Type=simple<br>User=nobody<br>Restart=on-failure<br>RestartSec=5s<br>ExecStart=/path/to/your/frps -c /path/to/your/frps.ini</p>
+<p>[Install]<br>WantedBy=multi-user.target<br>启用并启动服务：</p>
+<p>bash<br>sudo systemctl enable frps<br>sudo systemctl start frps<br>sudo systemctl status frps # 检查状态<br>第三步：在你和朋友的电脑上安装并配置 FRP 客户端 (frpc)<br>下载 FRP：从同样的 GitHub Release 页面下载对应你们操作系统（Windows/macOS/Linux）的版本并解压。</p>
+<p>配置客户端 (frpc.ini)：<br>这是最关键的一步。假设我们要实现：</p>
+<p>你的设备 IP 是 192.168.1.100，你想将本机的 3389（远程桌面）端口暴露出去。</p>
+<p>你的朋友想将他电脑上的 25565（Minecraft）端口暴露出去。</p>
+<p>你的 frpc.ini 配置：</p>
+<p>ini<br>[common]<br>server_addr = 1.2.3.4 # 你的公网服务器 IP<br>server_port = 7000    # frps 监听的端口<br>token = your_secure_token_here_123456 # 必须和服务器设置的一致</p>
+<p>[rdp] # 这是一个自定义名称，代表你的远程桌面服务<br>type = tcp<br>local_ip = 192.168.1.100 # 你想暴露的本地设备的 IP<br>local_port = 3389        # 你想暴露的本地服务的端口<br>remote_port = 7001       # 在服务器上开启的端口，别人通过 server_addr:7001 访问你</p>
+<p>[another-service] # 你可以定义更多规则<br>type = tcp<br>local_ip = 127.0.0.1<br>local_port = 8080<br>remote_port = 7002<br>你朋友的 frpc.ini 配置：</p>
+<p>ini<br>[common]<br>server_addr = 1.2.3.4 # 同样的公网服务器 IP<br>server_port = 7000<br>token = your_secure_token_here_123456</p>
+<p>[minecraft] # 一个自定义名称<br>type = tcp<br>local_ip = 192.168.2.100 # 你朋友电脑的局域网 IP<br>local_port = 25565<br>remote_port = 7003       # 在服务器上开启另一个端口，如 7003<br>知识点解释：</p>
+<p>[rdp] / [minecraft]：这是一个代理规则的名称，可以任意取名，但不能重复。</p>
+<p>type：转发协议类型，通常是 tcp 或 udp。游戏常用 udp，文件共享、远程桌面用 tcp。</p>
+<p>local_ip / local_port：客户端所在局域网内真正提供服务的那台机器的地址和端口。</p>
+<p>remote_port：服务端监听的端口。当有人访问 服务器IP:remote_port 时，流量会被转发到本地的 local_ip:local_port。</p>
+<p>启动客户端：</p>
+<p>Windows：打开命令提示符（CMD）或 PowerShell，进入 FRP 解压目录，执行：frpc.exe -c frpc.ini</p>
+<p>macOS/Linux：终端中进入目录，执行：./frpc -c ./frpc.ini</p>
+<p>同样可以配置为后台服务（以 Windows 为例，使用 nssm 工具）：</p>
+<p>bash<br>nssm install frpc</p>
+<h1><span id="%E7%84%B6%E5%90%8E%E5%9C%A8%E5%BC%B9%E5%87%BA%E7%9A%84%E7%AA%97%E5%8F%A3%E4%B8%AD%E8%AE%BE%E7%BD%AE%E8%B7%AF%E5%BE%84cpathtofrpcexe-%E5%92%8C%E5%8F%82%E6%95%B0-c-cpathtofrpcini">然后在弹出的窗口中设置路径：C:\path\to\frpc.exe 和参数：-c C:\path\to\frpc.ini</span></h1><p>nssm start frpc<br>第四步：连接与访问<br>现在，所有设备上的 FRP 客户端都应该连接到了公网服务器。</p>
+<p>你想访问朋友的 Minecraft 服务器：<br>在你的游戏客户端中，输入服务器地址：1.2.3.4:7003。</p>
+<p>流程：你的游戏数据 -&gt; 你的电脑 -&gt; 公网 (1.2.3.4:7003) -&gt; FRPS -&gt; FRPC（你朋友电脑） -&gt; 朋友电脑上的 Minecraft 服务。</p>
+<p>朋友想访问你的远程桌面：<br>他在远程桌面客户端中，输入地址：1.2.3.4:7001。</p>
+<p>流程：朋友的 RDP 数据 -&gt; 他的电脑 -&gt; 公网 (1.2.3.4:7001) -&gt; FRPS -&gt; FRPC（你的电脑） -&gt; 你电脑上的 RDP 服务。</p>
+<p>edge的机翻666</p>
+<p>链接：github上的frp <a target="_blank" rel="noopener" href="https://github.com/fatedier/frp">https://github.com/fatedier/frp</a></p>
+</body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>xiao_zhaoz<br>
+        <strong>本文链接：</strong><a href="https://xiaozhaoz1.github.io/beside/2025/08/28/My-New-Post/" title="https:&#x2F;&#x2F;xiaozhaoz1.github.io&#x2F;beside&#x2F;2025&#x2F;08&#x2F;28&#x2F;My-New-Post&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;xiaozhaoz1.github.io&#x2F;beside&#x2F;2025&#x2F;08&#x2F;28&#x2F;My-New-Post&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/beside/tags/s/" rel="tag">s</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="-your github username-/-your giscus repo-"
+      data-repo-id="-your giscus repo ID-"
+      data-category="Announcements"
+      data-category-id="-giscus category id-"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="light"
+      data-lang="en"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>
