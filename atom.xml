@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-08-29T04:37:13.081Z</updated>
+  <updated>2025-09-02T13:44:47.340Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,26 +17,31 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>My First Post - study</title>
-    <link href="http://example.com/2025/08/28/My-New-Post/"/>
-    <id>http://example.com/2025/08/28/My-New-Post/</id>
+    <title>N2N使用()</title>
+    <link href="http://example.com/2025/08/28/n2n%E4%BD%BF%E7%94%A8/"/>
+    <id>http://example.com/2025/08/28/n2n%E4%BD%BF%E7%94%A8/</id>
     <published>2025-08-28T08:05:49.000Z</published>
-    <updated>2025-08-29T04:37:13.081Z</updated>
+    <updated>2025-09-02T13:44:47.340Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;核心目标：让处于不同私有网络（例如：你在家，朋友在公司或家）的设备，能够像在同一个局域网内一样相互访问（例如：通过 192.168.x.x 这样的内网 IP 直接访问对方的共享文件夹、游戏联机、远程桌面等）。&lt;/p&gt;
-&lt;p&gt;实现原理：FRP</summary>
+    <summary type="html">&lt;p&gt;EasyN2N（N2N启动器）&lt;br /&gt;
+&lt;a href=&quot;https://bugxia.com/&quot;&gt;https://bugxia.com/&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;功能简介&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot;</summary>
         
       
     
     
     
     
-    <category term="s" scheme="http://example.com/tags/s/"/>
+    <category term="N2N" scheme="http://example.com/tags/N2N/"/>
+    
+    <category term="虚拟局域网" scheme="http://example.com/tags/%E8%99%9A%E6%8B%9F%E5%B1%80%E5%9F%9F%E7%BD%91/"/>
+    
+    <category term="虚拟网卡" scheme="http://example.com/tags/%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1/"/>
     
   </entry>
   
@@ -45,7 +50,7 @@
     <link href="http://example.com/2013/12/24/hello-world/"/>
     <id>http://example.com/2013/12/24/hello-world/</id>
     <published>2013-12-24T09:49:32.000Z</published>
-    <updated>2025-08-29T05:12:22.764Z</updated>
+    <updated>2025-09-02T12:16:18.754Z</updated>
     
     
       

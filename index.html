@@ -240,7 +240,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>Tag</div>
-    <div class="sidebar-state-number">1</div>
+    <div class="sidebar-state-number">3</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -313,14 +313,16 @@
       <div class="post-wrapper">
   <div class="post-wrap-left" data-aos="fade-up">
     
-      <a class="post-link" href="/2025/08/28/My-New-Post/" aria-label="My First Post - study"></a>
+      <a class="post-link" href="/2025/08/28/n2n%E4%BD%BF%E7%94%A8/" aria-label="N2N使用()"></a>
     
+    
+      <div class="post-sticky">Top</div>
     
     <div class="post-cover-left">
       
         
         
-          <img data-src="https://d-sketon.top/img/_backwebp/bg1.webp" data-sizes="auto" alt="My First Post - study" class="lazyload">
+          <img data-src="https://d-sketon.top/img/_backwebp/bg1.webp" data-sizes="auto" alt="N2N使用()" class="lazyload">
         
       
     </div>
@@ -328,17 +330,24 @@
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2025-08-28</span>
         
-        <span><span class="icon-pencil"></span>1.6k words</span>
-        <span><span class="icon-clock"></span>6 mins</span>
+        <span><span class="icon-pencil"></span>2.1k words</span>
+        <span><span class="icon-clock"></span>7 mins</span>
       </div>
-      <h2 class="post-title">My First Post - study</h2>
+      <h2 class="post-title">N2N使用()</h2>
       <article class="post-article">
         
-          核心目标：让处于不同私有网络（例如：你在家，朋友在公司或家）的设备，能够像在同一个局域网内一样相互访问（例如：通过 192.168.x.x 这样的内网 IP 直接访问对方的共享文件夹、游戏联机、远程桌面等）。
-实现原理：FRP 本身是一个内网穿透工具，它的核心模式是 TCP/UDP 流量转发。我们无法真正实现一个二层网络（数据链路层），但可以通过在公网服务器上转发特定端口的流量，来模拟出局域网设备间点对点通信的效果。
-FRP 服务端 (frps)：
-它是什么：一个拥有公网 IP 地址的服务器（通常是租用的云服务器，如阿里云、腾讯云等）。
-它的作用：作为“中介”或“交通枢纽”。所有想要组网的设备
+          EasyN2N（N2N启动器）
+https://bugxia.com/
+ 功能简介
+EasyN2N是一款基于 N2N 的虚拟局域网搭建工具（包含客户端与服务端），远程联机游戏、文件共享等的新选择。
+
+EasyN2N在保持原有N2N的功能的基础上，集成PING、TCP\UDP、iPerf、NAT类型等测试套件。
+
+相对于其他虚拟局域网方案，N2N在网络环境良好的情况下，能够实现P2P直连，有效的降低虚拟局域网的延迟，即便无法直连，通过服务器中转，也能获得不错的延迟
+
+内置免费服务器，包含查看在线主机列表、心跳监测、点对网等扩展功能。
+
+支持进程守护、服务形式自启动等贴心小功能，让组建虚拟局域网更
         
       </article>
     </div>
@@ -352,6 +361,8 @@ FRP 服务端 (frps)：
       <a class="post-link" href="/2013/12/24/hello-world/" aria-label="Hello World"></a>
     
     
+      <div class="post-sticky">Top</div>
+    
     <div class="post-cover-right">
       
         
@@ -364,14 +375,21 @@ FRP 服务端 (frps)：
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2013-12-24</span>
         
-        <span><span class="icon-pencil"></span>16 words</span>
-        <span><span class="icon-clock"></span>1 min</span>
+        <span><span class="icon-pencil"></span>1.2k words</span>
+        <span><span class="icon-clock"></span>5 mins</span>
       </div>
       <h2 class="post-title">Hello World</h2>
       <article class="post-article">
         
           Welcome to Hexo! This is your very first post. Check documentation to learn how to use.
-
+ 有可能需要修改的配置
+ 置顶
+在文章的 Front-matter 中添加 sticky: true
+1234---title: Hello Worldsticky: true---
+ pjax
+默认关闭
+12pjax:  enable: false
+pjax 在 v0.0.10 中被引入，用于那些需要添加音乐播放器等需要 SPA 的用户。经过一段时间的迭代后已基本上稳定，但引入后仍然可能会出现诸如脚本无法执行、脚本重复
         
       </article>
     </div>
@@ -410,10 +428,10 @@ FRP 服务端 (frps)：
     
       <div>
         <span class="icon-brush"></span>
-        1.6k
+        3.3k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        00:07
+        00:12
       </div>
     
     
@@ -458,7 +476,7 @@ FRP 服务端 (frps)：
   </div>
   <div class="sidebar-state-tag">
     <div>Tag</div>
-    <div class="sidebar-state-number">1</div>
+    <div class="sidebar-state-number">3</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -571,6 +589,15 @@ FRP 服务端 (frps)：
 
 
 
+
+
+  <script>
+    function initLive2d() {
+      live2d.init("https://fastly.jsdelivr.net/gh/D-Sketon/plugin-live2d/", {themeTipsPath: ""});
+    }
+  </script>
+  
+<script src="https://fastly.jsdelivr.net/gh/D-Sketon/plugin-live2d/js/live2d-autoload.js" onload="initLive2d &amp;&amp; initLive2d()" async></script>
 
 
 

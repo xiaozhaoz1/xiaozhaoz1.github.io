@@ -1,0 +1,883 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  
+  <title>
+    N2N使用() |
+    
+    Hexo
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="EasyN2N（N2N启动器） https:&#x2F;&#x2F;bugxia.com&#x2F;  功能简介 EasyN2N是一款基于 N2N 的虚拟局域网搭建工具（包含客户端与服务端），远程联机游戏、文件共享等的新选择。  EasyN2N在保持原有N2N的功能的基础上，集成PING、TCP\UDP、iPerf、NAT类型等测试套件。  相对于其他虚拟局域网方案，N2N在网络环境良好的情况下，能够实现P2P直连，有效的降低">
+<meta property="og:type" content="article">
+<meta property="og:title" content="N2N使用()">
+<meta property="og:url" content="http://example.com/2025/08/28/n2n%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="EasyN2N（N2N启动器） https:&#x2F;&#x2F;bugxia.com&#x2F;  功能简介 EasyN2N是一款基于 N2N 的虚拟局域网搭建工具（包含客户端与服务端），远程联机游戏、文件共享等的新选择。  EasyN2N在保持原有N2N的功能的基础上，集成PING、TCP\UDP、iPerf、NAT类型等测试套件。  相对于其他虚拟局域网方案，N2N在网络环境良好的情况下，能够实现P2P直连，有效的降低">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-08-28T08:05:49.000Z">
+<meta property="article:modified_time" content="2025-09-02T13:44:47.340Z">
+<meta property="article:author" content="xiaozhaoz1">
+<meta property="article:tag" content="N2N">
+<meta property="article:tag" content="虚拟局域网">
+<meta property="article:tag" content="虚拟网卡">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">Loading...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/">Home</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/archives">Archives</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/about">About</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/friend">Friend</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed" target="_blank"></a>
+    
+    
+    
+  </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture>
+          
+        </picture>
+        
+          <img  fetchpriority="high" src="/images/banner.webp" alt="N2N使用()">
+        
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">N2N使用()</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  <div class="sidebar-wrapper-container sticky">
+  
+    
+    
+  
+ 
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text"> 功能简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD"><span class="toc-number">2.</span> <span class="toc-text"> 下载</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text"> 使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E5%85%A5"><span class="toc-number">3.1.</span> <span class="toc-text"> 加入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%951%E5%BF%AB%E6%8D%B7%E5%8A%A0%E5%85%A5"><span class="toc-number">3.1.1.</span> <span class="toc-text"> 方法1：快捷加入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%952%E6%89%8B%E5%8A%A8%E5%8A%A0%E5%85%A5"><span class="toc-number">3.1.2.</span> <span class="toc-text"> 方法2：手动加入</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-number">4.</span> <span class="toc-text"> 测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#n2n%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85"><span class="toc-number">5.</span> <span class="toc-text"> N2N服务器安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#rpm%E5%AE%89%E8%A3%85"><span class="toc-number">5.1.</span> <span class="toc-text"> RPM安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85"><span class="toc-number">5.2.</span> <span class="toc-text"> 编译安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="toc-number">5.2.1.</span> <span class="toc-text"> 启动服务端</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AFwindows"><span class="toc-number">5.3.</span> <span class="toc-text"> 服务端（Windows）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%AF%E8%83%BD%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">6.</span> <span class="toc-text"> 可能的解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E8%BF%9E%E6%8E%A5%E6%AD%A3%E5%B8%B8%E4%BD%86ping%E4%B8%8D%E9%80%9A%E5%AF%B9%E6%96%B9"><span class="toc-number">6.1.</span> <span class="toc-text"> 1.连接正常，但ping不通对方</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E5%90%8Eping%E8%87%AA%E5%B7%B1%E7%9A%84%E8%99%9A%E6%8B%9Fip%E4%B8%8D%E9%80%9A"><span class="toc-number">6.1.1.</span> <span class="toc-text"> 启动后，ping自己的虚拟IP不通</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99%E6%9C%AA%E5%85%B3%E9%97%AD"><span class="toc-number">6.1.2.</span> <span class="toc-text"> 防火墙未关闭</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E6%96%B9%E6%9C%AA%E6%88%90%E5%8A%9F%E9%93%BE%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%88%96%E6%9C%AA%E5%9C%A8%E5%90%8C%E4%B8%80%E4%B8%AA%E7%BB%84"><span class="toc-number">6.1.3.</span> <span class="toc-text"> 对方未成功链接服务器或未在同一个组</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E8%BF%90%E8%A1%8C%E6%97%A5%E5%BF%97%E6%9C%AA%E5%8F%91%E7%8E%B0okedgesupernode"><span class="toc-number">6.2.</span> <span class="toc-text"> 2.运行日志未发现[OK]edge&lt;&lt;&lt;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&gt;&gt;&gt;supernode</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%97%A5%E5%BF%97error-authentication-error-mac-or-ip-address-already-in-use-or-not-released-yet-by-supernode"><span class="toc-number">6.2.1.</span> <span class="toc-text"> 运行日志ERROR: authentication error, MAC or IP address already in use or not released yet by supernode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AA%E8%A7%81%E6%98%8E%E6%98%BE%E6%8A%A5%E9%94%99-%E6%88%96-warning-supernode-not-responding-now-trying"><span class="toc-number">6.2.2.</span> <span class="toc-text"> 未见明显报错 或 WARNING: supernode not responding, now trying</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98"><span class="toc-number">6.3.</span> <span class="toc-text"> 3.虚拟网卡出现问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E7%BD%91%E5%8D%A1%E4%BC%98%E5%85%88%E7%BA%A7%E6%9C%AA%E8%AE%BE%E7%BD%AE"><span class="toc-number">6.4.</span> <span class="toc-text"> 4.网卡优先级未设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E8%99%9A%E6%8B%9Fip%E5%86%B2%E7%AA%81"><span class="toc-number">6.5.</span> <span class="toc-text"> 5.虚拟ip冲突</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1%E6%9C%AA%E5%90%AF%E5%8A%A8"><span class="toc-number">6.6.</span> <span class="toc-text"> 6.虚拟网卡未启动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7n2n%E8%A2%AB%E6%9D%80%E6%AF%92%E8%BD%AF%E4%BB%B6%E5%81%9C%E6%AD%A2%E6%88%96%E5%88%A0%E9%99%A4"><span class="toc-number">6.7.</span> <span class="toc-text"> 7.N2N被杀毒软件停止或删除</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#github-frp%E9%93%BE%E6%8E%A5"><span class="toc-number">7.</span> <span class="toc-text"> github frp链接</span></a></li></ol>
+  
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="xiaozhaoz1" class="lazyload">
+  <div class="sidebar-author-name">xiaozhaoz1</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">2</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">3</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+  
+  <div class="sidebar-widget">
+  
+  </div>
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-n2n使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2025-08-28T08:05:49.000Z" itemprop="datePublished">2025-08-28</time>
+    <time style="display: none;" id="post-update-time">2025-09-02</time>
+  </span>
+  
+</div>
+
+      
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <p>EasyN2N（N2N启动器）<br />
+<a target="_blank" rel="noopener" href="https://bugxia.com/">https://bugxia.com/</a></p>
+<h1 id="功能简介"><a class="markdownIt-Anchor" href="#功能简介"></a> 功能简介</h1>
+<pre><code>EasyN2N是一款基于 N2N 的虚拟局域网搭建工具（包含客户端与服务端），远程联机游戏、文件共享等的新选择。
+
+EasyN2N在保持原有N2N的功能的基础上，集成PING、TCP\UDP、iPerf、NAT类型等测试套件。
+
+相对于其他虚拟局域网方案，N2N在网络环境良好的情况下，能够实现P2P直连，有效的降低虚拟局域网的延迟，即便无法直连，通过服务器中转，也能获得不错的延迟
+
+内置免费服务器，包含查看在线主机列表、心跳监测、点对网等扩展功能。
+
+支持进程守护、服务形式自启动等贴心小功能，让组建虚拟局域网更方便快捷。
+</code></pre>
+<h1 id="下载"><a class="markdownIt-Anchor" href="#下载"></a> 下载</h1>
+<p>下载主页<a target="_blank" rel="noopener" href="https://bugxia.com/357.html">https://bugxia.com/357.html</a></p>
+<pre><code>据多位朋友反映，近期微软自带的Defender对EasyN2N误杀率增加
+
+表现为：已添加信任列表，但使用过程中依然会静默删除主程序n2n.exe，且没有任何提示
+
+因EasyN2N的开发语言（易语言）不受大厂信任，所以误报率偏高，请新手用户勿担心
+
+可以选择 关闭Defender ，用 火绒 替代它
+
+界面乱码解决：进入【设置 -&gt; 时间和语言 -&gt;  语言与区域 -&gt;管理语言设置-&gt;更改系统区域设置】，取消勾选 Beta版：使用Unicode UTF-8提供全球语言支持，然后重启系统即可
+
+升级时，直接下载压缩包，解压到原路径覆盖即可，会保留设置
+
+加壳版：稍微降低一些误报率，但可能在部分机器上存在兼容性问题
+</code></pre>
+<h1 id="使用"><a class="markdownIt-Anchor" href="#使用"></a> 使用</h1>
+<p>使用方法<br />
+1.解压上述下载的压缩包<br />
+2.运行<br />
+请以管理员权限运行n2n.exe（小黄鸭图标右键 —— 以管理员身份运行）</p>
+<pre><code>初次运行时，启动器会自动安装所需要的虚拟网卡驱动
+
+需要选择或操作的几个选项
+
+    服务器：提供N2N组网的服务器（EasyN2N内置，请根据软件内指引免费获取）
+    小组名称：指定一个虚拟网小组名称（请尽量复杂，以便和公共N2N服务器上其他小组区分开）
+    虚拟IP：指定一个虚拟的局域网IP（或者让软件自动分配，但可能存在一些未知问题）
+
+准备就绪后，点击启动(管理员权限运行)
+
+注：可能会弹出Windows防火墙的提示，请放行
+
+运行成功会在运行日志中找到  [OK]edge&lt;&lt;&lt;============&gt;&gt;&gt;supernode
+</code></pre>
+<h2 id="加入"><a class="markdownIt-Anchor" href="#加入"></a> 加入</h2>
+<p>当需要让更多朋友加入你的虚拟小组时，可以使用以下方法</p>
+<h3 id="方法1快捷加入"><a class="markdownIt-Anchor" href="#方法1快捷加入"></a> 方法1：快捷加入</h3>
+<pre><code>点击服务器旁边的分享图标后，EasyN2N将把当前连接的服务器、虚拟IP、小组名称等导出为专用分享链接
+
+将上述链接复制粘贴给朋友，在朋友的客户端上，点击菜单导入
+</code></pre>
+<p>注：</p>
+<pre><code>    若导出端为手动指定虚拟IP，则导入端需要手动填写虚拟IP的最后一位
+</code></pre>
+<h3 id="方法2手动加入"><a class="markdownIt-Anchor" href="#方法2手动加入"></a> 方法2：手动加入</h3>
+<pre><code>新加入的客户端，除虚拟IP设置不同而外，其他设置均需保持一致即可
+
+    朋友A：IP地址：192.168.66.1，组名称：zSmwUH4VWb，服务器：n2n.test.com
+    朋友B：IP地址：192.168.66.2，组名称：zSmwUH4VWb，服务器：n2n.test.com
+    朋友C：IP地址：192.168.66.3，组名称：zSmwUH4VWb，服务器：n2n.test.com
+    ……
+</code></pre>
+<p>注：</p>
+<pre><code>1.若选择自定义虚拟IP（比如192.168.66.1），则需要所有客户端均在该IP段内（如192.168.66.x）
+
+2.虚拟小组的服务器、组名称均需保持一致，每个客户端虚拟IP最后一位均需独立设置
+</code></pre>
+<h1 id="测试"><a class="markdownIt-Anchor" href="#测试"></a> 测试</h1>
+<p>点击测试工具，在PING选项卡下输入对方虚拟IP，PING通有延迟就是成功链接</p>
+<p>防火墙可能未关闭可以点击一键关闭防火墙</p>
+<h1 id="n2n服务器安装"><a class="markdownIt-Anchor" href="#n2n服务器安装"></a> N2N服务器安装</h1>
+<pre><code>以下安装编译基于CentOS 7 64bit，版本为n2n 3.0.0，尽量使用同版本服务端和客户端，避免发生兼容性问题，导致无法连接
+</code></pre>
+<p>注：以下安装方式二选一</p>
+<h2 id="rpm安装"><a class="markdownIt-Anchor" href="#rpm安装"></a> RPM安装</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install libzstd -y</span><br><span class="line">wget https://github.com/ntop/n2n/releases/download/3.0/n2n-3.0.0-1038.x86_64.rpm</span><br><span class="line">rpm -i n2n-3.0.0-1038.x86_64.rpm</span><br></pre></td></tr></table></figure>
+<h2 id="编译安装"><a class="markdownIt-Anchor" href="#编译安装"></a> 编译安装</h2>
+<p>编译环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#CentOS</span></span><br><span class="line">yum install autoconf automake libtool git kernel-headers -y</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Ubuntu</span></span><br><span class="line">apt-get install autoconf make gcc -y</span><br></pre></td></tr></table></figure>
+<p>开始编译</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/ntop/n2n/archive/refs/tags/3.0.tar.gz</span><br><span class="line">tar xzvf 3.0.tar.gz</span><br><span class="line"><span class="built_in">cd</span> n2n-3.0</span><br><span class="line">./autogen.sh</span><br><span class="line">./configure</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<h3 id="启动服务端"><a class="markdownIt-Anchor" href="#启动服务端"></a> 启动服务端</h3>
+<pre><code>#实际使用时，可以去掉 -f 参数，使其后台运行
+supernode -p 9527 -f
+若服务器开启了如iptables\firewalld\ufw等防火墙，需要放行supernode所设置的端口，否则客户端无法连接
+</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#firewalld</span></span><br><span class="line">firewall-cmd --zone=public --add-port=9527/udp --permanent</span><br><span class="line">firewall-cmd --reload</span><br><span class="line"><span class="comment">#iptables</span></span><br><span class="line">iptables -I INPUT -p udp --dport 9527 -j ACCEPT</span><br><span class="line">service iptables save</span><br><span class="line">service iptables restart</span><br><span class="line"><span class="comment">#ufw</span></span><br></pre></td></tr></table></figure>
+<pre><code>ufw allow 9527/udp另外，如果使用的阿里云、腾讯云等云服务器，还需要单独再在安全组中放行使用的端口（UDP）
+</code></pre>
+<h2 id="服务端windows"><a class="markdownIt-Anchor" href="#服务端windows"></a> 服务端（Windows）</h2>
+<pre><code>下载 EasyN2N，界面菜单中打开服务端
+选择服务端的版本（默认v3，推荐v3），一键启动
+和Linux端类似，开启了Windows防火墙的机器需要注意放行指定的端口，或关闭防火墙
+</code></pre>
+<p>另外，如果使用的阿里云、腾讯云等云服务器，还需要单独再在安全组中放行使用的端口（UDP）</p>
+<h1 id="可能的解决方案"><a class="markdownIt-Anchor" href="#可能的解决方案"></a> 可能的解决方案</h1>
+<h2 id="1连接正常但ping不通对方"><a class="markdownIt-Anchor" href="#1连接正常但ping不通对方"></a> 1.连接正常，但ping不通对方</h2>
+<h3 id="启动后ping自己的虚拟ip不通"><a class="markdownIt-Anchor" href="#启动后ping自己的虚拟ip不通"></a> 启动后，ping自己的虚拟IP不通</h3>
+<pre><code>检查是否给予edge（客户端）管理员权限，导致程序无法给虚拟网卡分配IP
+检查本机是否存在多张TAP网卡（比如TeamView就可能会和N2N虚拟网卡冲突），使用 -d “网卡名称” 来指定EasyN2N使用的网卡
+</code></pre>
+<h3 id="防火墙未关闭"><a class="markdownIt-Anchor" href="#防火墙未关闭"></a> 防火墙未关闭</h3>
+<pre><code>在测试工具-PING选项卡-一键关闭防火墙
+</code></pre>
+<h3 id="对方未成功链接服务器或未在同一个组"><a class="markdownIt-Anchor" href="#对方未成功链接服务器或未在同一个组"></a> 对方未成功链接服务器或未在同一个组</h3>
+<pre><code>让对方PING自己的虚拟IP看是否连接服务器，确认与对方虚拟IP前三个相同，确认组相同，最后一段最大254
+    局域网IP段：
+    0.0.0.0~10.255.255.255（A类）
+    172.16.0.0~172.31.255.255（B类）
+    192.168.0.0~192.168.255.255（C类）
+</code></pre>
+<h2 id="2运行日志未发现okedgesupernode"><a class="markdownIt-Anchor" href="#2运行日志未发现okedgesupernode"></a> 2.运行日志未发现[OK]edge&lt;&lt;&lt;=====&gt;&gt;&gt;supernode</h2>
+<h3 id="运行日志error-authentication-error-mac-or-ip-address-already-in-use-or-not-released-yet-by-supernode"><a class="markdownIt-Anchor" href="#运行日志error-authentication-error-mac-or-ip-address-already-in-use-or-not-released-yet-by-supernode"></a> 运行日志ERROR: authentication error, MAC or IP address already in use or not released yet by supernode</h3>
+<pre><code>等待2分钟左右，supernode会释放占用的MAC和IP，然后edge会自动重新分配地址
+服务端使用 -M 参数启动
+强制结束进程（SIGKILL）则会导致edge没来得及向supernode报告，所以需要在结束edge进程前，发送终止信号（SIGINT、SIGTERM），对应Windows命令行下则需以Ctrl+C结束
+</code></pre>
+<h3 id="未见明显报错-或-warning-supernode-not-responding-now-trying"><a class="markdownIt-Anchor" href="#未见明显报错-或-warning-supernode-not-responding-now-trying"></a> 未见明显报错 或 WARNING: supernode not responding, now trying</h3>
+<pre><code>大概率-网络问题，若其他设置无问题，可能需要更换其他官方服务器
+小概率-supernode服务器端未开放端口，官方赞助务器更换地址或被屏蔽，进入网站查询https://bugxia.com/n2n_status
+可能  -edge和supernode版本不匹配
+</code></pre>
+<h2 id="3虚拟网卡出现问题"><a class="markdownIt-Anchor" href="#3虚拟网卡出现问题"></a> 3.虚拟网卡出现问题</h2>
+<pre><code>直接卸载虚拟网卡，关闭软件重新用管理员权限打开
+使用N2N作者给的手动下载http://build.openvpn.net/downloads/releases/tap-windows-9.21.2.exe
+</code></pre>
+<h2 id="4网卡优先级未设置"><a class="markdownIt-Anchor" href="#4网卡优先级未设置"></a> 4.网卡优先级未设置</h2>
+<pre><code>在测试工具-网卡优先级-获取网卡优先级-找到TAP-Windows Adapter V9 点击设置跃点数为1，并确认没有一样的网卡或其他跃点数为1的网卡
+</code></pre>
+<h2 id="5虚拟ip冲突"><a class="markdownIt-Anchor" href="#5虚拟ip冲突"></a> 5.虚拟ip冲突</h2>
+<pre><code>尝试更换虚拟ip，先试试改最后一位再尝试改前面的
+</code></pre>
+<h2 id="6虚拟网卡未启动"><a class="markdownIt-Anchor" href="#6虚拟网卡未启动"></a> 6.虚拟网卡未启动</h2>
+<pre><code>网络连接里 N2N的虚拟网卡显示网络电缆被拔出或未识别的网络，尝试重新打开或直接卸载重新安装
+</code></pre>
+<h2 id="7n2n被杀毒软件停止或删除"><a class="markdownIt-Anchor" href="#7n2n被杀毒软件停止或删除"></a> 7.N2N被杀毒软件停止或删除</h2>
+<pre><code>手动恢复文件 加入安全区
+</code></pre>
+<h1 id="github-frp链接"><a class="markdownIt-Anchor" href="#github-frp链接"></a> github frp链接</h1>
+<p>github上的frp <a target="_blank" rel="noopener" href="https://github.com/fatedier/frp">https://github.com/fatedier/frp</a><br />
+<a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/blob/dev/README_zh.md">https://github.com/fatedier/frp/blob/dev/README_zh.md</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/N2N/" rel="tag">N2N</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E8%99%9A%E6%8B%9F%E5%B1%80%E5%9F%9F%E7%BD%91/" rel="tag">虚拟局域网</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1/" rel="tag">虚拟网卡</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="https://d-sketon.top/img/_backwebp/bg1.webp" data-sizes="auto" alt="Hello World" class="lazyload">
+        
+      
+      <a href="/2013/12/24/hello-world/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          Hello World
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2020-2025
+      
+      <span class="footer-info-sep rotate"></span>
+      xiaozhaoz1
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        3.3k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        00:12
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text"> 功能简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD"><span class="toc-number">2.</span> <span class="toc-text"> 下载</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text"> 使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E5%85%A5"><span class="toc-number">3.1.</span> <span class="toc-text"> 加入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%951%E5%BF%AB%E6%8D%B7%E5%8A%A0%E5%85%A5"><span class="toc-number">3.1.1.</span> <span class="toc-text"> 方法1：快捷加入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%952%E6%89%8B%E5%8A%A8%E5%8A%A0%E5%85%A5"><span class="toc-number">3.1.2.</span> <span class="toc-text"> 方法2：手动加入</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-number">4.</span> <span class="toc-text"> 测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#n2n%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85"><span class="toc-number">5.</span> <span class="toc-text"> N2N服务器安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#rpm%E5%AE%89%E8%A3%85"><span class="toc-number">5.1.</span> <span class="toc-text"> RPM安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85"><span class="toc-number">5.2.</span> <span class="toc-text"> 编译安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="toc-number">5.2.1.</span> <span class="toc-text"> 启动服务端</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AFwindows"><span class="toc-number">5.3.</span> <span class="toc-text"> 服务端（Windows）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%AF%E8%83%BD%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">6.</span> <span class="toc-text"> 可能的解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E8%BF%9E%E6%8E%A5%E6%AD%A3%E5%B8%B8%E4%BD%86ping%E4%B8%8D%E9%80%9A%E5%AF%B9%E6%96%B9"><span class="toc-number">6.1.</span> <span class="toc-text"> 1.连接正常，但ping不通对方</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E5%90%8Eping%E8%87%AA%E5%B7%B1%E7%9A%84%E8%99%9A%E6%8B%9Fip%E4%B8%8D%E9%80%9A"><span class="toc-number">6.1.1.</span> <span class="toc-text"> 启动后，ping自己的虚拟IP不通</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99%E6%9C%AA%E5%85%B3%E9%97%AD"><span class="toc-number">6.1.2.</span> <span class="toc-text"> 防火墙未关闭</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E6%96%B9%E6%9C%AA%E6%88%90%E5%8A%9F%E9%93%BE%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%88%96%E6%9C%AA%E5%9C%A8%E5%90%8C%E4%B8%80%E4%B8%AA%E7%BB%84"><span class="toc-number">6.1.3.</span> <span class="toc-text"> 对方未成功链接服务器或未在同一个组</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E8%BF%90%E8%A1%8C%E6%97%A5%E5%BF%97%E6%9C%AA%E5%8F%91%E7%8E%B0okedgesupernode"><span class="toc-number">6.2.</span> <span class="toc-text"> 2.运行日志未发现[OK]edge&lt;&lt;&lt;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&gt;&gt;&gt;supernode</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%97%A5%E5%BF%97error-authentication-error-mac-or-ip-address-already-in-use-or-not-released-yet-by-supernode"><span class="toc-number">6.2.1.</span> <span class="toc-text"> 运行日志ERROR: authentication error, MAC or IP address already in use or not released yet by supernode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AA%E8%A7%81%E6%98%8E%E6%98%BE%E6%8A%A5%E9%94%99-%E6%88%96-warning-supernode-not-responding-now-trying"><span class="toc-number">6.2.2.</span> <span class="toc-text"> 未见明显报错 或 WARNING: supernode not responding, now trying</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98"><span class="toc-number">6.3.</span> <span class="toc-text"> 3.虚拟网卡出现问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E7%BD%91%E5%8D%A1%E4%BC%98%E5%85%88%E7%BA%A7%E6%9C%AA%E8%AE%BE%E7%BD%AE"><span class="toc-number">6.4.</span> <span class="toc-text"> 4.网卡优先级未设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E8%99%9A%E6%8B%9Fip%E5%86%B2%E7%AA%81"><span class="toc-number">6.5.</span> <span class="toc-text"> 5.虚拟ip冲突</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1%E6%9C%AA%E5%90%AF%E5%8A%A8"><span class="toc-number">6.6.</span> <span class="toc-text"> 6.虚拟网卡未启动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7n2n%E8%A2%AB%E6%9D%80%E6%AF%92%E8%BD%AF%E4%BB%B6%E5%81%9C%E6%AD%A2%E6%88%96%E5%88%A0%E9%99%A4"><span class="toc-number">6.7.</span> <span class="toc-text"> 7.N2N被杀毒软件停止或删除</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#github-frp%E9%93%BE%E6%8E%A5"><span class="toc-number">7.</span> <span class="toc-text"> github frp链接</span></a></li></ol>
+  
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="xiaozhaoz1" class="lazyload">
+  <div class="sidebar-author-name">xiaozhaoz1</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">2</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">3</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+  <script>
+    function initLive2d() {
+      live2d.init("https://fastly.jsdelivr.net/gh/D-Sketon/plugin-live2d/", {themeTipsPath: ""});
+    }
+  </script>
+  
+<script src="https://fastly.jsdelivr.net/gh/D-Sketon/plugin-live2d/js/live2d-autoload.js" onload="initLive2d &amp;&amp; initLive2d()" async></script>
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "xiaozhaoz1",
+          title: "N2N使用()",
+          url: "http://example.com/2025/08/28/n2n%E4%BD%BF%E7%94%A8/",
+          excerpt: "",
+          description: "",
+          stripContent: "EasyN2N（N2N启动器） https://bugxia.com/  功能简介 EasyN2N是一款基于 N2N 的虚拟局域网搭建工具（包含客户端与服务端），远程联机游戏、文件共享等的新选择。  EasyN2N在保持原有N2N的功能的基础上，集成PING、TCP\UDP、iPerf、NAT类型等测试套件。  相对于其他虚拟局域网方案，N2N在网络环境良好的情况下，能够实现P2P直连，有效的降低虚拟局域网的延迟，即便无法直连，通过服务器中转，也能获得不错的延迟  内置免费服务器，包含查看在线主",
+          date: "Thu Aug 28 2025 16:05:49 GMT+0800",
+          updated: "Tue Sep 02 2025 21:44:47 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.1' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+
