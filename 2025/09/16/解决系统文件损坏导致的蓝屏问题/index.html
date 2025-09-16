@@ -17,7 +17,7 @@
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
   
   <title>
-    关于 |
+    解决系统文件损坏导致的蓝屏问题 |
     
     Hexo
   </title>
@@ -37,19 +37,19 @@
 
   
   
-    <meta name="description" content="关于">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://example.com/about/index.html">
+    <meta name="description" content="问题分析 系统文件检查器 (SFC) 发现了多个系统文件已损坏且无法自动修复。 文件的“哈希值不匹配”（hash mismatch），意味着磁盘上的文件与微软官方预期的版本不一致。 这通常是由于软件冲突、不完整的 Windows 更新、磁盘错误或病毒破坏导致的。  解决方案  方法一：使用 DISM 工具修复系统映像 在 Windows 搜索栏中输入 cmd 或 命令提示符。 右键点击“命令提示">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解决系统文件损坏导致的蓝屏问题">
+<meta property="og:url" content="http://example.com/2025/09/16/%E8%A7%A3%E5%86%B3%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6%E6%8D%9F%E5%9D%8F%E5%AF%BC%E8%87%B4%E7%9A%84%E8%93%9D%E5%B1%8F%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="关于">
+<meta property="og:description" content="问题分析 系统文件检查器 (SFC) 发现了多个系统文件已损坏且无法自动修复。 文件的“哈希值不匹配”（hash mismatch），意味着磁盘上的文件与微软官方预期的版本不一致。 这通常是由于软件冲突、不完整的 Windows 更新、磁盘错误或病毒破坏导致的。  解决方案  方法一：使用 DISM 工具修复系统映像 在 Windows 搜索栏中输入 cmd 或 命令提示符。 右键点击“命令提示">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/images/banner.webp">
-<meta property="article:published_time" content="2021-09-22T13:01:47.000Z">
-<meta property="article:modified_time" content="2025-08-29T05:12:22.766Z">
+<meta property="article:published_time" content="2025-09-16T07:03:17.000Z">
+<meta property="article:modified_time" content="2025-09-16T07:11:35.687Z">
 <meta property="article:author" content="xiaozhaoz1">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="修复">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/banner.webp">
   
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -189,11 +189,13 @@
 <header id="header">
   
     
-      <picture>
-        
-      </picture>
       
-        <img  fetchpriority="high" src="/images/banner.webp" alt="关于">
+        <picture>
+          
+        </picture>
+        
+          <img  fetchpriority="high" src="/images/banner.webp" alt="解决系统文件损坏导致的蓝屏问题">
+        
       
     
   
@@ -203,7 +205,7 @@
         
         
           <a href="/" id="logo">
-            <h1 data-aos="slide-up">关于</h1>
+            <h1 data-aos="slide-up">解决系统文件损坏导致的蓝屏问题</h1>
           </a>
         
       
@@ -220,7 +222,7 @@
         <div id="content"  class="sidebar-right" >
           <aside id="sidebar">
   
-  <div class="sidebar-wrapper-container ">
+  <div class="sidebar-wrapper-container sticky">
   
     
     
@@ -229,7 +231,15 @@
   <div class="sidebar-wrapper">
     <div class="sidebar-wrap" data-aos="fade-up">
       
-        <div class="sidebar-author">
+        
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90"><span class="toc-number">1.</span> <span class="toc-text"> 问题分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">2.</span> <span class="toc-text"> 解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%E4%BD%BF%E7%94%A8-dism-%E5%B7%A5%E5%85%B7%E4%BF%AE%E5%A4%8D%E7%B3%BB%E7%BB%9F%E6%98%A0%E5%83%8F"><span class="toc-number">2.1.</span> <span class="toc-text"> 方法一：使用 DISM 工具修复系统映像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%E4%BB%8E%E5%AE%89%E8%A3%85%E5%AA%92%E4%BD%93%E4%B8%AD%E4%BF%AE%E5%A4%8D%E6%96%87%E4%BB%B6"><span class="toc-number">2.2.</span> <span class="toc-text"> 方法二：从安装媒体中修复文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%89%E6%89%8B%E5%8A%A8%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E9%AB%98%E7%BA%A7%E6%96%B9%E6%B3%95"><span class="toc-number">2.3.</span> <span class="toc-text"> 方法三：手动替换文件（高级方法）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%9B%9B%E7%B3%BB%E7%BB%9F%E8%BF%98%E5%8E%9F%E6%88%96%E4%BF%AE%E5%A4%8D%E5%AE%89%E8%A3%85"><span class="toc-number">2.4.</span> <span class="toc-text"> 方法四：系统还原或修复安装</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E5%BB%BA%E8%AE%AE"><span class="toc-number">3.</span> <span class="toc-text"> 总结与建议</span></a></li></ol>
+  
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="xiaozhaoz1" class="lazyload">
   <div class="sidebar-author-name">xiaozhaoz1</div>
   <div class="sidebar-description"></div>
@@ -296,8 +306,16 @@
     
   
 </div>
-
+</div>
+        
       
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
       
     </div>
   </div>
@@ -310,13 +328,13 @@
   
 </aside>
 
-          <section id="main"><article id="page-" class="h-entry article article-type-page" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main"><article id="post-解决系统文件损坏导致的蓝屏问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
-    <time datetime="2021-09-22T13:01:47.000Z" itemprop="datePublished">2021-09-22</time>
-    <time style="display: none;" id="post-update-time">2025-08-29</time>
+    <time datetime="2025-09-16T07:03:17.000Z" itemprop="datePublished">2025-09-16</time>
+    <time style="display: none;" id="post-update-time">2025-09-16</time>
   </span>
   
 </div>
@@ -330,7 +348,51 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
       
-        <h2 id="关于"><a class="markdownIt-Anchor" href="#关于"></a> 关于</h2>
+        <h1 id="问题分析"><a class="markdownIt-Anchor" href="#问题分析"></a> 问题分析</h1>
+<p>系统文件检查器 (SFC) 发现了多个系统文件已损坏且无法自动修复。<br />
+文件的“哈希值不匹配”（hash mismatch），意味着磁盘上的文件与微软官方预期的版本不一致。<br />
+这通常是由于软件冲突、不完整的 Windows 更新、磁盘错误或病毒破坏导致的。</p>
+<h1 id="解决方案"><a class="markdownIt-Anchor" href="#解决方案"></a> 解决方案</h1>
+<h2 id="方法一使用-dism-工具修复系统映像"><a class="markdownIt-Anchor" href="#方法一使用-dism-工具修复系统映像"></a> 方法一：使用 DISM 工具修复系统映像</h2>
+<p>在 Windows 搜索栏中输入 cmd 或 命令提示符。</p>
+<p>右键点击“命令提示符”，选择 “以管理员身份运行”。</p>
+<p>在打开的窗口中，逐个输入以下命令，并在每个命令后按回车：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#初步检查</span><br><span class="line">DISM /Online /Cleanup-Image /CheckHealth</span><br><span class="line">#扫描组件存储的损坏情况</span><br><span class="line">DISM /Online /Cleanup-Image /ScanHealth</span><br><span class="line">#修复命令。 它会从 Windows 更新服务器或本地源尝试修复组件存储。</span><br><span class="line">DISM /Online /Cleanup-Image /RestoreHealth</span><br><span class="line">#DISM 命令成功完成后，再次以管理员身份运行 SFC：</span><br><span class="line">sfc /scannow</span><br></pre></td></tr></table></figure>
+<h2 id="方法二从安装媒体中修复文件"><a class="markdownIt-Anchor" href="#方法二从安装媒体中修复文件"></a> 方法二：从安装媒体中修复文件</h2>
+<p>如果 DISM 无法从网络下载所需的文件（或者你没有网络），可以使用 Windows 安装介质（U盘或ISO光盘映像）作为修复源。</p>
+<p>准备一个与您当前系统版本完全一致的 Windows 10/11 安装 U 盘。</p>
+<p>以管理员身份打开命令提示符。</p>
+<p>运行以下命令，将 X: 替换为你的安装介质所在的盘符：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DISM /Online /Cleanup-Image /RestoreHealth /Source:X:\Sources\Install.esd:<span class="number">1</span> /LimitAccess</span><br></pre></td></tr></table></figure>
+<p>或者尝试（如果上一条报错）：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DISM /Online /Cleanup-Image /RestoreHealth /Source:X:\Sources\Install.wim:<span class="number">1</span> /LimitAccess</span><br></pre></td></tr></table></figure>
+<p>完成后，再次运行 sfc /scannow。</p>
+<h2 id="方法三手动替换文件高级方法"><a class="markdownIt-Anchor" href="#方法三手动替换文件高级方法"></a> 方法三：手动替换文件（高级方法）</h2>
+<p>如果上述方法均无效，可以考虑手动替换文件。这需要从另一台相同版本（同样是Win10/11，同样版本号如19041.4355，同样64位）的健康电脑上拷贝文件。</p>
+<p>警告：此操作有风险，务必小心。</p>
+<p>从另一台健康电脑上复制以下文件：</p>
+<pre><code>C:\Windows\System32\netprofm.dll
+
+C:\Windows\System32\WLanConn.dll
+
+C:\Windows\SysWOW64\DXToolsOfflineAnalysis.dll (注意是SysWOW64文件夹)
+
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\NativeImages\mscorlib.ni.dll
+</code></pre>
+<p>在出问题的电脑上，你需要获得这些文件的所有权并替换它们。这个过程比较复杂，需要先在安全模式下或使用PE系统盘操作，并修改文件权限。鉴于其复杂性，如果前两种方法失效，更建议使用方法四。</p>
+<h2 id="方法四系统还原或修复安装"><a class="markdownIt-Anchor" href="#方法四系统还原或修复安装"></a> 方法四：系统还原或修复安装</h2>
+<p>如果所有修复命令都失败，这是最有效、最彻底的解决方案。</p>
+<p>系统还原：如果你在出问题之前创建过系统还原点，可以尝试还原到那个时间点。</p>
+<p>搜索并打开“创建还原点” -&gt; 点击“系统还原”。</p>
+<p>修复安装（原地升级）：</p>
+<p>下载最新版本的 Windows 10/11 媒体创建工具（Media Creation Tool），或者下载与你当前系统版本匹配的 ISO 镜像。</p>
+<p>运行安装程序，并选择 “升级此电脑” 或 “保留我的文件和应用程序” 的选项。</p>
+<p>这个过程会重新安装所有 Windows 系统文件，但会保留你的个人文件、大部分设置和已安装的软件。这是解决深层系统问题非常有效的方法。</p>
+<h1 id="总结与建议"><a class="markdownIt-Anchor" href="#总结与建议"></a> 总结与建议</h1>
+<p>首选方案：立刻尝试 方法一（DISM + SFC），这是解决此类问题标准且有效的流程。</p>
+<p>备用方案：如果方法一无效，强烈建议采用 方法四（修复安装）。虽然下载时间较长，但它能一劳永逸地替换所有损坏的系统文件，成功率极高，且不会丢失你的个人数据。</p>
+<p>蓝屏分析：要更精确地定位蓝屏原因，可以查看蓝屏错误代码（如 CRITICAL_PROCESS_DIED, SYSTEM_THREAD_EXCEPTION_NOT_HANDLED 等）和导致崩溃的具体文件名（.sys 或 .dll）。你可以使用工具 “WhoCrashed” 或 “BlueScreenView” 来读取 C:\Windows\Minidump 下的转储文件进行分析。你日志中提到的这些损坏文件很可能就是蓝屏的根源。</p>
+<p>操作前提醒： 在进行任何重大系统操作（如系统还原、修复安装）之前，请务必确保你所有的重要个人文件已经备份到外部硬盘或云盘上，以防万一。</p>
 
       
     </div>
@@ -344,10 +406,34 @@
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E4%BF%AE%E5%A4%8D/" rel="tag">修复</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li></ul>
+
 
     </footer>
   </div>
   
+  <nav id="article-nav" data-aos="fade-up">
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="https://d-sketon.top/img/_backwebp/bg1.webp" data-sizes="auto" alt="docker" class="lazyload">
+        
+      
+      <a href="/2025/09/06/docker/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          docker
+        
+      </h3>
+    </div>
+    
+  </nav>
+
 
 </article>
 
@@ -419,7 +505,15 @@
       <nav id="mobile-nav">
   <div class="sidebar-wrap">
     
-      <div class="sidebar-author">
+      
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90"><span class="toc-number">1.</span> <span class="toc-text"> 问题分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">2.</span> <span class="toc-text"> 解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%E4%BD%BF%E7%94%A8-dism-%E5%B7%A5%E5%85%B7%E4%BF%AE%E5%A4%8D%E7%B3%BB%E7%BB%9F%E6%98%A0%E5%83%8F"><span class="toc-number">2.1.</span> <span class="toc-text"> 方法一：使用 DISM 工具修复系统映像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%E4%BB%8E%E5%AE%89%E8%A3%85%E5%AA%92%E4%BD%93%E4%B8%AD%E4%BF%AE%E5%A4%8D%E6%96%87%E4%BB%B6"><span class="toc-number">2.2.</span> <span class="toc-text"> 方法二：从安装媒体中修复文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%89%E6%89%8B%E5%8A%A8%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E9%AB%98%E7%BA%A7%E6%96%B9%E6%B3%95"><span class="toc-number">2.3.</span> <span class="toc-text"> 方法三：手动替换文件（高级方法）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%9B%9B%E7%B3%BB%E7%BB%9F%E8%BF%98%E5%8E%9F%E6%88%96%E4%BF%AE%E5%A4%8D%E5%AE%89%E8%A3%85"><span class="toc-number">2.4.</span> <span class="toc-text"> 方法四：系统还原或修复安装</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E5%BB%BA%E8%AE%AE"><span class="toc-number">3.</span> <span class="toc-text"> 总结与建议</span></a></li></ol>
+  
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="xiaozhaoz1" class="lazyload">
   <div class="sidebar-author-name">xiaozhaoz1</div>
   <div class="sidebar-description"></div>
@@ -486,9 +580,17 @@
     
   
 </div>
-
+</div>
+      
     
   </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
   
 </nav>
 
@@ -572,13 +674,13 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "xiaozhaoz1",
-          title: "关于",
-          url: "http://example.com/about/index.html",
+          title: "解决系统文件损坏导致的蓝屏问题",
+          url: "http://example.com/2025/09/16/%E8%A7%A3%E5%86%B3%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6%E6%8D%9F%E5%9D%8F%E5%AF%BC%E8%87%B4%E7%9A%84%E8%93%9D%E5%B1%8F%E9%97%AE%E9%A2%98/",
           excerpt: "",
           description: "",
-          stripContent: " 关于 ",
-          date: "Wed Sep 22 2021 21:01:47 GMT+0800",
-          updated: "Fri Aug 29 2025 13:12:22 GMT+0800",
+          stripContent: " 问题分析 系统文件检查器 (SFC) 发现了多个系统文件已损坏且无法自动修复。 文件的“哈希值不匹配”（hash mismatch），意味着磁盘上的文件与微软官方预期的版本不一致。 这通常是由于软件冲突、不完整的 Windows 更新、磁盘错误或病毒破坏导致的。  解决方案  方法一：使用 DISM 工具修复系统映像 在 Windows 搜索栏中输入 cmd 或 命令提示符。 右键点击“命令提示符”，选择 “以管理员身份运行”。 在打开的窗口中，逐个输入以下命令，并在每个命令后按回车： 123",
+          date: "Tue Sep 16 2025 15:03:17 GMT+0800",
+          updated: "Tue Sep 16 2025 15:11:35 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>

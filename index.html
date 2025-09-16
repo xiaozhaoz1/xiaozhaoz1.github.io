@@ -22,6 +22,8 @@
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
+    <link rel="preload" as="style" href="https://fontsapi.zeoseven.com/292/main/result.css" onload="this.rel&#x3D;&#39;stylesheet&#39;" crossorigin>
+  
   
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
   
@@ -232,7 +234,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">2</div>
+    <div class="sidebar-state-number">4</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
@@ -240,7 +242,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>Tag</div>
-    <div class="sidebar-state-number">3</div>
+    <div class="sidebar-state-number">8</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -375,7 +377,7 @@ EasyN2N在保持原有N2N的功能的基础上，集成PING、TCP\UDP、iPerf、
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2013-12-24</span>
         
-        <span><span class="icon-pencil"></span>1.2k words</span>
+        <span><span class="icon-pencil"></span>1.3k words</span>
         <span><span class="icon-clock"></span>5 mins</span>
       </div>
       <h2 class="post-title">Hello World</h2>
@@ -383,13 +385,96 @@ EasyN2N在保持原有N2N的功能的基础上，集成PING、TCP\UDP、iPerf、
         
           Welcome to Hexo! This is your very first post. Check documentation to learn how to use.
  有可能需要修改的配置
+ 封面
+如果文章的 Front matter 中包含 cover 的 url，则该文章头图和首页缩略图均显示该 url
+1234---title: Hello Worldcover: https://example.com---
+如果文章的 Front matter 中包含 cover 为false，则该文章不显示头图（首页上仍然是随机图片）
  置顶
-在文章的 Front-matter 中添加 sticky: true
-1234---title: Hello Worldsticky: true---
- pjax
-默认关闭
-12pjax:  enable: false
-pjax 在 v0.0.10 中被引入，用于那些需要添加音乐播放器等需要 SPA 的用户。经过一段时间的迭代后已基本上稳定，但引入后仍然可能会出现诸如脚本无法执行、脚本重复
+在文章的 Front-matter 中添加 s
+        
+      </article>
+    </div>
+  </div>
+</div>
+      
+    
+      <div class="post-wrapper">
+  <div class="post-wrap-left" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/09/16/%E8%A7%A3%E5%86%B3%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6%E6%8D%9F%E5%9D%8F%E5%AF%BC%E8%87%B4%E7%9A%84%E8%93%9D%E5%B1%8F%E9%97%AE%E9%A2%98/" aria-label="解决系统文件损坏导致的蓝屏问题"></a>
+    
+    
+    <div class="post-cover-left">
+      
+        
+        
+          <img data-src="https://d-sketon.top/img/_backwebp/bg1.webp" data-sizes="auto" alt="解决系统文件损坏导致的蓝屏问题" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-09-16</span>
+        
+        <span><span class="icon-pencil"></span>1.1k words</span>
+        <span><span class="icon-clock"></span>3 mins</span>
+      </div>
+      <h2 class="post-title">解决系统文件损坏导致的蓝屏问题</h2>
+      <article class="post-article">
+        
+           问题分析
+系统文件检查器 (SFC) 发现了多个系统文件已损坏且无法自动修复。
+文件的“哈希值不匹配”（hash mismatch），意味着磁盘上的文件与微软官方预期的版本不一致。
+这通常是由于软件冲突、不完整的 Windows 更新、磁盘错误或病毒破坏导致的。
+ 解决方案
+ 方法一：使用 DISM 工具修复系统映像
+在 Windows 搜索栏中输入 cmd 或 命令提示符。
+右键点击“命令提示符”，选择 “以管理员身份运行”。
+在打开的窗口中，逐个输入以下命令，并在每个命令后按回车：
+12345678#初步检查DISM /Online /Cleanup-Image /CheckHealth
+        
+      </article>
+    </div>
+  </div>
+</div>
+      
+    
+      <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/09/06/docker/" aria-label="docker"></a>
+    
+    
+    <div class="post-cover-right">
+      
+        
+        
+          <img data-src="https://d-sketon.top/img/_backwebp/bg1.webp" data-sizes="auto" alt="docker" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-09-06</span>
+        
+        <span><span class="icon-pencil"></span>5.3k words</span>
+        <span><span class="icon-clock"></span>20 mins</span>
+      </div>
+      <h2 class="post-title">docker</h2>
+      <article class="post-article">
+        
+           Docker
+ 介绍
+Docker 是一个开源的应用容器引擎，基于 Go 语言 并遵从 Apache2.0 协议开源。
+
+Docker 可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。
+
+容器是完全使用沙箱机制，相互之间不会有任何接口（类似 iPhone 的 app）,更重要的是容器性能开销极低。
+
+ 容器 vs. 虚拟机
+Docker 的核心是 容器化技术。为了更好地理解容器，我们将其与虚拟机对比。
+虚拟机 (Virtual Machine):
+虚拟机在物理硬件上运行一个完整的客户操作系统（Guest OS）。这
         
       </article>
     </div>
@@ -428,10 +513,10 @@ pjax 在 v0.0.10 中被引入，用于那些需要添加音乐播放器等需要
     
       <div>
         <span class="icon-brush"></span>
-        3.5k
+        10k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        00:13
+        00:36
       </div>
     
     
@@ -468,7 +553,7 @@ pjax 在 v0.0.10 中被引入，用于那些需要添加音乐播放器等需要
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">2</div>
+    <div class="sidebar-state-number">4</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
@@ -476,7 +561,7 @@ pjax 在 v0.0.10 中被引入，用于那些需要添加音乐播放器等需要
   </div>
   <div class="sidebar-state-tag">
     <div>Tag</div>
-    <div class="sidebar-state-number">3</div>
+    <div class="sidebar-state-number">8</div>
   </div>
 </div>
 <div class="sidebar-social">

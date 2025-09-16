@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-09-02T13:53:05.787Z</updated>
+  <updated>2025-09-16T07:11:35.687Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,64 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>解决系统文件损坏导致的蓝屏问题</title>
+    <link href="http://example.com/2025/09/16/%E8%A7%A3%E5%86%B3%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6%E6%8D%9F%E5%9D%8F%E5%AF%BC%E8%87%B4%E7%9A%84%E8%93%9D%E5%B1%8F%E9%97%AE%E9%A2%98/"/>
+    <id>http://example.com/2025/09/16/%E8%A7%A3%E5%86%B3%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6%E6%8D%9F%E5%9D%8F%E5%AF%BC%E8%87%B4%E7%9A%84%E8%93%9D%E5%B1%8F%E9%97%AE%E9%A2%98/</id>
+    <published>2025-09-16T07:03:17.000Z</published>
+    <updated>2025-09-16T07:11:35.687Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;问题分析&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#问题分析&quot;&gt;&lt;/a&gt; 问题分析&lt;/h1&gt;
+&lt;p&gt;系统文件检查器 (SFC) 发现了多个系统文件已损坏且无法自动修复。&lt;br /&gt;
+文件的“哈希值不匹配”（hash</summary>
+        
+      
+    
+    
+    
+    
+    <category term="笔记" scheme="http://example.com/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="修复" scheme="http://example.com/tags/%E4%BF%AE%E5%A4%8D/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>docker</title>
+    <link href="http://example.com/2025/09/06/docker/"/>
+    <id>http://example.com/2025/09/06/docker/</id>
+    <published>2025-09-06T08:29:45.000Z</published>
+    <updated>2025-09-16T07:14:43.810Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;docker&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#docker&quot;&gt;&lt;/a&gt; Docker&lt;/h1&gt;
+&lt;h1 id=&quot;介绍&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#介绍&quot;&gt;&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="docker" scheme="http://example.com/tags/docker/"/>
+    
+    <category term="教程" scheme="http://example.com/tags/%E6%95%99%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
     <title>N2N使用(虚拟局域网)</title>
     <link href="http://example.com/2025/08/28/n2n%E4%BD%BF%E7%94%A8(%E8%99%9A%E6%8B%9F%E5%B1%80%E5%9F%9F%E7%BD%91)/"/>
     <id>http://example.com/2025/08/28/n2n%E4%BD%BF%E7%94%A8(%E8%99%9A%E6%8B%9F%E5%B1%80%E5%9F%9F%E7%BD%91)/</id>
     <published>2025-08-28T08:05:49.000Z</published>
-    <updated>2025-09-02T13:53:05.787Z</updated>
+    <updated>2025-09-16T06:55:25.444Z</updated>
     
     
       
@@ -37,6 +90,8 @@
     
     
     
+    <category term="教程" scheme="http://example.com/tags/%E6%95%99%E7%A8%8B/"/>
+    
     <category term="N2N" scheme="http://example.com/tags/N2N/"/>
     
     <category term="虚拟局域网" scheme="http://example.com/tags/%E8%99%9A%E6%8B%9F%E5%B1%80%E5%9F%9F%E7%BD%91/"/>
@@ -50,7 +105,7 @@
     <link href="http://example.com/2013/12/24/hello-world/"/>
     <id>http://example.com/2013/12/24/hello-world/</id>
     <published>2013-12-24T09:49:32.000Z</published>
-    <updated>2025-09-02T12:16:18.754Z</updated>
+    <updated>2025-09-16T07:00:14.051Z</updated>
     
     
       
@@ -63,6 +118,10 @@
     
     
     
+    
+    <category term="hello-world" scheme="http://example.com/tags/hello-world/"/>
+    
+    <category term="笔记" scheme="http://example.com/tags/%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   

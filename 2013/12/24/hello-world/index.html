@@ -23,6 +23,8 @@
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
+    <link rel="preload" as="style" href="https://fontsapi.zeoseven.com/292/main/result.css" onload="this.rel&#x3D;&#39;stylesheet&#39;" crossorigin>
+  
   
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
   
@@ -35,16 +37,18 @@
 
   
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation to learn how to use.  有可能需要修改的配置  置顶 在文章的 Front-matter 中添加 sticky: true 1234---title: Hello Worldsticky: true---  pjax 默认关闭 12pjax:">
+    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation to learn how to use.  有可能需要修改的配置  封面 如果文章的 Front matter 中包含 cover 的 url，则该文章头图和首页缩略图均显示该 url 1234---title: Hello Worldcover: https:&#x2F;&#x2F;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hello World">
 <meta property="og:url" content="http://example.com/2013/12/24/hello-world/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation to learn how to use.  有可能需要修改的配置  置顶 在文章的 Front-matter 中添加 sticky: true 1234---title: Hello Worldsticky: true---  pjax 默认关闭 12pjax:">
+<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation to learn how to use.  有可能需要修改的配置  封面 如果文章的 Front matter 中包含 cover 的 url，则该文章头图和首页缩略图均显示该 url 1234---title: Hello Worldcover: https:&#x2F;&#x2F;">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2013-12-24T09:49:32.000Z">
-<meta property="article:modified_time" content="2025-09-02T12:16:18.754Z">
+<meta property="article:modified_time" content="2025-09-16T07:00:14.051Z">
 <meta property="article:author" content="xiaozhaoz1">
+<meta property="article:tag" content="hello-world">
+<meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
   
   
@@ -231,7 +235,7 @@
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
   
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%89%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E4%BF%AE%E6%94%B9%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-number">1.</span> <span class="toc-text"> 有可能需要修改的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%AE%E9%A1%B6"><span class="toc-number">1.1.</span> <span class="toc-text"> 置顶</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pjax"><span class="toc-number">1.2.</span> <span class="toc-text"> pjax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#serviceworker"><span class="toc-number">1.3.</span> <span class="toc-text"> ServiceWorker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spanlive2dspan"><span class="toc-number">1.4.</span> <span class="toc-text"> Live2D</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#live2d-widgets"><span class="toc-number">1.5.</span> <span class="toc-text"> Live2D Widgets</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E8%BF%87%E6%9C%9F%E6%8F%90%E9%86%92v024"><span class="toc-number">1.6.</span> <span class="toc-text"> 文章过期提醒（v0.2.4+）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%9E%E5%8A%A9v032"><span class="toc-number">1.7.</span> <span class="toc-text"> 赞助（v0.3.2+）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A6%96%E9%A1%B5%E7%9B%AE%E5%BD%95%E5%8D%A1%E7%89%87v100"><span class="toc-number">1.8.</span> <span class="toc-text"> 首页目录卡片（v1.0.0+）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8%E4%BD%8D%E7%BD%AEv191"><span class="toc-number">1.9.</span> <span class="toc-text"> 音乐播放器位置（v1.9.1+）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%AFaplayer"><span class="toc-number">1.10.</span> <span class="toc-text"> 纯Aplayer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#aplayer-meting"><span class="toc-number">1.11.</span> <span class="toc-text"> Aplayer + Meting</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E5%85%A5%E5%99%A8v151"><span class="toc-number">1.12.</span> <span class="toc-text"> 注入器（v1.5.1+）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A2%98"><span class="toc-number">1.13.</span> <span class="toc-text"> 自定义主题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">2.</span> <span class="toc-text"> 代码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%9C%A8%E6%96%87%E7%AB%A0%E4%B8%AD%E6%8F%92%E5%85%A5%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="toc-number">2.1.</span> <span class="toc-text"> 如何在文章中插入代码块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%85%E9%99%A4%E7%BC%93%E5%AD%98"><span class="toc-number">2.2.</span> <span class="toc-text"> 清除缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6"><span class="toc-number">2.3.</span> <span class="toc-text"> 生成静态文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%96%E8%80%85%E4%BD%BF%E7%94%A8%E7%BB%84%E5%90%88%E5%91%BD%E4%BB%A4"><span class="toc-number">2.4.</span> <span class="toc-text"> 或者使用组合命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%90%AF%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">2.5.</span> <span class="toc-text"> 开启本地服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E6%96%87%E7%AB%A0"><span class="toc-number">2.6.</span> <span class="toc-text"> 新建文章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E6%96%87%E4%BB%B6"><span class="toc-number">2.7.</span> <span class="toc-text"> 渲染文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5"><span class="toc-number">3.</span> <span class="toc-text"> 链接</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%89%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E4%BF%AE%E6%94%B9%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-number">1.</span> <span class="toc-text"> 有可能需要修改的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%81%E9%9D%A2"><span class="toc-number">1.1.</span> <span class="toc-text"> 封面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%AE%E9%A1%B6"><span class="toc-number">1.2.</span> <span class="toc-text"> 置顶</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pjax"><span class="toc-number">1.3.</span> <span class="toc-text"> pjax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#serviceworker"><span class="toc-number">1.4.</span> <span class="toc-text"> ServiceWorker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spanlive2dspan"><span class="toc-number">1.5.</span> <span class="toc-text"> Live2D</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#live2d-widgets"><span class="toc-number">1.6.</span> <span class="toc-text"> Live2D Widgets</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E8%BF%87%E6%9C%9F%E6%8F%90%E9%86%92v024"><span class="toc-number">1.7.</span> <span class="toc-text"> 文章过期提醒（v0.2.4+）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%9E%E5%8A%A9v032"><span class="toc-number">1.8.</span> <span class="toc-text"> 赞助（v0.3.2+）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A6%96%E9%A1%B5%E7%9B%AE%E5%BD%95%E5%8D%A1%E7%89%87v100"><span class="toc-number">1.9.</span> <span class="toc-text"> 首页目录卡片（v1.0.0+）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8%E4%BD%8D%E7%BD%AEv191"><span class="toc-number">1.10.</span> <span class="toc-text"> 音乐播放器位置（v1.9.1+）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%AFaplayer"><span class="toc-number">1.11.</span> <span class="toc-text"> 纯Aplayer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#aplayer-meting"><span class="toc-number">1.12.</span> <span class="toc-text"> Aplayer + Meting</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E5%85%A5%E5%99%A8v151"><span class="toc-number">1.13.</span> <span class="toc-text"> 注入器（v1.5.1+）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A2%98"><span class="toc-number">1.14.</span> <span class="toc-text"> 自定义主题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">2.</span> <span class="toc-text"> 代码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%9C%A8%E6%96%87%E7%AB%A0%E4%B8%AD%E6%8F%92%E5%85%A5%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="toc-number">2.1.</span> <span class="toc-text"> 如何在文章中插入代码块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%85%E9%99%A4%E7%BC%93%E5%AD%98"><span class="toc-number">2.2.</span> <span class="toc-text"> 清除缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6"><span class="toc-number">2.3.</span> <span class="toc-text"> 生成静态文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%96%E8%80%85%E4%BD%BF%E7%94%A8%E7%BB%84%E5%90%88%E5%91%BD%E4%BB%A4"><span class="toc-number">2.4.</span> <span class="toc-text"> 或者使用组合命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%90%AF%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">2.5.</span> <span class="toc-text"> 开启本地服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E6%96%87%E7%AB%A0"><span class="toc-number">2.6.</span> <span class="toc-text"> 新建文章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E6%96%87%E4%BB%B6"><span class="toc-number">2.7.</span> <span class="toc-text"> 渲染文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5"><span class="toc-number">3.</span> <span class="toc-text"> 链接</span></a></li></ol>
   
 </div>
 </div>
@@ -243,7 +247,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">2</div>
+    <div class="sidebar-state-number">4</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
@@ -251,7 +255,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>Tag</div>
-    <div class="sidebar-state-number">3</div>
+    <div class="sidebar-state-number">8</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -330,7 +334,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2013-12-24T09:49:32.000Z" itemprop="datePublished">2013-12-24</time>
-    <time style="display: none;" id="post-update-time">2025-09-02</time>
+    <time style="display: none;" id="post-update-time">2025-09-16</time>
   </span>
   
 </div>
@@ -346,6 +350,10 @@
       
         <p>Welcome to <a target="_blank" rel="noopener" href="http://zespia.tw/hexo">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="http://zespia.tw/hexo/docs">documentation</a> to learn how to use.</p>
 <h1 id="有可能需要修改的配置"><a class="markdownIt-Anchor" href="#有可能需要修改的配置"></a> 有可能需要修改的配置</h1>
+<h2 id="封面"><a class="markdownIt-Anchor" href="#封面"></a> 封面</h2>
+<p>如果文章的 Front matter 中包含 cover 的 url，则该文章头图和首页缩略图均显示该 url</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">Hello</span> <span class="string">World</span></span><br><span class="line"><span class="attr">cover:</span> <span class="string">https://example.com</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+<p>如果文章的 Front matter 中包含 cover 为false，则该文章不显示头图（首页上仍然是随机图片）</p>
 <h2 id="置顶"><a class="markdownIt-Anchor" href="#置顶"></a> 置顶</h2>
 <p>在文章的 Front-matter 中添加 sticky: true</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">Hello</span> <span class="string">World</span></span><br><span class="line"><span class="attr">sticky:</span> <span class="literal">true</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
@@ -412,6 +420,8 @@
 <a target="_blank" rel="noopener" href="https://github.com/summerscar/live2dDemo">https://github.com/summerscar/live2dDemo</a></p>
 <p><a target="_blank" rel="noopener" href="https://charlerglow.github.io/2025/01/02/%E4%BB%A3%E7%A0%81%E5%9D%97%E7%9A%84%E7%94%A8%E6%B3%95/">https://charlerglow.github.io/2025/01/02/代码块的用法/</a></p>
 <p>hexo_layout教程：<a target="_blank" rel="noopener" href="https://elykia-cn.github.io/posts/21.html">https://elykia-cn.github.io/posts/21.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://d-sketon.github.io/">https://d-sketon.github.io/</a></p>
+<p><a target="_blank" rel="noopener" href="https://d-sketon.github.io/20230707/hexo-theme-reimu-guide/">https://d-sketon.github.io/20230707/hexo-theme-reimu-guide/</a></p>
 
       
     </div>
@@ -425,6 +435,8 @@
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/hello-world/" rel="tag">hello-world</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li></ul>
+
 
     </footer>
   </div>
@@ -490,10 +502,10 @@
     
       <div>
         <span class="icon-brush"></span>
-        3.5k
+        10k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        00:13
+        00:36
       </div>
     
     
@@ -526,7 +538,7 @@
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
   
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%89%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E4%BF%AE%E6%94%B9%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-number">1.</span> <span class="toc-text"> 有可能需要修改的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%AE%E9%A1%B6"><span class="toc-number">1.1.</span> <span class="toc-text"> 置顶</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pjax"><span class="toc-number">1.2.</span> <span class="toc-text"> pjax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#serviceworker"><span class="toc-number">1.3.</span> <span class="toc-text"> ServiceWorker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spanlive2dspan"><span class="toc-number">1.4.</span> <span class="toc-text"> Live2D</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#live2d-widgets"><span class="toc-number">1.5.</span> <span class="toc-text"> Live2D Widgets</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E8%BF%87%E6%9C%9F%E6%8F%90%E9%86%92v024"><span class="toc-number">1.6.</span> <span class="toc-text"> 文章过期提醒（v0.2.4+）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%9E%E5%8A%A9v032"><span class="toc-number">1.7.</span> <span class="toc-text"> 赞助（v0.3.2+）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A6%96%E9%A1%B5%E7%9B%AE%E5%BD%95%E5%8D%A1%E7%89%87v100"><span class="toc-number">1.8.</span> <span class="toc-text"> 首页目录卡片（v1.0.0+）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8%E4%BD%8D%E7%BD%AEv191"><span class="toc-number">1.9.</span> <span class="toc-text"> 音乐播放器位置（v1.9.1+）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%AFaplayer"><span class="toc-number">1.10.</span> <span class="toc-text"> 纯Aplayer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#aplayer-meting"><span class="toc-number">1.11.</span> <span class="toc-text"> Aplayer + Meting</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E5%85%A5%E5%99%A8v151"><span class="toc-number">1.12.</span> <span class="toc-text"> 注入器（v1.5.1+）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A2%98"><span class="toc-number">1.13.</span> <span class="toc-text"> 自定义主题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">2.</span> <span class="toc-text"> 代码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%9C%A8%E6%96%87%E7%AB%A0%E4%B8%AD%E6%8F%92%E5%85%A5%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="toc-number">2.1.</span> <span class="toc-text"> 如何在文章中插入代码块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%85%E9%99%A4%E7%BC%93%E5%AD%98"><span class="toc-number">2.2.</span> <span class="toc-text"> 清除缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6"><span class="toc-number">2.3.</span> <span class="toc-text"> 生成静态文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%96%E8%80%85%E4%BD%BF%E7%94%A8%E7%BB%84%E5%90%88%E5%91%BD%E4%BB%A4"><span class="toc-number">2.4.</span> <span class="toc-text"> 或者使用组合命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%90%AF%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">2.5.</span> <span class="toc-text"> 开启本地服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E6%96%87%E7%AB%A0"><span class="toc-number">2.6.</span> <span class="toc-text"> 新建文章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E6%96%87%E4%BB%B6"><span class="toc-number">2.7.</span> <span class="toc-text"> 渲染文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5"><span class="toc-number">3.</span> <span class="toc-text"> 链接</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%89%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E4%BF%AE%E6%94%B9%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-number">1.</span> <span class="toc-text"> 有可能需要修改的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%81%E9%9D%A2"><span class="toc-number">1.1.</span> <span class="toc-text"> 封面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%AE%E9%A1%B6"><span class="toc-number">1.2.</span> <span class="toc-text"> 置顶</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pjax"><span class="toc-number">1.3.</span> <span class="toc-text"> pjax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#serviceworker"><span class="toc-number">1.4.</span> <span class="toc-text"> ServiceWorker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spanlive2dspan"><span class="toc-number">1.5.</span> <span class="toc-text"> Live2D</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#live2d-widgets"><span class="toc-number">1.6.</span> <span class="toc-text"> Live2D Widgets</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E8%BF%87%E6%9C%9F%E6%8F%90%E9%86%92v024"><span class="toc-number">1.7.</span> <span class="toc-text"> 文章过期提醒（v0.2.4+）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%9E%E5%8A%A9v032"><span class="toc-number">1.8.</span> <span class="toc-text"> 赞助（v0.3.2+）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A6%96%E9%A1%B5%E7%9B%AE%E5%BD%95%E5%8D%A1%E7%89%87v100"><span class="toc-number">1.9.</span> <span class="toc-text"> 首页目录卡片（v1.0.0+）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8%E4%BD%8D%E7%BD%AEv191"><span class="toc-number">1.10.</span> <span class="toc-text"> 音乐播放器位置（v1.9.1+）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%AFaplayer"><span class="toc-number">1.11.</span> <span class="toc-text"> 纯Aplayer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#aplayer-meting"><span class="toc-number">1.12.</span> <span class="toc-text"> Aplayer + Meting</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E5%85%A5%E5%99%A8v151"><span class="toc-number">1.13.</span> <span class="toc-text"> 注入器（v1.5.1+）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A2%98"><span class="toc-number">1.14.</span> <span class="toc-text"> 自定义主题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">2.</span> <span class="toc-text"> 代码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%9C%A8%E6%96%87%E7%AB%A0%E4%B8%AD%E6%8F%92%E5%85%A5%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="toc-number">2.1.</span> <span class="toc-text"> 如何在文章中插入代码块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%85%E9%99%A4%E7%BC%93%E5%AD%98"><span class="toc-number">2.2.</span> <span class="toc-text"> 清除缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6"><span class="toc-number">2.3.</span> <span class="toc-text"> 生成静态文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%96%E8%80%85%E4%BD%BF%E7%94%A8%E7%BB%84%E5%90%88%E5%91%BD%E4%BB%A4"><span class="toc-number">2.4.</span> <span class="toc-text"> 或者使用组合命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%90%AF%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">2.5.</span> <span class="toc-text"> 开启本地服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E6%96%87%E7%AB%A0"><span class="toc-number">2.6.</span> <span class="toc-text"> 新建文章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E6%96%87%E4%BB%B6"><span class="toc-number">2.7.</span> <span class="toc-text"> 渲染文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5"><span class="toc-number">3.</span> <span class="toc-text"> 链接</span></a></li></ol>
   
 </div>
 </div>
@@ -538,7 +550,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">2</div>
+    <div class="sidebar-state-number">4</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
@@ -546,7 +558,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>Tag</div>
-    <div class="sidebar-state-number">3</div>
+    <div class="sidebar-state-number">8</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -695,9 +707,9 @@
           url: "http://example.com/2013/12/24/hello-world/",
           excerpt: "",
           description: "",
-          stripContent: "Welcome to Hexo! This is your very first post. Check documentation to learn how to use.  有可能需要修改的配置  置顶 在文章的 Front-matter 中添加 sticky: true 1234---title: Hello Worldsticky: true---  pjax 默认关闭 12pjax:  enable: false pjax 在 v0.0.10 中被引入，用于那些需要添加音乐播放器等需要",
+          stripContent: "Welcome to Hexo! This is your very first post. Check documentation to learn how to use.  有可能需要修改的配置  封面 如果文章的 Front matter 中包含 cover 的 url，则该文章头图和首页缩略图均显示该 url 1234---title: Hello Worldcover: https://example.com--- 如果文章的 Front matter 中包含 cover 为false",
           date: "Tue Dec 24 2013 17:49:32 GMT+0800",
-          updated: "Tue Sep 02 2025 20:16:18 GMT+0800",
+          updated: "Tue Sep 16 2025 15:00:14 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
