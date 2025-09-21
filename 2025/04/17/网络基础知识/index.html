@@ -1,0 +1,1173 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  
+  <title>
+    网络基础知识 |
+    
+    Hexo
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <link rel="preload" as="style" href="https://fontsapi.zeoseven.com/292/main/result.css" onload="this.rel&#x3D;&#39;stylesheet&#39;" crossorigin>
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="第一章：网络基本概念  什么是计算机网络？ 简单来说，计算机网络是指通过通信线路和网络设备，将分布在不同地理位置的多台计算机及其外部设备连接起来，在网络操作系统、网络管理软件及网络通信协议的管理和协调下，实现资源共享和信息传递的系统。 想象一下计算机网络就像城市的道路系统： 计算机和设备就像城市中的建筑物（家庭、商店、办公室） 网络线路就像连接这些建筑物的道路 数据就像在道路上行驶的车辆 协议就">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络基础知识">
+<meta property="og:url" content="http://example.com/2025/04/17/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="第一章：网络基本概念  什么是计算机网络？ 简单来说，计算机网络是指通过通信线路和网络设备，将分布在不同地理位置的多台计算机及其外部设备连接起来，在网络操作系统、网络管理软件及网络通信协议的管理和协调下，实现资源共享和信息传递的系统。 想象一下计算机网络就像城市的道路系统： 计算机和设备就像城市中的建筑物（家庭、商店、办公室） 网络线路就像连接这些建筑物的道路 数据就像在道路上行驶的车辆 协议就">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-04-17T14:22:35.000Z">
+<meta property="article:modified_time" content="2025-09-21T06:06:18.994Z">
+<meta property="article:author" content="xiaozhaoz1">
+<meta property="article:tag" content="教程">
+<meta property="article:tag" content="网络">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">Loading...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/">Home</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/archives">Archives</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/about">About</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/friend">Friend</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed" target="_blank"></a>
+    
+    
+    
+  </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture>
+          
+        </picture>
+        
+          <img  fetchpriority="high" src="/images/banner.webp" alt="网络基础知识">
+        
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">网络基础知识</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  <div class="sidebar-wrapper-container sticky">
+  
+    
+    
+  
+ 
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text"> 第一章：网络基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="toc-number">1.1.</span> <span class="toc-text"> 什么是计算机网络？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%9A%84%E4%B8%BB%E8%A6%81%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text"> 网络的主要类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%80%E5%9F%9F%E7%BD%91lan-local-area-network"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 局域网（LAN - Local Area Network）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%8E%E5%9F%9F%E7%BD%91man-metropolitan-area-network"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 城域网（MAN - Metropolitan Area Network）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%BF%E5%9F%9F%E7%BD%91wan-wide-area-network"><span class="toc-number">1.2.3.</span> <span class="toc-text"> 广域网（WAN - Wide Area Network）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AA%E4%BA%BA%E5%8C%BA%E5%9F%9F%E7%BD%91%E7%BB%9Cpan-personal-area-network"><span class="toc-number">1.2.4.</span> <span class="toc-text"> 个人区域网络（PAN - Personal Area Network）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%8B%93%E6%89%91%E7%BB%93%E6%9E%84"><span class="toc-number">1.3.</span> <span class="toc-text"> 网络拓扑结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF%E5%9E%8B%E6%8B%93%E6%89%91"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 总线型拓扑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%9F%E5%9E%8B%E6%8B%93%E6%89%91"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 星型拓扑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%9E%8B%E6%8B%93%E6%89%91"><span class="toc-number">1.3.3.</span> <span class="toc-text"> 环型拓扑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%8A%B6%E6%8B%93%E6%89%91"><span class="toc-number">1.3.4.</span> <span class="toc-text"> 网状拓扑</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0osi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E4%B8%8Etcpip%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text"> 第二章：OSI七层模型与TCP&#x2F;IP模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#osi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.1.</span> <span class="toc-text"> OSI七层模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E5%B1%82%E7%AC%AC1%E5%B1%82"><span class="toc-number">2.1.1.</span> <span class="toc-text"> 物理层（第1层）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E7%AC%AC2%E5%B1%82"><span class="toc-number">2.1.2.</span> <span class="toc-text"> 数据链路层（第2层）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82%E7%AC%AC3%E5%B1%82"><span class="toc-number">2.1.3.</span> <span class="toc-text"> 网络层（第3层）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E5%B1%82%E7%AC%AC4%E5%B1%82"><span class="toc-number">2.1.4.</span> <span class="toc-text"> 传输层（第4层）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%9A%E8%AF%9D%E5%B1%82%E7%AC%AC5%E5%B1%82"><span class="toc-number">2.1.5.</span> <span class="toc-text"> 会话层（第5层）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E7%A4%BA%E5%B1%82%E7%AC%AC6%E5%B1%82"><span class="toc-number">2.1.6.</span> <span class="toc-text"> 表示层（第6层）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%B1%82%E7%AC%AC7%E5%B1%82"><span class="toc-number">2.1.7.</span> <span class="toc-text"> 应用层（第7层）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tcpip%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.2.</span> <span class="toc-text"> TCP&#x2F;IP模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%8E%A5%E5%8F%A3%E5%B1%82%E5%AF%B9%E5%BA%94osi%E7%89%A9%E7%90%86%E5%B1%82%E5%92%8C%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="toc-number">2.2.1.</span> <span class="toc-text"> 网络接口层（对应OSI物理层和数据链路层）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%92%E8%81%94%E7%BD%91%E5%B1%82%E5%AF%B9%E5%BA%94osi%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="toc-number">2.2.2.</span> <span class="toc-text"> 互联网层（对应OSI网络层）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AF%B9%E5%BA%94osi%E4%BC%A0%E8%BE%93%E5%B1%82"><span class="toc-number">2.2.3.</span> <span class="toc-text"> 传输层（对应OSI传输层）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%B1%82%E5%AF%B9%E5%BA%94osi%E4%BC%9A%E8%AF%9D%E5%B1%82-%E8%A1%A8%E7%A4%BA%E5%B1%82%E5%92%8C%E5%BA%94%E7%94%A8%E5%B1%82"><span class="toc-number">2.2.4.</span> <span class="toc-text"> 应用层（对应OSI会话层、表示层和应用层）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%B0%81%E8%A3%85%E8%BF%87%E7%A8%8B"><span class="toc-number">2.3.</span> <span class="toc-text"> 数据封装过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E6%A8%A1%E6%8B%9F%E6%95%B0%E6%8D%AE%E5%B0%81%E8%A3%85%E8%BF%87%E7%A8%8B"><span class="toc-number">2.4.</span> <span class="toc-text"> 代码示例：模拟数据封装过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8Btcp%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E6%A8%A1%E6%8B%9F"><span class="toc-number">2.5.</span> <span class="toc-text"> 代码示例：TCP三次握手模拟</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0ip%E5%9C%B0%E5%9D%80%E4%B8%8E%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86"><span class="toc-number">3.</span> <span class="toc-text"> 第三章：IP地址与子网划分</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ip%E5%9C%B0%E5%9D%80%E5%9F%BA%E7%A1%80"><span class="toc-number">3.1.</span> <span class="toc-text"> IP地址基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ipv4%E5%9C%B0%E5%9D%80%E6%A0%BC%E5%BC%8F"><span class="toc-number">3.1.1.</span> <span class="toc-text"> IPv4地址格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ip%E5%9C%B0%E5%9D%80%E5%88%86%E7%B1%BB"><span class="toc-number">3.1.2.</span> <span class="toc-text"> IP地址分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AC%E6%9C%89ip%E5%92%8C%E7%A7%81%E6%9C%89ip"><span class="toc-number">3.1.3.</span> <span class="toc-text"> 公有IP和私有IP</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86"><span class="toc-number">3.2.</span> <span class="toc-text"> 子网划分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81"><span class="toc-number">3.2.1.</span> <span class="toc-text"> 子网掩码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cidr%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="toc-number">3.2.2.</span> <span class="toc-text"> CIDR表示法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E6%AD%A5%E9%AA%A4"><span class="toc-number">3.2.3.</span> <span class="toc-text"> 子网划分步骤</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ipv6%E7%AE%80%E4%BB%8B"><span class="toc-number">3.3.</span> <span class="toc-text"> IPv6简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8Bip%E5%9C%B0%E5%9D%80%E8%AE%A1%E7%AE%97%E5%B7%A5%E5%85%B7"><span class="toc-number">3.4.</span> <span class="toc-text"> 代码示例：IP地址计算工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8Bvlsm%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86"><span class="toc-number">3.5.</span> <span class="toc-text"> 代码示例：VLSM子网划分</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87%E9%85%8D%E7%BD%AE%E4%B8%8E%E7%AE%A1%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text"> 第四章：网络设备配置与管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87"><span class="toc-number">4.1.</span> <span class="toc-text"> 常见网络设备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E5%8D%A1nic-network-interface-card"><span class="toc-number">4.1.1.</span> <span class="toc-text"> 网卡（NIC - Network Interface Card）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E5%88%B6%E8%A7%A3%E8%B0%83%E5%99%A8modem"><span class="toc-number">4.1.2.</span> <span class="toc-text"> 调制解调器（Modem）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E7%BA%BF%E5%99%A8hub"><span class="toc-number">4.1.3.</span> <span class="toc-text"> 集线器（Hub）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A4%E6%8D%A2%E6%9C%BAswitch"><span class="toc-number">4.1.4.</span> <span class="toc-text"> 交换机（Switch）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8router"><span class="toc-number">4.1.5.</span> <span class="toc-text"> 路由器（Router）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E7%BA%BF%E6%8E%A5%E5%85%A5%E7%82%B9wireless-access-point"><span class="toc-number">4.1.6.</span> <span class="toc-text"> 无线接入点（Wireless Access Point）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vlan%E8%99%9A%E6%8B%9F%E5%B1%80%E5%9F%9F%E7%BD%91"><span class="toc-number">4.2.</span> <span class="toc-text"> VLAN（虚拟局域网）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%8B%93%E6%89%91%E5%AE%9E%E8%B7%B5"><span class="toc-number">4.3.</span> <span class="toc-text"> 网络拓扑实践</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E5%B1%82"><span class="toc-number">4.3.1.</span> <span class="toc-text"> 核心层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%B1%82"><span class="toc-number">4.3.2.</span> <span class="toc-text"> 分布层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E5%85%A5%E5%B1%82"><span class="toc-number">4.3.3.</span> <span class="toc-text"> 接入层</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8Bcisco%E8%AE%BE%E5%A4%87%E9%85%8D%E7%BD%AE%E7%94%9F%E6%88%90"><span class="toc-number">4.4.</span> <span class="toc-text"> 代码示例：Cisco设备配置生成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8Bvlan%E9%85%8D%E7%BD%AE%E7%94%9F%E6%88%90"><span class="toc-number">4.5.</span> <span class="toc-text"> 代码示例：VLAN配置生成</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0%E5%85%B3%E9%94%AE%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.</span> <span class="toc-text"> 第五章：关键网络协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cp%E4%B8%8Eudp"><span class="toc-number">5.1.</span> <span class="toc-text"> CP与UDP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tcp%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.1.1.</span> <span class="toc-text"> TCP协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#udp%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.1.2.</span> <span class="toc-text"> UDP协议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ip%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.2.</span> <span class="toc-text"> IP协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http%E5%92%8Chttps"><span class="toc-number">5.3.</span> <span class="toc-text"> HTTP和HTTPS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#http"><span class="toc-number">5.3.1.</span> <span class="toc-text"> HTTP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#https"><span class="toc-number">5.3.2.</span> <span class="toc-text"> HTTPS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dns"><span class="toc-number">5.4.</span> <span class="toc-text"> DNS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dhcp"><span class="toc-number">5.5.</span> <span class="toc-text"> DHCP</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80"><span class="toc-number">6.</span> <span class="toc-text"> 第六章：网络安全基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%AE%89%E5%85%A8%E5%A8%81%E8%83%81"><span class="toc-number">6.1.</span> <span class="toc-text"> 常见安全威胁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6"><span class="toc-number">6.1.1.</span> <span class="toc-text"> 恶意软件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E9%92%93%E9%B1%BC"><span class="toc-number">6.1.2.</span> <span class="toc-text"> 网络钓鱼</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1%E6%94%BB%E5%87%BBdosddos"><span class="toc-number">6.1.3.</span> <span class="toc-text"> 拒绝服务攻击（DoS&#x2F;DDoS）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BBmitm"><span class="toc-number">6.1.4.</span> <span class="toc-text"> 中间人攻击（MitM）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E9%98%B2%E6%8A%A4%E6%8E%AA%E6%96%BD"><span class="toc-number">6.2.</span> <span class="toc-text"> 安全防护措施</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-number">6.2.1.</span> <span class="toc-text"> 防火墙</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86"><span class="toc-number">6.2.2.</span> <span class="toc-text"> 加密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E5%92%8C%E6%8E%88%E6%9D%83"><span class="toc-number">6.2.3.</span> <span class="toc-text"> 身份验证和授权</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E5%8D%8F%E8%AE%AE"><span class="toc-number">6.2.4.</span> <span class="toc-text"> 安全协议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8Bacl%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5"><span class="toc-number">6.3.</span> <span class="toc-text"> 代码示例：ACL配置与安全策略</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E7%AB%A0%E5%AE%9E%E8%B7%B5%E6%93%8D%E4%BD%9C%E4%B8%8E%E6%95%85%E9%9A%9C%E6%8E%92%E9%99%A4"><span class="toc-number">7.</span> <span class="toc-text"> 第七章：实践操作与故障排除</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4"><span class="toc-number">7.1.</span> <span class="toc-text"> 常用网络命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ipconfigwindows-ifconfiglinuxmacos"><span class="toc-number">7.1.1.</span> <span class="toc-text"> ipconfig（Windows）&#x2F; ifconfig（Linux&#x2F;macOS）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ping"><span class="toc-number">7.1.2.</span> <span class="toc-text"> ping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tracertwindows-traceroutelinuxmacos"><span class="toc-number">7.1.3.</span> <span class="toc-text"> tracert（Windows）&#x2F; traceroute（Linux&#x2F;macOS）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nslookup"><span class="toc-number">7.1.4.</span> <span class="toc-text"> nslookup</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#netstat"><span class="toc-number">7.1.5.</span> <span class="toc-text"> netstat</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-number">7.2.</span> <span class="toc-text"> 常见网络问题及解决方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E5%88%B0%E4%BA%92%E8%81%94%E7%BD%91"><span class="toc-number">7.2.1.</span> <span class="toc-text"> 无法连接到互联网</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E9%80%9F%E5%BA%A6%E6%85%A2"><span class="toc-number">7.2.2.</span> <span class="toc-text"> 网络速度慢</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ip%E5%9C%B0%E5%9D%80%E5%86%B2%E7%AA%81"><span class="toc-number">7.2.3.</span> <span class="toc-text"> IP地址冲突</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E7%BD%91%E7%BB%9C%E8%AF%8A%E6%96%AD%E5%B7%A5%E5%85%B7"><span class="toc-number">7.3.</span> <span class="toc-text"> 代码示例：网络诊断工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90"><span class="toc-number">7.4.</span> <span class="toc-text"> 代码示例：网络协议分析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0%E8%87%AA%E5%8A%A8%E5%8C%96%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4"><span class="toc-number">8.</span> <span class="toc-text"> 第八章：自动化网络运维</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8python%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87%E6%89%B9%E9%87%8F%E9%85%8D%E7%BD%AE"><span class="toc-number">8.1.</span> <span class="toc-text"> 使用Python进行网络设备批量配置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">9.</span> <span class="toc-text"> 结语</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%99%84%E5%8A%A0%E8%B5%84%E6%BA%90"><span class="toc-number">10.</span> <span class="toc-text"> 附加资源</span></a></li></ol>
+  
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="xiaozhaoz1" class="lazyload">
+  <div class="sidebar-author-name">xiaozhaoz1</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">8</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">12</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+  
+  <div class="sidebar-widget">
+  
+  </div>
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-网络基础知识" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2025-04-17T14:22:35.000Z" itemprop="datePublished">2025-04-17</time>
+    <time style="display: none;" id="post-update-time">2025-09-21</time>
+  </span>
+  
+</div>
+
+      
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="第一章网络基本概念"><a class="markdownIt-Anchor" href="#第一章网络基本概念"></a> 第一章：网络基本概念</h1>
+<h2 id="什么是计算机网络"><a class="markdownIt-Anchor" href="#什么是计算机网络"></a> 什么是计算机网络？</h2>
+<p>简单来说，计算机网络是指通过通信线路和网络设备，将分布在不同地理位置的多台计算机及其外部设备连接起来，在网络操作系统、网络管理软件及网络通信协议的管理和协调下，实现资源共享和信息传递的系统。</p>
+<p>想象一下计算机网络就像城市的道路系统：</p>
+<p>计算机和设备就像城市中的建筑物（家庭、商店、办公室）</p>
+<p>网络线路就像连接这些建筑物的道路</p>
+<p>数据就像在道路上行驶的车辆</p>
+<p>协议就像交通规则，确保车辆有序通行</p>
+<p>网络设备（路由器、交换机）就像十字路口的交通信号灯和立交桥</p>
+<h2 id="网络的主要类型"><a class="markdownIt-Anchor" href="#网络的主要类型"></a> 网络的主要类型</h2>
+<p>根据覆盖范围的大小，网络可以分为以下几类：</p>
+<h3 id="局域网lan-local-area-network"><a class="markdownIt-Anchor" href="#局域网lan-local-area-network"></a> 局域网（LAN - Local Area Network）</h3>
+<p>局域网是最常见的一种网络类型，覆盖范围通常在几公里内，比如家庭网络、办公室网络或校园网络。你家里的Wi-Fi就是一个典型的局域网。</p>
+<p>特点：</p>
+<p>覆盖范围小（通常在一个建筑物或校园内）</p>
+<p>高速数据传输</p>
+<p>通常由单个组织管理</p>
+<p>错误率较低</p>
+<h3 id="城域网man-metropolitan-area-network"><a class="markdownIt-Anchor" href="#城域网man-metropolitan-area-network"></a> 城域网（MAN - Metropolitan Area Network）</h3>
+<p>城域网覆盖整个城市，比局域网大但比广域网小。许多城市政府会建立城域网连接市政府各部门。</p>
+<p>特点：</p>
+<p>覆盖一个城市</p>
+<p>中等传输速度</p>
+<p>可能由多个组织共同管理</p>
+<h3 id="广域网wan-wide-area-network"><a class="markdownIt-Anchor" href="#广域网wan-wide-area-network"></a> 广域网（WAN - Wide Area Network）</h3>
+<p>广域网覆盖很大的地理区域，通常是一个国家或全球。互联网就是最大的广域网。</p>
+<p>特点：</p>
+<p>覆盖范围大（国家或全球）</p>
+<p>相对较低的传输速度（与LAN相比）</p>
+<p>使用公共通信设施</p>
+<p>错误率相对较高</p>
+<h3 id="个人区域网络pan-personal-area-network"><a class="markdownIt-Anchor" href="#个人区域网络pan-personal-area-network"></a> 个人区域网络（PAN - Personal Area Network）</h3>
+<p>个人区域网络是非常小的网络，通常围绕一个人工作。蓝牙设备连接就是PAN的典型例子。</p>
+<p>特点：</p>
+<p>覆盖范围极小（通常10米以内）</p>
+<p>低功耗</p>
+<p>通常用于连接个人设备</p>
+<h2 id="网络拓扑结构"><a class="markdownIt-Anchor" href="#网络拓扑结构"></a> 网络拓扑结构</h2>
+<p>网络拓扑是指网络中各个节点（计算机、服务器等）相互连接的方式。常见的拓扑结构有：</p>
+<h3 id="总线型拓扑"><a class="markdownIt-Anchor" href="#总线型拓扑"></a> 总线型拓扑</h3>
+<p>所有设备都连接到一条主干电缆上。就像一棵圣诞树，所有装饰灯都挂在同一条电线上。</p>
+<p>优点：</p>
+<p>安装简单</p>
+<p>需要较少的电缆</p>
+<p>缺点：</p>
+<p>如果主干电缆出现故障，整个网络会瘫痪</p>
+<p>网络性能随设备增加而下降</p>
+<p>故障诊断困难</p>
+<h3 id="星型拓扑"><a class="markdownIt-Anchor" href="#星型拓扑"></a> 星型拓扑</h3>
+<p>所有设备都连接到一个中央设备（如交换机或集线器）。就像自行车轮子，所有辐条都连接到中心点。</p>
+<p>优点：</p>
+<p>易于安装和管理</p>
+<p>单个连接故障不会影响整个网络</p>
+<p>易于故障诊断</p>
+<p>缺点：</p>
+<p>中央设备故障会导致整个网络瘫痪</p>
+<p>需要更多电缆</p>
+<h3 id="环型拓扑"><a class="markdownIt-Anchor" href="#环型拓扑"></a> 环型拓扑</h3>
+<p>每个设备直接与相邻的两个设备连接，形成环形。就像一群人手拉手围成一个圈。</p>
+<p>优点：</p>
+<p>数据传输有序（每个设备都有机会发送数据）</p>
+<p>性能不会随设备增加而显著下降</p>
+<p>缺点：</p>
+<p>单个节点故障可能导致整个网络瘫痪</p>
+<p>添加或移除设备会 disrupt 整个网络</p>
+<h3 id="网状拓扑"><a class="markdownIt-Anchor" href="#网状拓扑"></a> 网状拓扑</h3>
+<p>每个设备都直接连接到网络中的其他所有设备。就像全员互相加为好友的微信群。</p>
+<p>优点：</p>
+<p>高可靠性（多条路径可选）</p>
+<p>高安全性（数据可通过不同路径传输）</p>
+<p>缺点：</p>
+<p>安装复杂且成本高</p>
+<p>需要大量电缆</p>
+<p>在实际网络中，通常会使用混合拓扑，结合多种拓扑结构的优点。</p>
+<h1 id="第二章osi七层模型与tcpip模型"><a class="markdownIt-Anchor" href="#第二章osi七层模型与tcpip模型"></a> 第二章：OSI七层模型与TCP/IP模型</h1>
+<p>理解网络通信的核心是掌握网络模型。网络模型将复杂的通信过程分解为多个层次，每一层都有特定的功能和协议。最著名的两个模型是OSI七层模型和TCP/IP四层模型。</p>
+<h2 id="osi七层模型"><a class="markdownIt-Anchor" href="#osi七层模型"></a> OSI七层模型</h2>
+<p>OSI（Open Systems Interconnection）模型是由国际标准化组织（ISO）提出的理论模型，它将网络通信分为七个层次。虽然实际应用中很少完全按照OSI模型实现，但它仍然是理解和讨论网络协议的宝贵框架。</p>
+<h3 id="物理层第1层"><a class="markdownIt-Anchor" href="#物理层第1层"></a> 物理层（第1层）</h3>
+<p>物理层负责在物理媒介上传输原始比特流。它定义了电气、机械、程序和功能规范，以激活、维护和终止设备之间的物理连接。</p>
+<p>主要功能：</p>
+<p>定义电压水平、电缆规格和接口类型</p>
+<p>传输比特流（0和1）</p>
+<p>管理硬件连接</p>
+<p>常见设备：集线器、中继器、调制解调器<br />
+协议示例：Ethernet、USB、Bluetooth</p>
+<p>生活化比喻：物理层就像道路本身 - 沥青、车道标记和交通标志。它不关心车上装的是什么，只关心车辆能否在道路上行驶。</p>
+<h3 id="数据链路层第2层"><a class="markdownIt-Anchor" href="#数据链路层第2层"></a> 数据链路层（第2层）</h3>
+<p>数据链路层负责在直接相连的节点之间可靠地传输数据帧。它将物理层提供的可能出错的原始比特流转换为逻辑上无错误的数据通道。</p>
+<p>主要功能：</p>
+<p>将数据包封装成帧</p>
+<p>物理地址（MAC地址）寻址</p>
+<p>错误检测和纠正</p>
+<p>流量控制</p>
+<p>常见设备：交换机、网桥<br />
+协议示例：Ethernet、PPP、HDLC</p>
+<p>生活化比喻：数据链路层就像单个十字路口的交通管理 - 确保车辆能够安全地通过路口，不会相互碰撞。</p>
+<h3 id="网络层第3层"><a class="markdownIt-Anchor" href="#网络层第3层"></a> 网络层（第3层）</h3>
+<p>网络层负责在不同网络之间寻址和路由数据包。它决定了数据从源到目的的最佳路径。</p>
+<p>主要功能：</p>
+<p>逻辑地址（IP地址）寻址</p>
+<p>路由选择</p>
+<p>分组和重组</p>
+<p>常见设备：路由器<br />
+协议示例：IP、ICMP、IPX</p>
+<p>生活化比喻：网络层就像GPS导航系统 - 它规划从起点到终点的最佳路线，但不关心具体如何驾驶。</p>
+<h3 id="传输层第4层"><a class="markdownIt-Anchor" href="#传输层第4层"></a> 传输层（第4层）</h3>
+<p>传输层负责端到端的通信，确保数据完整、无差错、按顺序地到达目的地。</p>
+<p>主要功能：</p>
+<p>端到端连接管理</p>
+<p>错误控制和流量控制</p>
+<p>数据分段和重组</p>
+<p>协议示例：TCP、UDP、SPX</p>
+<p>生活化比喻：传输层就像快递服务 - 它确保包裹完整、按时送达，如果需要还会要求签收确认。</p>
+<h3 id="会话层第5层"><a class="markdownIt-Anchor" href="#会话层第5层"></a> 会话层（第5层）</h3>
+<p>会话层负责建立、管理和终止应用程序之间的会话。它同步设备之间的数据交换。</p>
+<p>主要功能：</p>
+<p>建立、管理和终止会话</p>
+<p>同步数据交换</p>
+<p>协议示例：NetBIOS、RPC</p>
+<p>生活化比喻：会话层就像电话通话中的&quot;你好&quot;和&quot;再见&quot; - 它管理通信的开始和结束。</p>
+<h3 id="表示层第6层"><a class="markdownIt-Anchor" href="#表示层第6层"></a> 表示层（第6层）</h3>
+<p>表示层负责数据的表示、加密和压缩，确保一个系统应用层发送的数据能被另一个系统的应用层读取。</p>
+<p>主要功能：</p>
+<p>数据翻译、加密和解密</p>
+<p>数据压缩和解压缩</p>
+<p>协议示例：SSL、TLS、JPEG</p>
+<p>生活化比喻：表示层就像翻译官 - 它将一种语言翻译成另一种语言，使得双方能够理解彼此。</p>
+<h3 id="应用层第7层"><a class="markdownIt-Anchor" href="#应用层第7层"></a> 应用层（第7层）</h3>
+<p>应用层是最接近用户的层，为应用程序提供网络服务。它为用户接口提供支持。</p>
+<p>主要功能：</p>
+<p>提供网络服务接口</p>
+<p>资源分配</p>
+<p>协议示例：HTTP、FTP、SMTP、DNS</p>
+<p>生活化比喻：应用层就像你使用的应用程序（如浏览器或电子邮件客户端） - 它是你与网络交互的界面。</p>
+<h2 id="tcpip模型"><a class="markdownIt-Anchor" href="#tcpip模型"></a> TCP/IP模型</h2>
+<p>TCP/IP模型是实际应用中使用的网络模型，它由四层组成，与OSI模型有对应关系：</p>
+<h3 id="网络接口层对应osi物理层和数据链路层"><a class="markdownIt-Anchor" href="#网络接口层对应osi物理层和数据链路层"></a> 网络接口层（对应OSI物理层和数据链路层）</h3>
+<p>负责在物理网络上发送和接收数据帧。</p>
+<h3 id="互联网层对应osi网络层"><a class="markdownIt-Anchor" href="#互联网层对应osi网络层"></a> 互联网层（对应OSI网络层）</h3>
+<p>负责寻址、打包和路由功能。核心协议是IP（Internet Protocol）。</p>
+<h3 id="传输层对应osi传输层"><a class="markdownIt-Anchor" href="#传输层对应osi传输层"></a> 传输层（对应OSI传输层）</h3>
+<p>负责端到端的数据传输。主要协议是TCP和UDP。</p>
+<h3 id="应用层对应osi会话层-表示层和应用层"><a class="markdownIt-Anchor" href="#应用层对应osi会话层-表示层和应用层"></a> 应用层（对应OSI会话层、表示层和应用层）</h3>
+<p>提供应用程序网络服务。包含所有高级协议如HTTP、FTP、SMTP等。</p>
+<h2 id="数据封装过程"><a class="markdownIt-Anchor" href="#数据封装过程"></a> 数据封装过程</h2>
+<p>当数据在网络中传输时，它会在发送端从上到下经过各层，每层都会添加自己的头部信息（有时还有尾部），这个过程称为封装。在接收端，数据会从下到上经过各层，每层会去除相应的头部信息，这个过程称为解封装。</p>
+<p>以发送电子邮件为例：</p>
+<p>应用层：将电子邮件内容转换为数据</p>
+<p>传输层：将数据分割成段，添加TCP头部（包含端口号等信息）</p>
+<p>网络层：添加IP头部（包含IP地址信息），形成数据包</p>
+<p>数据链路层：添加帧头部（包含MAC地址信息）和帧尾部（用于错误检测），形成帧</p>
+<p>物理层：将帧转换为比特流，通过物理介质传输</p>
+<p>在接收端，过程正好相反。</p>
+<h2 id="代码示例模拟数据封装过程"><a class="markdownIt-Anchor" href="#代码示例模拟数据封装过程"></a> 代码示例：模拟数据封装过程</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 模拟数据封装过程（概念代码）</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">data_encapsulation</span>(<span class="params">app_data</span>):</span><br><span class="line">    <span class="comment"># 应用层 - 原始数据</span></span><br><span class="line">    application_layer = <span class="string">f&quot;HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<span class="subst">&#123;app_data&#125;</span>&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 传输层 - 添加TCP头</span></span><br><span class="line">    tcp_header = <span class="string">&quot;源端口:80 目标端口:53987 序列号:123 Ack:456 窗口大小:64240&quot;</span></span><br><span class="line">    transport_layer = <span class="string">f&quot;<span class="subst">&#123;tcp_header&#125;</span><span class="subst">&#123;application_layer&#125;</span>&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 网络层 - 添加IP头</span></span><br><span class="line">    ip_header = <span class="string">&quot;源IP:192.168.1.1 目标IP:192.168.1.2 TTL:64 协议:TCP&quot;</span></span><br><span class="line">    network_layer = <span class="string">f&quot;<span class="subst">&#123;ip_header&#125;</span><span class="subst">&#123;transport_layer&#125;</span>&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 数据链路层 - 添加帧头帧尾</span></span><br><span class="line">    ethernet_header = <span class="string">&quot;源MAC:00:1A:2B:3C:4D:5E 目标MAC:00:1A:2B:3C:4D:5F&quot;</span></span><br><span class="line">    ethernet_trailer = <span class="string">&quot;FCS:0x12345678&quot;</span></span><br><span class="line">    data_link_layer = <span class="string">f&quot;<span class="subst">&#123;ethernet_header&#125;</span><span class="subst">&#123;network_layer&#125;</span><span class="subst">&#123;ethernet_trailer&#125;</span>&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 物理层 - 转换为比特流</span></span><br><span class="line">    physical_layer = <span class="string">&#x27;&#x27;</span>.join(<span class="built_in">format</span>(<span class="built_in">ord</span>(c), <span class="string">&#x27;08b&#x27;</span>) <span class="keyword">for</span> c <span class="keyword">in</span> data_link_layer)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> physical_layer</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试封装过程</span></span><br><span class="line">web_data = <span class="string">&quot;&lt;html&gt;&lt;body&gt;Hello Network!&lt;/body&gt;&lt;/html&gt;&quot;</span></span><br><span class="line">encapsulated_data = data_encapsulation(web_data)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;封装后的比特流前100位:&quot;</span>, encapsulated_data[:<span class="number">100</span>])</span><br></pre></td></tr></table></figure>
+<h2 id="代码示例tcp三次握手模拟"><a class="markdownIt-Anchor" href="#代码示例tcp三次握手模拟"></a> 代码示例：TCP三次握手模拟</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># TCP三次握手模拟</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TCPSimulation</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="variable language_">self</span>.seq_num = <span class="number">1000</span>  <span class="comment"># 初始序列号</span></span><br><span class="line">        <span class="variable language_">self</span>.ack_num = <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">three_way_handshake</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;=== TCP三次握手过程 ===&quot;</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 第一次握手：SYN</span></span><br><span class="line">        <span class="variable language_">self</span>.syn_sent()</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 第二次握手：SYN-ACK</span></span><br><span class="line">        <span class="variable language_">self</span>.syn_ack_received()</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 第三次握手：ACK</span></span><br><span class="line">        <span class="variable language_">self</span>.ack_sent()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">syn_sent</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;客户端 -&gt; SYN -&gt; 服务器 | SEQ: <span class="subst">&#123;self.seq_num&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.seq_num += <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">syn_ack_received</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;客户端 &lt;- SYN-ACK &lt;- 服务器 | ACK: <span class="subst">&#123;self.seq_num&#125;</span>, SEQ: <span class="subst">&#123;self.ack_num&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.ack_num = <span class="variable language_">self</span>.seq_num</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">ack_sent</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;客户端 -&gt; ACK -&gt; 服务器 | SEQ: <span class="subst">&#123;self.seq_num&#125;</span>, ACK: <span class="subst">&#123;self.ack_num + <span class="number">1</span>&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;连接已建立!&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行模拟</span></span><br><span class="line">tcp_sim = TCPSimulation()</span><br><span class="line">tcp_sim.three_way_handshake()</span><br></pre></td></tr></table></figure>
+<h1 id="第三章ip地址与子网划分"><a class="markdownIt-Anchor" href="#第三章ip地址与子网划分"></a> 第三章：IP地址与子网划分</h1>
+<h2 id="ip地址基础"><a class="markdownIt-Anchor" href="#ip地址基础"></a> IP地址基础</h2>
+<p>IP地址是互联网上设备的唯一标识符，就像现实世界中的街道地址一样。当前广泛使用的是IPv4地址，而IPv6地址正在逐渐推广。</p>
+<h3 id="ipv4地址格式"><a class="markdownIt-Anchor" href="#ipv4地址格式"></a> IPv4地址格式</h3>
+<p>IPv4地址由32位二进制数组成，通常表示为四个十进制数（每个数范围0-255），用点分隔，例如：192.168.1.1</p>
+<p>这种表示法称为点分十进制表示法，是为了方便人类阅读和记忆。</p>
+<h3 id="ip地址分类"><a class="markdownIt-Anchor" href="#ip地址分类"></a> IP地址分类</h3>
+<p>IPv4地址分为五类：A、B、C、D和E类。其中A、B和C类用于商业用途，D类用于多播，E类保留用于实验。</p>
+<p>A类地址：第一个八位组表示网络号，后三个八位组表示主机号</p>
+<p>范围：1.0.0.0 到 126.255.255.255</p>
+<p>默认子网掩码：255.0.0.0</p>
+<p>每个A类网络可容纳约1677万台主机</p>
+<p>B类地址：前两个八位组表示网络号，后两个八位组表示主机号</p>
+<p>范围：128.0.0.0 到 191.255.255.255</p>
+<p>默认子网掩码：255.255.0.0</p>
+<p>每个B类网络可容纳约6.5万台主机</p>
+<p>C类地址：前三个八位组表示网络号，最后一个八位组表示主机号</p>
+<p>范围：192.0.0.0 到 223.255.255.255</p>
+<p>默认子网掩码：255.255.255.0</p>
+<p>每个C类网络可容纳254台主机</p>
+<p>D类地址：用于多播（一组设备）</p>
+<p>范围：224.0.0.0 到 239.255.255.255</p>
+<p>E类地址：保留用于实验和研究</p>
+<p>范围：240.0.0.0 到 255.255.255.255</p>
+<h3 id="公有ip和私有ip"><a class="markdownIt-Anchor" href="#公有ip和私有ip"></a> 公有IP和私有IP</h3>
+<p>公有IP地址：在互联网上全局可达的唯一地址，由ISP（互联网服务提供商）分配</p>
+<p>私有IP地址：在私有网络内部使用，不能在互联网上路由。包括：</p>
+<p>10.0.0.0 - 10.255.255.255（A类）</p>
+<p>172.16.0.0 - 172.31.255.255（B类）</p>
+<p>192.168.0.0 - 192.168.255.255（C类）</p>
+<p>当使用私有IP的设备要访问互联网时，需要通过NAT（网络地址转换）将私有IP转换为公有IP。</p>
+<h2 id="子网划分"><a class="markdownIt-Anchor" href="#子网划分"></a> 子网划分</h2>
+<p>子网划分是将一个大的网络分割成多个较小网络的过程，目的是提高网络性能和安全性和更有效地使用IP地址。</p>
+<h3 id="子网掩码"><a class="markdownIt-Anchor" href="#子网掩码"></a> 子网掩码</h3>
+<p>子网掩码用于区分IP地址中的网络部分和主机部分。它也是32位数字，由连续1后跟连续0组成。</p>
+<p>例如：</p>
+<p>默认C类子网掩码：255.255.255.0（二进制：11111111.11111111.11111111.00000000）</p>
+<p>表示前24位是网络号，后8位是主机号</p>
+<h3 id="cidr表示法"><a class="markdownIt-Anchor" href="#cidr表示法"></a> CIDR表示法</h3>
+<p>CIDR（无类别域间路由）表示法是一种更灵活的IP地址分配方法，它使用斜线后跟数字表示网络前缀的长度。</p>
+<p>例如：192.168.1.0/24</p>
+<p>表示前24位是网络号（相当于子网掩码255.255.255.0）</p>
+<p>剩余8位用于主机地址（可分配254个主机地址）</p>
+<h3 id="子网划分步骤"><a class="markdownIt-Anchor" href="#子网划分步骤"></a> 子网划分步骤</h3>
+<p>让我们通过一个例子学习子网划分：</p>
+<p>问题：将网络192.168.1.0/24划分为4个子网</p>
+<p>步骤1：确定所需子网数<br />
+我们需要4个子网，2^2=4，所以需要向主机部分借用2位</p>
+<p>步骤2：计算新的子网掩码<br />
+原掩码是/24（255.255.255.0），借用2位后变为/26（255.255.255.192）</p>
+<p>步骤3：确定每个子网的地址范围<br />
+借用的2位有4种可能组合：00、01、10、11</p>
+<p>因此4个子网为：</p>
+<p>192.168.1.0/26（范围：192.168.1.1 - 192.168.1.62）</p>
+<p>192.168.1.64/26（范围：192.168.1.65 - 192.168.1.126）</p>
+<p>192.168.1.128/26（范围：192.168.1.129 - 192.168.1.190）</p>
+<p>192.168.1.192/26（范围：192.168.1.193 - 192.168.1.254）</p>
+<p>步骤4：确定每个子网可用的主机数<br />
+主机部分剩余6位（32-26=6），2^6-2=62个可用主机地址（减2是因为网络地址和广播地址不能分配给主机）</p>
+<h2 id="ipv6简介"><a class="markdownIt-Anchor" href="#ipv6简介"></a> IPv6简介</h2>
+<p>由于IPv4地址即将耗尽，IPv6被开发出来解决地址短缺问题。IPv6地址由128位组成，通常表示为8组4位十六进制数，用冒号分隔。</p>
+<p>例如：2001:0db8:85a3:0000:0000:8a2e:0370:7334</p>
+<p>IPv6的主要优势：</p>
+<p>极大的地址空间（约3.4×10^38个地址）</p>
+<p>简化了报头格式，提高路由效率</p>
+<p>内置安全功能（IPsec）</p>
+<p>更好的支持移动设备</p>
+<h2 id="代码示例ip地址计算工具"><a class="markdownIt-Anchor" href="#代码示例ip地址计算工具"></a> 代码示例：IP地址计算工具</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># IP地址计算工具类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">IPCalculator</span>:</span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">cidr_to_subnet_mask</span>(<span class="params">cidr</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;将CIDR表示法转换为子网掩码&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="number">0</span> &lt;= cidr &lt;= <span class="number">32</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&quot;CIDR必须在0-32之间&quot;</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 计算子网掩码</span></span><br><span class="line">        mask = (<span class="number">0xFFFFFFFF</span> &lt;&lt; (<span class="number">32</span> - cidr)) &amp; <span class="number">0xFFFFFFFF</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">f&quot;<span class="subst">&#123;(mask &gt;&gt; <span class="number">24</span>) &amp; <span class="number">0xFF</span>&#125;</span>.<span class="subst">&#123;(mask &gt;&gt; <span class="number">16</span>) &amp; <span class="number">0xFF</span>&#125;</span>.<span class="subst">&#123;(mask &gt;&gt; <span class="number">8</span>) &amp; <span class="number">0xFF</span>&#125;</span>.<span class="subst">&#123;mask &amp; <span class="number">0xFF</span>&#125;</span>&quot;</span></span><br><span class="line">    </span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_network_address</span>(<span class="params">ip, cidr</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;计算网络地址&quot;&quot;&quot;</span></span><br><span class="line">        ip_parts = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, ip.split(<span class="string">&#x27;.&#x27;</span>)))</span><br><span class="line">        mask = IPCalculator.cidr_to_subnet_mask(cidr).split(<span class="string">&#x27;.&#x27;</span>)</span><br><span class="line">        </span><br><span class="line">        network_parts = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">            network_parts.append(<span class="built_in">str</span>(ip_parts[i] &amp; <span class="built_in">int</span>(mask[i])))</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;.&#x27;</span>.join(network_parts)</span><br><span class="line">    </span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_broadcast_address</span>(<span class="params">ip, cidr</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;计算广播地址&quot;&quot;&quot;</span></span><br><span class="line">        network_addr = IPCalculator.get_network_address(ip, cidr).split(<span class="string">&#x27;.&#x27;</span>)</span><br><span class="line">        host_bits = <span class="number">32</span> - cidr</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 计算广播地址</span></span><br><span class="line">        broadcast = []</span><br><span class="line">        <span class="keyword">for</span> i, part <span class="keyword">in</span> <span class="built_in">enumerate</span>(network_addr):</span><br><span class="line">            <span class="keyword">if</span> i &lt; <span class="number">3</span>:</span><br><span class="line">                broadcast.append(part)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                broadcast.append(<span class="built_in">str</span>(<span class="built_in">int</span>(part) | (<span class="number">2</span>**host_bits - <span class="number">1</span>)))</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;.&#x27;</span>.join(broadcast)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用示例</span></span><br><span class="line">ip = <span class="string">&quot;192.168.1.100&quot;</span></span><br><span class="line">cidr = <span class="number">24</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;IP地址: <span class="subst">&#123;ip&#125;</span>/<span class="subst">&#123;cidr&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;子网掩码: <span class="subst">&#123;IPCalculator.cidr_to_subnet_mask(cidr)&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;网络地址: <span class="subst">&#123;IPCalculator.get_network_address(ip, cidr)&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;广播地址: <span class="subst">&#123;IPCalculator.get_broadcast_address(ip, cidr)&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="代码示例vlsm子网划分"><a class="markdownIt-Anchor" href="#代码示例vlsm子网划分"></a> 代码示例：VLSM子网划分</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># VLSM子网划分实现</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">VLSMCalculator</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, network_cidr</span>):</span><br><span class="line">        <span class="variable language_">self</span>.network = network_cidr.split(<span class="string">&#x27;/&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">        <span class="variable language_">self</span>.cidr = <span class="built_in">int</span>(network_cidr.split(<span class="string">&#x27;/&#x27;</span>)[<span class="number">1</span>])</span><br><span class="line">        <span class="variable language_">self</span>.available_subnets = []</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add_subnet_requirement</span>(<span class="params">self, name, hosts</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;添加子网需求&quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 计算所需主机位数</span></span><br><span class="line">        host_bits = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> (<span class="number">2</span>**host_bits - <span class="number">2</span>) &lt; hosts:</span><br><span class="line">            host_bits += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        subnet_mask_bits = <span class="number">32</span> - host_bits</span><br><span class="line">        <span class="variable language_">self</span>.available_subnets.append(&#123;</span><br><span class="line">            <span class="string">&#x27;name&#x27;</span>: name,</span><br><span class="line">            <span class="string">&#x27;hosts&#x27;</span>: hosts,</span><br><span class="line">            <span class="string">&#x27;host_bits&#x27;</span>: host_bits,</span><br><span class="line">            <span class="string">&#x27;cidr&#x27;</span>: subnet_mask_bits</span><br><span class="line">        &#125;)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">calculate_subnets</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;计算VLSM子网划分&quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 按主机数量降序排列</span></span><br><span class="line">        <span class="variable language_">self</span>.available_subnets.sort(key=<span class="keyword">lambda</span> x: x[<span class="string">&#x27;hosts&#x27;</span>], reverse=<span class="literal">True</span>)</span><br><span class="line">        </span><br><span class="line">        current_network = <span class="variable language_">self</span>.network</span><br><span class="line">        current_cidr = <span class="variable language_">self</span>.cidr</span><br><span class="line">        </span><br><span class="line">        results = []</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> subnet <span class="keyword">in</span> <span class="variable language_">self</span>.available_subnets:</span><br><span class="line">            <span class="comment"># 计算子网信息</span></span><br><span class="line">            network_addr = IPCalculator.get_network_address(current_network, current_cidr)</span><br><span class="line">            subnet_mask = IPCalculator.cidr_to_subnet_mask(subnet[<span class="string">&#x27;cidr&#x27;</span>])</span><br><span class="line">            broadcast = IPCalculator.get_broadcast_address(current_network, subnet[<span class="string">&#x27;cidr&#x27;</span>])</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 计算可用IP范围</span></span><br><span class="line">            network_parts = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, network_addr.split(<span class="string">&#x27;.&#x27;</span>)))</span><br><span class="line">            first_ip = network_parts.copy()</span><br><span class="line">            first_ip[<span class="number">3</span>] += <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">            broadcast_parts = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, broadcast.split(<span class="string">&#x27;.&#x27;</span>)))</span><br><span class="line">            last_ip = broadcast_parts.copy()</span><br><span class="line">            last_ip[<span class="number">3</span>] -= <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">            results.append(&#123;</span><br><span class="line">                <span class="string">&#x27;name&#x27;</span>: subnet[<span class="string">&#x27;name&#x27;</span>],</span><br><span class="line">                <span class="string">&#x27;network&#x27;</span>: network_addr,</span><br><span class="line">                <span class="string">&#x27;cidr&#x27;</span>: subnet[<span class="string">&#x27;cidr&#x27;</span>],</span><br><span class="line">                <span class="string">&#x27;subnet_mask&#x27;</span>: subnet_mask,</span><br><span class="line">                <span class="string">&#x27;broadcast&#x27;</span>: broadcast,</span><br><span class="line">                <span class="string">&#x27;first_host&#x27;</span>: <span class="string">&#x27;.&#x27;</span>.join(<span class="built_in">map</span>(<span class="built_in">str</span>, first_ip)),</span><br><span class="line">                <span class="string">&#x27;last_host&#x27;</span>: <span class="string">&#x27;.&#x27;</span>.join(<span class="built_in">map</span>(<span class="built_in">str</span>, last_ip)),</span><br><span class="line">                <span class="string">&#x27;hosts&#x27;</span>: subnet[<span class="string">&#x27;hosts&#x27;</span>]</span><br><span class="line">            &#125;)</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 更新下一个子网的起始地址</span></span><br><span class="line">            next_network = broadcast_parts.copy()</span><br><span class="line">            next_network[<span class="number">3</span>] += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> next_network[<span class="number">3</span>] &gt; <span class="number">255</span>:</span><br><span class="line">                next_network[<span class="number">3</span>] = <span class="number">0</span></span><br><span class="line">                next_network[<span class="number">2</span>] += <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">            current_network = <span class="string">&#x27;.&#x27;</span>.join(<span class="built_in">map</span>(<span class="built_in">str</span>, next_network))</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> results</span><br><span class="line"></span><br><span class="line"><span class="comment"># VLSM示例</span></span><br><span class="line">vlsm = VLSMCalculator(<span class="string">&quot;192.168.1.0/24&quot;</span>)</span><br><span class="line">vlsm.add_subnet_requirement(<span class="string">&quot;财务部&quot;</span>, <span class="number">50</span>)</span><br><span class="line">vlsm.add_subnet_requirement(<span class="string">&quot;技术部&quot;</span>, <span class="number">25</span>)</span><br><span class="line">vlsm.add_subnet_requirement(<span class="string">&quot;行政部&quot;</span>, <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">subnets = vlsm.calculate_subnets()</span><br><span class="line"><span class="keyword">for</span> subnet <span class="keyword">in</span> subnets:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;subnet[<span class="string">&#x27;name&#x27;</span>]&#125;</span>: <span class="subst">&#123;subnet[<span class="string">&#x27;network&#x27;</span>]&#125;</span>/<span class="subst">&#123;subnet[<span class="string">&#x27;cidr&#x27;</span>]&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;  可用IP: <span class="subst">&#123;subnet[<span class="string">&#x27;first_host&#x27;</span>]&#125;</span> - <span class="subst">&#123;subnet[<span class="string">&#x27;last_host&#x27;</span>]&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="第四章网络设备配置与管理"><a class="markdownIt-Anchor" href="#第四章网络设备配置与管理"></a> 第四章：网络设备配置与管理</h1>
+<h2 id="常见网络设备"><a class="markdownIt-Anchor" href="#常见网络设备"></a> 常见网络设备</h2>
+<h3 id="网卡nic-network-interface-card"><a class="markdownIt-Anchor" href="#网卡nic-network-interface-card"></a> 网卡（NIC - Network Interface Card）</h3>
+<p>网卡是计算机与网络之间的接口设备，负责将计算机中的数据转换为可以通过网络传输的信号。</p>
+<p>每块网卡都有一个唯一的MAC地址（物理地址），用于在本地网络中标识设备。</p>
+<h3 id="调制解调器modem"><a class="markdownIt-Anchor" href="#调制解调器modem"></a> 调制解调器（Modem）</h3>
+<p>调制解调器将数字信号转换为模拟信号（调制）以便通过电话线等模拟线路传输，并将接收到的模拟信号转换回数字信号（解调）。</p>
+<h3 id="集线器hub"><a class="markdownIt-Anchor" href="#集线器hub"></a> 集线器（Hub）</h3>
+<p>集线器是最简单的网络设备，它将所有连接到它的设备组成一个网络段。当集线器从一个端口收到数据时，它会将数据广播到所有其他端口。</p>
+<p>集线器工作在OSI模型的物理层，它不理解帧或包的内容，只是简单地转发信号。</p>
+<h3 id="交换机switch"><a class="markdownIt-Anchor" href="#交换机switch"></a> 交换机（Switch）</h3>
+<p>交换机比集线器更智能，它工作在数据链路层，能够识别帧中的MAC地址。交换机学习哪些设备连接到哪些端口，并只将帧转发到目标设备所在的端口。</p>
+<p>交换机的主要优点：</p>
+<p>减少不必要的流量（不广播到所有端口）</p>
+<p>提高网络安全性（设备只能看到发给自己的流量）</p>
+<p>支持全双工通信（可以同时发送和接收数据）</p>
+<h3 id="路由器router"><a class="markdownIt-Anchor" href="#路由器router"></a> 路由器（Router）</h3>
+<p>路由器工作在网络层，用于连接不同的网络（如连接家庭网络和互联网）。路由器根据IP地址做出转发决策，并可以执行NAT（网络地址转换）、防火墙等功能。</p>
+<p>路由器的主要功能：</p>
+<p>在不同网络之间转发数据包</p>
+<p>选择最佳路径（路由选择）</p>
+<p>隔离广播域（不转发广播包到其他网络）</p>
+<h3 id="无线接入点wireless-access-point"><a class="markdownIt-Anchor" href="#无线接入点wireless-access-point"></a> 无线接入点（Wireless Access Point）</h3>
+<p>无线接入点允许无线设备连接到有线网络。它相当于无线网络中的交换机，但使用无线电波而不是电缆传输数据。</p>
+<h2 id="vlan虚拟局域网"><a class="markdownIt-Anchor" href="#vlan虚拟局域网"></a> VLAN（虚拟局域网）</h2>
+<p>VLAN是一种将物理局域网划分为多个逻辑局域网的技术。即使设备连接到同一个物理交换机，也可以被划分到不同的VLAN中，彼此隔离就像在不同的物理网络上。</p>
+<p>VLAN的优点：</p>
+<p>提高安全性（隔离不同部门的流量）</p>
+<p>减少广播流量（广播只限于同一VLAN内）</p>
+<p>简化网络管理（逻辑分组而非物理分组）</p>
+<h2 id="网络拓扑实践"><a class="markdownIt-Anchor" href="#网络拓扑实践"></a> 网络拓扑实践</h2>
+<p>在实际网络设计中，通常采用分层网络设计模型，包括三层：</p>
+<h3 id="核心层"><a class="markdownIt-Anchor" href="#核心层"></a> 核心层</h3>
+<p>核心层是网络的高速骨干，负责快速转发流量。核心层设备通常是大容量路由器或交换机，主要考虑高速和可靠性，不执行复杂策略。</p>
+<h3 id="分布层"><a class="markdownIt-Anchor" href="#分布层"></a> 分布层</h3>
+<p>分布层位于核心层和接入层之间，提供策略实施、路由、过滤和WAN接入等功能。</p>
+<h3 id="接入层"><a class="markdownIt-Anchor" href="#接入层"></a> 接入层</h3>
+<p>接入层是终端用户设备接入网络的地方，提供端口安全、VLAN划分、流量过滤等功能。</p>
+<h2 id="代码示例cisco设备配置生成"><a class="markdownIt-Anchor" href="#代码示例cisco设备配置生成"></a> 代码示例：Cisco设备配置生成</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Cisco配置生成器</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CiscoConfigGenerator</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, hostname</span>):</span><br><span class="line">        <span class="variable language_">self</span>.hostname = hostname</span><br><span class="line">        <span class="variable language_">self</span>.config = []</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add_basic_config</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;添加基础配置&quot;&quot;&quot;</span></span><br><span class="line">        <span class="variable language_">self</span>.config.append(<span class="string">f&quot;hostname <span class="subst">&#123;self.hostname&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.config.append(<span class="string">&quot;enable secret class123&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.config.append(<span class="string">&quot;line con 0&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.config.append(<span class="string">&quot; password cisco&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.config.append(<span class="string">&quot; login&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.config.append(<span class="string">&quot;line vty 0 4&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.config.append(<span class="string">&quot; password cisco&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.config.append(<span class="string">&quot; login&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.config.append(<span class="string">&quot;service password-encryption&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.config.append(<span class="string">&quot;banner motd #Unauthorized access prohibited!#&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add_interface_config</span>(<span class="params">self, interface, ip_address, subnet_mask, description=<span class="string">&quot;&quot;</span></span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;添加接口配置&quot;&quot;&quot;</span></span><br><span class="line">        <span class="variable language_">self</span>.config.append(<span class="string">f&quot;interface <span class="subst">&#123;interface&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> description:</span><br><span class="line">            <span class="variable language_">self</span>.config.append(<span class="string">f&quot; description <span class="subst">&#123;description&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.config.append(<span class="string">f&quot; ip address <span class="subst">&#123;ip_address&#125;</span> <span class="subst">&#123;subnet_mask&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.config.append(<span class="string">&quot; no shutdown&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.config.append(<span class="string">&quot; exit&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add_vlan_config</span>(<span class="params">self, vlan_id, name, network=<span class="literal">None</span></span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;添加VLAN配置&quot;&quot;&quot;</span></span><br><span class="line">        <span class="variable language_">self</span>.config.append(<span class="string">f&quot;vlan <span class="subst">&#123;vlan_id&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.config.append(<span class="string">f&quot; name <span class="subst">&#123;name&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> network:</span><br><span class="line">            <span class="variable language_">self</span>.config.append(<span class="string">f&quot;interface vlan <span class="subst">&#123;vlan_id&#125;</span>&quot;</span>)</span><br><span class="line">            <span class="variable language_">self</span>.config.append(<span class="string">f&quot; ip address <span class="subst">&#123;network&#125;</span>&quot;</span>)</span><br><span class="line">            <span class="variable language_">self</span>.config.append(<span class="string">&quot; no shutdown&quot;</span>)</span><br><span class="line">            <span class="variable language_">self</span>.config.append(<span class="string">&quot; exit&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add_static_route</span>(<span class="params">self, network, mask, next_hop</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;添加静态路由&quot;&quot;&quot;</span></span><br><span class="line">        <span class="variable language_">self</span>.config.append(<span class="string">f&quot;ip route <span class="subst">&#123;network&#125;</span> <span class="subst">&#123;mask&#125;</span> <span class="subst">&#123;next_hop&#125;</span>&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">generate_config</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;生成完整配置&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;\n&quot;</span>.join(<span class="variable language_">self</span>.config)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成路由器配置示例</span></span><br><span class="line">router_config = CiscoConfigGenerator(<span class="string">&quot;Core-Router&quot;</span>)</span><br><span class="line">router_config.add_basic_config()</span><br><span class="line">router_config.add_interface_config(<span class="string">&quot;GigabitEthernet0/0&quot;</span>, <span class="string">&quot;192.168.1.1&quot;</span>, <span class="string">&quot;255.255.255.0&quot;</span>, <span class="string">&quot;连接内部网络&quot;</span>)</span><br><span class="line">router_config.add_interface_config(<span class="string">&quot;GigabitEthernet0/1&quot;</span>, <span class="string">&quot;203.0.113.1&quot;</span>, <span class="string">&quot;255.255.255.252&quot;</span>, <span class="string">&quot;连接ISP&quot;</span>)</span><br><span class="line">router_config.add_static_route(<span class="string">&quot;0.0.0.0&quot;</span>, <span class="string">&quot;0.0.0.0&quot;</span>, <span class="string">&quot;203.0.113.2&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;=== 路由器配置 ===&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(router_config.generate_config())</span><br></pre></td></tr></table></figure>
+<h2 id="代码示例vlan配置生成"><a class="markdownIt-Anchor" href="#代码示例vlan配置生成"></a> 代码示例：VLAN配置生成</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 交换机VLAN配置生成器</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SwitchConfigGenerator</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, hostname</span>):</span><br><span class="line">        <span class="variable language_">self</span>.hostname = hostname</span><br><span class="line">        <span class="variable language_">self</span>.config = []</span><br><span class="line">        <span class="variable language_">self</span>.vlans = &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">create_vlan</span>(<span class="params">self, vlan_id, name, ip_address=<span class="literal">None</span></span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;创建VLAN&quot;&quot;&quot;</span></span><br><span class="line">        <span class="variable language_">self</span>.vlans[vlan_id] = &#123;<span class="string">&#x27;name&#x27;</span>: name, <span class="string">&#x27;ip_address&#x27;</span>: ip_address&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">configure_switchport_access</span>(<span class="params">self, interface, vlan_id</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;配置接入端口&quot;&quot;&quot;</span></span><br><span class="line">        <span class="variable language_">self</span>.config.append(<span class="string">f&quot;interface <span class="subst">&#123;interface&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.config.append(<span class="string">&quot; switchport mode access&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.config.append(<span class="string">f&quot; switchport access vlan <span class="subst">&#123;vlan_id&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.config.append(<span class="string">&quot; spanning-tree portfast&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.config.append(<span class="string">&quot; exit&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">configure_switchport_trunk</span>(<span class="params">self, interface, native_vlan=<span class="literal">None</span>, allowed_vlans=<span class="string">&quot;all&quot;</span></span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;配置Trunk端口&quot;&quot;&quot;</span></span><br><span class="line">        <span class="variable language_">self</span>.config.append(<span class="string">f&quot;interface <span class="subst">&#123;interface&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.config.append(<span class="string">&quot; switchport mode trunk&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> native_vlan:</span><br><span class="line">            <span class="variable language_">self</span>.config.append(<span class="string">f&quot; switchport trunk native vlan <span class="subst">&#123;native_vlan&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.config.append(<span class="string">f&quot; switchport trunk allowed vlan <span class="subst">&#123;allowed_vlans&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.config.append(<span class="string">&quot; exit&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">generate_config</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;生成完整配置&quot;&quot;&quot;</span></span><br><span class="line">        config_lines = [<span class="string">f&quot;hostname <span class="subst">&#123;self.hostname&#125;</span>&quot;</span>]</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 添加VLAN配置</span></span><br><span class="line">        <span class="keyword">for</span> vlan_id, vlan_info <span class="keyword">in</span> <span class="variable language_">self</span>.vlans.items():</span><br><span class="line">            config_lines.append(<span class="string">f&quot;vlan <span class="subst">&#123;vlan_id&#125;</span>&quot;</span>)</span><br><span class="line">            config_lines.append(<span class="string">f&quot; name <span class="subst">&#123;vlan_info[<span class="string">&#x27;name&#x27;</span>]&#125;</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">if</span> vlan_info[<span class="string">&#x27;ip_address&#x27;</span>]:</span><br><span class="line">                config_lines.append(<span class="string">f&quot;interface vlan <span class="subst">&#123;vlan_id&#125;</span>&quot;</span>)</span><br><span class="line">                config_lines.append(<span class="string">f&quot; ip address <span class="subst">&#123;vlan_info[<span class="string">&#x27;ip_address&#x27;</span>]&#125;</span>&quot;</span>)</span><br><span class="line">                config_lines.append(<span class="string">&quot; no shutdown&quot;</span>)</span><br><span class="line">                config_lines.append(<span class="string">&quot; exit&quot;</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 添加接口配置</span></span><br><span class="line">        config_lines.extend(<span class="variable language_">self</span>.config)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;\n&quot;</span>.join(config_lines)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成交换机配置示例</span></span><br><span class="line">switch_config = SwitchConfigGenerator(<span class="string">&quot;Access-Switch&quot;</span>)</span><br><span class="line">switch_config.create_vlan(<span class="number">10</span>, <span class="string">&quot;财务部&quot;</span>, <span class="string">&quot;192.168.10.1 255.255.255.0&quot;</span>)</span><br><span class="line">switch_config.create_vlan(<span class="number">20</span>, <span class="string">&quot;技术部&quot;</span>, <span class="string">&quot;192.168.20.1 255.255.255.0&quot;</span>)</span><br><span class="line">switch_config.configure_switchport_access(<span class="string">&quot;GigabitEthernet0/1&quot;</span>, <span class="number">10</span>)</span><br><span class="line">switch_config.configure_switchport_access(<span class="string">&quot;GigabitEthernet0/2&quot;</span>, <span class="number">20</span>)</span><br><span class="line">switch_config.configure_switchport_trunk(<span class="string">&quot;GigabitEthernet0/24&quot;</span>, native_vlan=<span class="number">99</span>, allowed_vlans=<span class="string">&quot;10,20,99&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n=== 交换机配置 ===&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(switch_config.generate_config())</span><br></pre></td></tr></table></figure>
+<h1 id="第五章关键网络协议"><a class="markdownIt-Anchor" href="#第五章关键网络协议"></a> 第五章：关键网络协议</h1>
+<h2 id="cp与udp"><a class="markdownIt-Anchor" href="#cp与udp"></a> CP与UDP</h2>
+<p>传输层有两个主要协议：TCP（传输控制协议）和UDP（用户数据报协议）。</p>
+<h3 id="tcp协议"><a class="markdownIt-Anchor" href="#tcp协议"></a> TCP协议</h3>
+<p>TCP是面向连接的、可靠的协议。它提供错误检测和纠正、流量控制和拥塞控制。</p>
+<p>TCP的特点：</p>
+<p>面向连接：通信前需要建立连接（三次握手）</p>
+<p>可靠传输：使用确认机制确保数据送达</p>
+<p>按序交付：保证数据按发送顺序到达</p>
+<p>流量控制：防止发送方淹没接收方</p>
+<p>拥塞控制：根据网络状况调整发送速率</p>
+<p>TCP适用于要求可靠传输的应用，如Web浏览（HTTP）、电子邮件（SMTP）、文件传输（FTP）等。</p>
+<h3 id="udp协议"><a class="markdownIt-Anchor" href="#udp协议"></a> UDP协议</h3>
+<p>UDP是无连接的、不可靠的协议。它不建立连接，只是简单地将数据包发送到目的地，不保证送达或顺序。</p>
+<p>UDP的特点：</p>
+<p>无连接：通信前不需要建立连接</p>
+<p>不可靠传输：不保证数据送达</p>
+<p>无顺序保证：数据可能乱序到达</p>
+<p>简单高效：头部开销小（8字节，而TCP是20字节）</p>
+<p>UDP适用于实时应用，如视频流、语音通话（VoIP）、在线游戏等，这些应用可以容忍少量数据丢失，但对延迟敏感。</p>
+<h2 id="ip协议"><a class="markdownIt-Anchor" href="#ip协议"></a> IP协议</h2>
+<p>IP（互联网协议）是网络层的核心协议，负责在不同网络之间寻址和路由数据包。</p>
+<p>IP的特点：</p>
+<p>无连接：每个数据包独立处理</p>
+<p>不可靠：不保证交付、不保证顺序、不保证数据完整性</p>
+<p>尽力而为：尽可能交付数据包，但不做保证</p>
+<p>IP协议有两个版本：IPv4和IPv6。</p>
+<h2 id="http和https"><a class="markdownIt-Anchor" href="#http和https"></a> HTTP和HTTPS</h2>
+<h3 id="http"><a class="markdownIt-Anchor" href="#http"></a> HTTP</h3>
+<p>HTTP（超文本传输协议）是Web浏览器和Web服务器之间通信的协议。它使用请求-响应模型：客户端发送请求，服务器返回响应。</p>
+<p>HTTP特点：</p>
+<p>无状态：每个请求独立，服务器不保留客户端状态</p>
+<p>使用TCP端口80</p>
+<p>明文传输：数据不加密</p>
+<h3 id="https"><a class="markdownIt-Anchor" href="#https"></a> HTTPS</h3>
+<p>HTTPS是HTTP的安全版本，通过SSL/TLS提供加密传输、身份验证和数据完整性保护。</p>
+<p>HTTPS特点：</p>
+<p>加密传输：防止窃听和篡改</p>
+<p>身份验证：确保通信对方是预期的服务器</p>
+<p>使用TCP端口443</p>
+<p>需要数字证书</p>
+<h2 id="dns"><a class="markdownIt-Anchor" href="#dns"></a> DNS</h2>
+<p>DNS（域名系统）是将域名转换为IP地址的分布式数据库系统。它就像互联网的电话簿，让我们可以使用容易记忆的域名（<a target="_blank" rel="noopener" href="http://xn--www-eo8e.google.com">如www.google.com</a>）而不是难记的IP地址（如172.217.25.36）访问网站。</p>
+<p>DNS查询过程（以访问www.example.com为例）：</p>
+<p>检查浏览器缓存</p>
+<p>检查操作系统缓存</p>
+<p>检查路由器缓存</p>
+<p>检查ISP的DNS服务器缓存</p>
+<p>如果都没有，ISP的DNS服务器开始递归查询：</p>
+<p>查询根域名服务器（.）</p>
+<p>查询顶级域名服务器（.com）</p>
+<p>查询权威域名服务器（<a href="http://example.com">example.com</a>）</p>
+<p>获取www.example.com的IP地址</p>
+<h2 id="dhcp"><a class="markdownIt-Anchor" href="#dhcp"></a> DHCP</h2>
+<p>DHCP（动态主机配置协议）自动为网络中的设备分配IP地址和其他网络配置参数（如子网掩码、默认网关、DNS服务器）。</p>
+<p>DHCP工作过程（DORA过程）：</p>
+<p>Discover：客户端广播DHCP发现消息</p>
+<p>Offer：DHCP服务器响应并提供IP地址租约</p>
+<p>Request：客户端请求使用提供的IP地址</p>
+<p>Acknowledge：DHCP服务器确认租约</p>
+<p>DHCP简化了网络管理，避免了手动配置IP地址的麻烦和可能出现的冲突。</p>
+<h1 id="第六章网络安全基础"><a class="markdownIt-Anchor" href="#第六章网络安全基础"></a> 第六章：网络安全基础</h1>
+<h2 id="常见安全威胁"><a class="markdownIt-Anchor" href="#常见安全威胁"></a> 常见安全威胁</h2>
+<h3 id="恶意软件"><a class="markdownIt-Anchor" href="#恶意软件"></a> 恶意软件</h3>
+<p>包括病毒、蠕虫、特洛伊木马、勒索软件等，这些软件旨在破坏系统、窃取信息或获取未授权访问。</p>
+<h3 id="网络钓鱼"><a class="markdownIt-Anchor" href="#网络钓鱼"></a> 网络钓鱼</h3>
+<p>通过伪装成可信实体（如银行、知名网站）的电子邮件或网站，诱骗用户提供敏感信息（如用户名、密码、信用卡信息）。</p>
+<h3 id="拒绝服务攻击dosddos"><a class="markdownIt-Anchor" href="#拒绝服务攻击dosddos"></a> 拒绝服务攻击（DoS/DDoS）</h3>
+<p>通过向目标系统发送大量请求，耗尽系统资源，使其无法提供正常服务。</p>
+<h3 id="中间人攻击mitm"><a class="markdownIt-Anchor" href="#中间人攻击mitm"></a> 中间人攻击（MitM）</h3>
+<p>攻击者秘密拦截并可能篡改双方之间的通信，而双方以为他们正在直接通信。</p>
+<h2 id="安全防护措施"><a class="markdownIt-Anchor" href="#安全防护措施"></a> 安全防护措施</h2>
+<h3 id="防火墙"><a class="markdownIt-Anchor" href="#防火墙"></a> 防火墙</h3>
+<p>防火墙是网络安全的第一道防线，它根据预定义规则控制进出网络的流量。防火墙可以是硬件设备或软件程序。</p>
+<h3 id="加密"><a class="markdownIt-Anchor" href="#加密"></a> 加密</h3>
+<p>加密将数据转换为只有授权方才能读懂的格式，保护数据的机密性。常见的加密应用包括HTTPS、VPN和Wi-Fi加密（WPA2/WPA3）。</p>
+<h3 id="身份验证和授权"><a class="markdownIt-Anchor" href="#身份验证和授权"></a> 身份验证和授权</h3>
+<p>身份验证：验证用户或设备的身份（如用户名/密码、数字证书、生物识别）</p>
+<p>授权：确定已认证用户有权访问哪些资源</p>
+<h3 id="安全协议"><a class="markdownIt-Anchor" href="#安全协议"></a> 安全协议</h3>
+<p>SSL/TLS：提供通信加密和服务器身份验证，用于HTTPS</p>
+<p>IPsec：提供网络层加密，常用于VPN</p>
+<p>SSH：提供安全的远程登录和文件传输</p>
+<h2 id="代码示例acl配置与安全策略"><a class="markdownIt-Anchor" href="#代码示例acl配置与安全策略"></a> 代码示例：ACL配置与安全策略</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 网络安全策略生成器</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SecurityPolicyGenerator</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="variable language_">self</span>.acl_rules = []</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add_acl_rule</span>(<span class="params">self, action, protocol, source, destination, port=<span class="literal">None</span>, description=<span class="string">&quot;&quot;</span></span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;添加ACL规则&quot;&quot;&quot;</span></span><br><span class="line">        rule = &#123;</span><br><span class="line">            <span class="string">&#x27;action&#x27;</span>: action,</span><br><span class="line">            <span class="string">&#x27;protocol&#x27;</span>: protocol,</span><br><span class="line">            <span class="string">&#x27;source&#x27;</span>: source,</span><br><span class="line">            <span class="string">&#x27;destination&#x27;</span>: destination,</span><br><span class="line">            <span class="string">&#x27;port&#x27;</span>: port,</span><br><span class="line">            <span class="string">&#x27;description&#x27;</span>: description</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable language_">self</span>.acl_rules.append(rule)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">generate_acl_config</span>(<span class="params">self, acl_name</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;生成ACL配置&quot;&quot;&quot;</span></span><br><span class="line">        config = [<span class="string">f&quot;ip access-list extended <span class="subst">&#123;acl_name&#125;</span>&quot;</span>]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i, rule <span class="keyword">in</span> <span class="built_in">enumerate</span>(<span class="variable language_">self</span>.acl_rules, <span class="number">1</span>):</span><br><span class="line">            line = <span class="string">f&quot; <span class="subst">&#123;rule[<span class="string">&#x27;action&#x27;</span>]&#125;</span> <span class="subst">&#123;rule[<span class="string">&#x27;protocol&#x27;</span>]&#125;</span>&quot;</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> rule[<span class="string">&#x27;source&#x27;</span>] == <span class="string">&#x27;any&#x27;</span>:</span><br><span class="line">                line += <span class="string">&quot; any&quot;</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                line += <span class="string">f&quot; <span class="subst">&#123;rule[<span class="string">&#x27;source&#x27;</span>]&#125;</span> 0.0.0.0 255.255.255.255&quot;</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> rule[<span class="string">&#x27;destination&#x27;</span>] == <span class="string">&#x27;any&#x27;</span>:</span><br><span class="line">                line += <span class="string">&quot; any&quot;</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                line += <span class="string">f&quot; <span class="subst">&#123;rule[<span class="string">&#x27;destination&#x27;</span>]&#125;</span> 0.0.0.0 255.255.255.255&quot;</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> rule[<span class="string">&#x27;port&#x27;</span>]:</span><br><span class="line">                line += <span class="string">f&quot; eq <span class="subst">&#123;rule[<span class="string">&#x27;port&#x27;</span>]&#125;</span>&quot;</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> rule[<span class="string">&#x27;description&#x27;</span>]:</span><br><span class="line">                line += <span class="string">f&quot; remark <span class="subst">&#123;rule[<span class="string">&#x27;description&#x27;</span>]&#125;</span>&quot;</span></span><br><span class="line">            </span><br><span class="line">            config.append(line)</span><br><span class="line">        </span><br><span class="line">        config.append(<span class="string">&quot; exit&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;\n&quot;</span>.join(config)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">generate_firewall_policy</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;生成防火墙策略文档&quot;&quot;&quot;</span></span><br><span class="line">        policy = <span class="string">&quot;# 网络安全策略文档\n\n&quot;</span></span><br><span class="line">        policy += <span class="string">&quot;## 访问控制列表规则\n\n&quot;</span></span><br><span class="line">        policy += <span class="string">&quot;| 序号 | 动作 | 协议 | 源地址 | 目的地址 | 端口 | 描述 |\n&quot;</span></span><br><span class="line">        policy += <span class="string">&quot;|------|------|------|--------|----------|------|------|\n&quot;</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i, rule <span class="keyword">in</span> <span class="built_in">enumerate</span>(<span class="variable language_">self</span>.acl_rules, <span class="number">1</span>):</span><br><span class="line">            policy += <span class="string">f&quot;| <span class="subst">&#123;i&#125;</span> | <span class="subst">&#123;rule[<span class="string">&#x27;action&#x27;</span>]&#125;</span> | <span class="subst">&#123;rule[<span class="string">&#x27;protocol&#x27;</span>]&#125;</span> | <span class="subst">&#123;rule[<span class="string">&#x27;source&#x27;</span>]&#125;</span> | <span class="subst">&#123;rule[<span class="string">&#x27;destination&#x27;</span>]&#125;</span> | <span class="subst">&#123;rule[<span class="string">&#x27;port&#x27;</span>] <span class="keyword">or</span> <span class="string">&#x27;Any&#x27;</span>&#125;</span> | <span class="subst">&#123;rule[<span class="string">&#x27;description&#x27;</span>]&#125;</span> |\n&quot;</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> policy</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建安全策略示例</span></span><br><span class="line">security = SecurityPolicyGenerator()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加基本规则</span></span><br><span class="line">security.add_acl_rule(<span class="string">&quot;permit&quot;</span>, <span class="string">&quot;tcp&quot;</span>, <span class="string">&quot;any&quot;</span>, <span class="string">&quot;any&quot;</span>, <span class="number">22</span>, <span class="string">&quot;允许SSH访问&quot;</span>)</span><br><span class="line">security.add_acl_rule(<span class="string">&quot;permit&quot;</span>, <span class="string">&quot;tcp&quot;</span>, <span class="string">&quot;any&quot;</span>, <span class="string">&quot;any&quot;</span>, <span class="number">80</span>, <span class="string">&quot;允许HTTP访问&quot;</span>)</span><br><span class="line">security.add_acl_rule(<span class="string">&quot;permit&quot;</span>, <span class="string">&quot;tcp&quot;</span>, <span class="string">&quot;any&quot;</span>, <span class="string">&quot;any&quot;</span>, <span class="number">443</span>, <span class="string">&quot;允许HTTPS访问&quot;</span>)</span><br><span class="line">security.add_acl_rule(<span class="string">&quot;deny&quot;</span>, <span class="string">&quot;tcp&quot;</span>, <span class="string">&quot;any&quot;</span>, <span class="string">&quot;any&quot;</span>, <span class="number">23</span>, <span class="string">&quot;拒绝Telnet访问&quot;</span>)</span><br><span class="line">security.add_acl_rule(<span class="string">&quot;deny&quot;</span>, <span class="string">&quot;ip&quot;</span>, <span class="string">&quot;any&quot;</span>, <span class="string">&quot;any&quot;</span>, <span class="literal">None</span>, <span class="string">&quot;默认拒绝所有&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成配置和文档</span></span><br><span class="line">acl_config = security.generate_acl_config(<span class="string">&quot;INTERNET-ACL&quot;</span>)</span><br><span class="line">policy_doc = security.generate_firewall_policy()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;=== ACL配置 ===&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(acl_config)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n=== 安全策略文档 ===&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(policy_doc)</span><br></pre></td></tr></table></figure>
+<h1 id="第七章实践操作与故障排除"><a class="markdownIt-Anchor" href="#第七章实践操作与故障排除"></a> 第七章：实践操作与故障排除</h1>
+<h2 id="常用网络命令"><a class="markdownIt-Anchor" href="#常用网络命令"></a> 常用网络命令</h2>
+<h3 id="ipconfigwindows-ifconfiglinuxmacos"><a class="markdownIt-Anchor" href="#ipconfigwindows-ifconfiglinuxmacos"></a> ipconfig（Windows）/ ifconfig（Linux/macOS）</h3>
+<p>显示当前网络配置信息，包括IP地址、子网掩码、默认网关等。</p>
+<p>常用选项：</p>
+<p>ipconfig：显示基本配置</p>
+<p>ipconfig /all：显示详细配置信息</p>
+<p>ipconfig /release：释放DHCP分配的IP地址</p>
+<p>ipconfig /renew：重新获取IP地址</p>
+<h3 id="ping"><a class="markdownIt-Anchor" href="#ping"></a> ping</h3>
+<p>测试与另一台主机的连通性。发送ICMP回显请求并等待回显应答。</p>
+<p>用法：ping 目标地址<br />
+例如：ping <a target="_blank" rel="noopener" href="http://www.google.com">www.google.com</a> 或 ping 8.8.8.8</p>
+<h3 id="tracertwindows-traceroutelinuxmacos"><a class="markdownIt-Anchor" href="#tracertwindows-traceroutelinuxmacos"></a> tracert（Windows）/ traceroute（Linux/macOS）</h3>
+<p>跟踪数据包从源到目的地经过的路由路径，显示每一跳的延迟。</p>
+<p>用法：tracert 目标地址<br />
+例如：tracert <a target="_blank" rel="noopener" href="http://www.google.com">www.google.com</a></p>
+<h3 id="nslookup"><a class="markdownIt-Anchor" href="#nslookup"></a> nslookup</h3>
+<p>查询DNS记录，将域名解析为IP地址或反之。</p>
+<p>用法：nslookup 域名 或 nslookup IP地址<br />
+例如：nslookup <a target="_blank" rel="noopener" href="http://www.google.com">www.google.com</a></p>
+<h3 id="netstat"><a class="markdownIt-Anchor" href="#netstat"></a> netstat</h3>
+<p>显示网络连接、路由表、接口统计等信息。</p>
+<p>常用选项：</p>
+<p>netstat -a：显示所有连接和监听端口</p>
+<p>netstat -n：以数字形式显示地址和端口号</p>
+<p>netstat -r：显示路由表</p>
+<h2 id="常见网络问题及解决方法"><a class="markdownIt-Anchor" href="#常见网络问题及解决方法"></a> 常见网络问题及解决方法</h2>
+<h3 id="无法连接到互联网"><a class="markdownIt-Anchor" href="#无法连接到互联网"></a> 无法连接到互联网</h3>
+<p>检查物理连接：网线是否插好？Wi-Fi是否连接？</p>
+<p>检查IP地址配置：使用ipconfig查看是否获取到有效IP地址</p>
+<p>测试本地连接：ping 127.0.0.1（环回地址，测试TCP/IP协议栈是否正常）</p>
+<p>测试网关连接：ping 默认网关（如192.168.1.1）</p>
+<p>测试DNS解析：ping <a target="_blank" rel="noopener" href="http://www.google.com">www.google.com</a>，如果无法解析尝试使用IP地址（如8.8.8.8）ping</p>
+<h3 id="网络速度慢"><a class="markdownIt-Anchor" href="#网络速度慢"></a> 网络速度慢</h3>
+<p>检查带宽使用：是否有其他设备或应用占用大量带宽？</p>
+<p>测试到不同目的地的速度：可能只是某个网站或服务器问题</p>
+<p>检查无线信号强度：如果使用Wi-Fi，尝试靠近路由器或减少干扰</p>
+<p>重启网络设备：重启调制解调器、路由器和计算机</p>
+<h3 id="ip地址冲突"><a class="markdownIt-Anchor" href="#ip地址冲突"></a> IP地址冲突</h3>
+<p>当两台设备使用相同的IP地址时会发生冲突。解决方法：</p>
+<p>重启设备：可能自动获取新的IP地址</p>
+<p>手动分配静态IP：确保IP地址不在DHCP分配范围内</p>
+<p>检查网络中的静态IP设备：确保没有重复分配</p>
+<h2 id="代码示例网络诊断工具"><a class="markdownIt-Anchor" href="#代码示例网络诊断工具"></a> 代码示例：网络诊断工具</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 高级网络诊断工具</span></span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">NetworkDiagnostics</span>:</span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">ping_test</span>(<span class="params">host, count=<span class="number">4</span></span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;执行ping测试&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            result = subprocess.run(</span><br><span class="line">                [<span class="string">&quot;ping&quot;</span>, <span class="string">&quot;-c&quot;</span>, <span class="built_in">str</span>(count), host],</span><br><span class="line">                capture_output=<span class="literal">True</span>,</span><br><span class="line">                text=<span class="literal">True</span>,</span><br><span class="line">                timeout=<span class="number">30</span></span><br><span class="line">            )</span><br><span class="line">            <span class="keyword">return</span> result.stdout</span><br><span class="line">        <span class="keyword">except</span> subprocess.TimeoutExpired:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;Ping测试超时&quot;</span></span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">f&quot;Ping测试失败: <span class="subst">&#123;e&#125;</span>&quot;</span></span><br><span class="line">    </span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">trace_route</span>(<span class="params">destination, max_hops=<span class="number">30</span></span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;执行路由跟踪&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            result = subprocess.run(</span><br><span class="line">                [<span class="string">&quot;traceroute&quot;</span>, <span class="string">&quot;-m&quot;</span>, <span class="built_in">str</span>(max_hops), destination],</span><br><span class="line">                capture_output=<span class="literal">True</span>,</span><br><span class="line">                text=<span class="literal">True</span>,</span><br><span class="line">                timeout=<span class="number">60</span></span><br><span class="line">            )</span><br><span class="line">            <span class="keyword">return</span> result.stdout</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">f&quot;路由跟踪失败: <span class="subst">&#123;e&#125;</span>&quot;</span></span><br><span class="line">    </span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">analyze_ping_results</span>(<span class="params">ping_output</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;分析ping结果&quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 提取丢包率</span></span><br><span class="line">        packet_loss_match = re.search(<span class="string">r&quot;(\d+)% packet loss&quot;</span>, ping_output)</span><br><span class="line">        packet_loss = <span class="built_in">int</span>(packet_loss_match.group(<span class="number">1</span>)) <span class="keyword">if</span> packet_loss_match <span class="keyword">else</span> <span class="number">100</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 提取延迟统计</span></span><br><span class="line">        rtt_match = re.search(<span class="string">r&quot;min/avg/max/mdev = ([\d.]+)/([\d.]+)/([\d.]+)/([\d.]+) ms&quot;</span>, ping_output)</span><br><span class="line">        <span class="keyword">if</span> rtt_match:</span><br><span class="line">            min_rtt, avg_rtt, max_rtt, mdev = <span class="built_in">map</span>(<span class="built_in">float</span>, rtt_match.groups())</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            min_rtt = avg_rtt = max_rtt = mdev = <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="string">&quot;packet_loss&quot;</span>: packet_loss,</span><br><span class="line">            <span class="string">&quot;min_rtt&quot;</span>: min_rtt,</span><br><span class="line">            <span class="string">&quot;avg_rtt&quot;</span>: avg_rtt,</span><br><span class="line">            <span class="string">&quot;max_rtt&quot;</span>: max_rtt,</span><br><span class="line">            <span class="string">&quot;jitter&quot;</span>: mdev</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">comprehensive_test</span>(<span class="params">self, host</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;执行全面网络测试&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;正在测试到 <span class="subst">&#123;host&#125;</span> 的网络连接...&quot;</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># Ping测试</span></span><br><span class="line">        ping_result = <span class="variable language_">self</span>.ping_test(host)</span><br><span class="line">        ping_analysis = <span class="variable language_">self</span>.analyze_ping_results(ping_result)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 路由跟踪</span></span><br><span class="line">        trace_result = <span class="variable language_">self</span>.trace_route(host)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 生成报告</span></span><br><span class="line">        report = <span class="string">f&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">=== 网络诊断报告 ===</span></span><br><span class="line"><span class="string">目标主机: <span class="subst">&#123;host&#125;</span></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Ping测试结果:</span></span><br><span class="line"><span class="string">  丢包率: <span class="subst">&#123;ping_analysis[<span class="string">&#x27;packet_loss&#x27;</span>]&#125;</span>%</span></span><br><span class="line"><span class="string">  最小延迟: <span class="subst">&#123;ping_analysis[<span class="string">&#x27;min_rtt&#x27;</span>]&#125;</span>ms</span></span><br><span class="line"><span class="string">  平均延迟: <span class="subst">&#123;ping_analysis[<span class="string">&#x27;avg_rtt&#x27;</span>]&#125;</span>ms</span></span><br><span class="line"><span class="string">  最大延迟: <span class="subst">&#123;ping_analysis[<span class="string">&#x27;max_rtt&#x27;</span>]&#125;</span>ms</span></span><br><span class="line"><span class="string">  抖动: <span class="subst">&#123;ping_analysis[<span class="string">&#x27;jitter&#x27;</span>]&#125;</span>ms</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">路由跟踪:</span></span><br><span class="line"><span class="string"><span class="subst">&#123;trace_result&#125;</span></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">建议:</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> ping_analysis[<span class="string">&#x27;packet_loss&#x27;</span>] &gt; <span class="number">10</span>:</span><br><span class="line">            report += <span class="string">&quot;  - 高丢包率表明网络连接不稳定\n&quot;</span></span><br><span class="line">        <span class="keyword">if</span> ping_analysis[<span class="string">&#x27;avg_rtt&#x27;</span>] &gt; <span class="number">100</span>:</span><br><span class="line">            report += <span class="string">&quot;  - 高延迟可能影响实时应用性能\n&quot;</span></span><br><span class="line">        <span class="keyword">if</span> ping_analysis[<span class="string">&#x27;jitter&#x27;</span>] &gt; <span class="number">20</span>:</span><br><span class="line">            report += <span class="string">&quot;  - 高抖动可能影响语音和视频质量\n&quot;</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> report</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用示例</span></span><br><span class="line">diagnostics = NetworkDiagnostics()</span><br><span class="line">report = diagnostics.comprehensive_test(<span class="string">&quot;google.com&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(report)</span><br></pre></td></tr></table></figure>
+<h2 id="代码示例网络协议分析"><a class="markdownIt-Anchor" href="#代码示例网络协议分析"></a> 代码示例：网络协议分析</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 网络流量分析模拟（使用scapy库）</span></span><br><span class="line"><span class="keyword">from</span> scapy.<span class="built_in">all</span> <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">NetworkAnalyzer</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, pcap_file=<span class="literal">None</span></span>):</span><br><span class="line">        <span class="variable language_">self</span>.packets = []</span><br><span class="line">        <span class="variable language_">self</span>.protocol_stats = &#123;&#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> pcap_file:</span><br><span class="line">            <span class="variable language_">self</span>.load_pcap(pcap_file)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">load_pcap</span>(<span class="params">self, filename</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;加载pcap文件&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="variable language_">self</span>.packets = rdpcap(filename)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;成功加载 <span class="subst">&#123;<span class="built_in">len</span>(self.packets)&#125;</span> 个数据包&quot;</span>)</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;加载pcap文件失败: <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">analyze_protocols</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;分析协议分布&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">for</span> packet <span class="keyword">in</span> <span class="variable language_">self</span>.packets:</span><br><span class="line">            <span class="keyword">if</span> IP <span class="keyword">in</span> packet:</span><br><span class="line">                protocol = <span class="string">&quot;IPv4&quot;</span></span><br><span class="line">            <span class="keyword">elif</span> IPv6 <span class="keyword">in</span> packet:</span><br><span class="line">                protocol = <span class="string">&quot;IPv6&quot;</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                protocol = <span class="string">&quot;其他&quot;</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 统计传输层协议</span></span><br><span class="line">            <span class="keyword">if</span> TCP <span class="keyword">in</span> packet:</span><br><span class="line">                transport = <span class="string">&quot;TCP&quot;</span></span><br><span class="line">            <span class="keyword">elif</span> UDP <span class="keyword">in</span> packet:</span><br><span class="line">                transport = <span class="string">&quot;UDP&quot;</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                transport = <span class="string">&quot;其他&quot;</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 统计应用层协议</span></span><br><span class="line">            <span class="keyword">if</span> TCP <span class="keyword">in</span> packet:</span><br><span class="line">                <span class="keyword">if</span> packet[TCP].dport == <span class="number">80</span> <span class="keyword">or</span> packet[TCP].sport == <span class="number">80</span>:</span><br><span class="line">                    app_protocol = <span class="string">&quot;HTTP&quot;</span></span><br><span class="line">                <span class="keyword">elif</span> packet[TCP].dport == <span class="number">443</span> <span class="keyword">or</span> packet[TCP].sport == <span class="number">443</span>:</span><br><span class="line">                    app_protocol = <span class="string">&quot;HTTPS&quot;</span></span><br><span class="line">                <span class="keyword">elif</span> packet[TCP].dport == <span class="number">53</span> <span class="keyword">or</span> packet[TCP].sport == <span class="number">53</span>:</span><br><span class="line">                    app_protocol = <span class="string">&quot;DNS&quot;</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    app_protocol = <span class="string">&quot;其他TCP&quot;</span></span><br><span class="line">            <span class="keyword">elif</span> UDP <span class="keyword">in</span> packet:</span><br><span class="line">                <span class="keyword">if</span> packet[UDP].dport == <span class="number">53</span> <span class="keyword">or</span> packet[UDP].sport == <span class="number">53</span>:</span><br><span class="line">                    app_protocol = <span class="string">&quot;DNS&quot;</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    app_protocol = <span class="string">&quot;其他UDP&quot;</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                app_protocol = <span class="string">&quot;其他&quot;</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 更新统计</span></span><br><span class="line">            key = <span class="string">f&quot;<span class="subst">&#123;protocol&#125;</span>/<span class="subst">&#123;transport&#125;</span>/<span class="subst">&#123;app_protocol&#125;</span>&quot;</span></span><br><span class="line">            <span class="variable language_">self</span>.protocol_stats[key] = <span class="variable language_">self</span>.protocol_stats.get(key, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">plot_protocol_distribution</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;绘制协议分布图&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="variable language_">self</span>.protocol_stats:</span><br><span class="line">            <span class="variable language_">self</span>.analyze_protocols()</span><br><span class="line">        </span><br><span class="line">        labels = <span class="built_in">list</span>(<span class="variable language_">self</span>.protocol_stats.keys())</span><br><span class="line">        values = <span class="built_in">list</span>(<span class="variable language_">self</span>.protocol_stats.values())</span><br><span class="line">        </span><br><span class="line">        plt.figure(figsize=(<span class="number">10</span>, <span class="number">8</span>))</span><br><span class="line">        plt.pie(values, labels=labels, autopct=<span class="string">&#x27;%1.1f%%&#x27;</span>)</span><br><span class="line">        plt.title(<span class="string">&quot;网络协议分布&quot;</span>)</span><br><span class="line">        plt.show()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">detect_anomalies</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;检测网络异常&quot;&quot;&quot;</span></span><br><span class="line">        anomalies = []</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 检测ARP欺骗</span></span><br><span class="line">        arp_packets = [p <span class="keyword">for</span> p <span class="keyword">in</span> <span class="variable language_">self</span>.packets <span class="keyword">if</span> ARP <span class="keyword">in</span> p]</span><br><span class="line">        arp_ips = &#123;&#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> p <span class="keyword">in</span> arp_packets:</span><br><span class="line">            <span class="keyword">if</span> p[ARP].op == <span class="number">2</span>:  <span class="comment"># ARP响应</span></span><br><span class="line">                src_ip = p[ARP].psrc</span><br><span class="line">                src_mac = p[ARP].hwsrc</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span> src_ip <span class="keyword">in</span> arp_ips:</span><br><span class="line">                    <span class="keyword">if</span> arp_ips[src_ip] != src_mac:</span><br><span class="line">                        anomalies.append(<span class="string">f&quot;ARP欺骗检测: IP <span class="subst">&#123;src_ip&#125;</span> 对应多个MAC地址&quot;</span>)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    arp_ips[src_ip] = src_mac</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 检测端口扫描</span></span><br><span class="line">        tcp_packets = [p <span class="keyword">for</span> p <span class="keyword">in</span> <span class="variable language_">self</span>.packets <span class="keyword">if</span> TCP <span class="keyword">in</span> p]</span><br><span class="line">        syn_only = [p <span class="keyword">for</span> p <span class="keyword">in</span> tcp_packets <span class="keyword">if</span> p[TCP].flags == <span class="string">&#x27;S&#x27;</span>]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(syn_only) &gt; <span class="number">100</span>:  <span class="comment"># 阈值可调整</span></span><br><span class="line">            anomalies.append(<span class="string">f&quot;可能的TCP端口扫描检测: <span class="subst">&#123;<span class="built_in">len</span>(syn_only)&#125;</span> 个SYN包&quot;</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> anomalies</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用示例（需要实际pcap文件）</span></span><br><span class="line"><span class="comment"># analyzer = NetworkAnalyzer(&quot;network_capture.pcap&quot;)</span></span><br><span class="line"><span class="comment"># analyzer.analyze_protocols()</span></span><br><span class="line"><span class="comment"># print(&quot;协议统计:&quot;, analyzer.protocol_stats)</span></span><br><span class="line"><span class="comment"># anomalies = analyzer.detect_anomalies()</span></span><br><span class="line"><span class="comment"># print(&quot;检测到的异常:&quot;, anomalies)</span></span><br></pre></td></tr></table></figure>
+<h1 id="第八章自动化网络运维"><a class="markdownIt-Anchor" href="#第八章自动化网络运维"></a> 第八章：自动化网络运维</h1>
+<h2 id="使用python进行网络设备批量配置"><a class="markdownIt-Anchor" href="#使用python进行网络设备批量配置"></a> 使用Python进行网络设备批量配置</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 网络设备批量管理类</span></span><br><span class="line"><span class="keyword">import</span> paramiko</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">NetworkAutomation</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, username, password</span>):</span><br><span class="line">        <span class="variable language_">self</span>.username = username</span><br><span class="line">        <span class="variable language_">self</span>.password = password</span><br><span class="line">        <span class="variable language_">self</span>.ssh_client = paramiko.SSHClient()</span><br><span class="line">        <span class="variable language_">self</span>.ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">connect_to_device</span>(<span class="params">self, hostname, port=<span class="number">22</span></span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;连接到网络设备&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="variable language_">self</span>.ssh_client.connect(</span><br><span class="line">                hostname=hostname,</span><br><span class="line">                port=port,</span><br><span class="line">                username=<span class="variable language_">self</span>.username,</span><br><span class="line">                password=<span class="variable language_">self</span>.password,</span><br><span class="line">                look_for_keys=<span class="literal">False</span>,</span><br><span class="line">                allow_agent=<span class="literal">False</span>,</span><br><span class="line">                timeout=<span class="number">10</span></span><br><span class="line">            )</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;成功连接到 <span class="subst">&#123;hostname&#125;</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;连接到 <span class="subst">&#123;hostname&#125;</span> 失败: <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">send_command</span>(<span class="params">self, command, delay=<span class="number">1</span></span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;发送命令到设备&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            stdin, stdout, stderr = <span class="variable language_">self</span>.ssh_client.exec_command(command)</span><br><span class="line">            time.sleep(delay)</span><br><span class="line">            output = stdout.read().decode()</span><br><span class="line">            error = stderr.read().decode()</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> error:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&quot;命令执行错误: <span class="subst">&#123;error&#125;</span>&quot;</span>)</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">return</span> output</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;命令执行失败: <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">configure_device</span>(<span class="params">self, commands</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;配置设备&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;开始配置设备...&quot;</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 进入配置模式</span></span><br><span class="line">        <span class="variable language_">self</span>.send_command(<span class="string">&quot;configure terminal&quot;</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 执行配置命令</span></span><br><span class="line">        <span class="keyword">for</span> cmd <span class="keyword">in</span> commands:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;执行命令: <span class="subst">&#123;cmd&#125;</span>&quot;</span>)</span><br><span class="line">            result = <span class="variable language_">self</span>.send_command(cmd)</span><br><span class="line">            <span class="keyword">if</span> result <span class="keyword">and</span> <span class="string">&quot;Invalid input&quot;</span> <span class="keyword">in</span> result:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&quot;命令执行失败: <span class="subst">&#123;cmd&#125;</span>&quot;</span>)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 保存配置</span></span><br><span class="line">        <span class="variable language_">self</span>.send_command(<span class="string">&quot;end&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.send_command(<span class="string">&quot;write memory&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;配置完成并已保存&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">disconnect</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;断开连接&quot;&quot;&quot;</span></span><br><span class="line">        <span class="variable language_">self</span>.ssh_client.close()</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;连接已关闭&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">backup_config</span>(<span class="params">self, hostname</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;备份设备配置&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.connect_to_device(hostname):</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;开始备份 <span class="subst">&#123;hostname&#125;</span> 的配置...&quot;</span>)</span><br><span class="line">            config = <span class="variable language_">self</span>.send_command(<span class="string">&quot;show running-config&quot;</span>)</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> config:</span><br><span class="line">                <span class="comment"># 保存配置到文件</span></span><br><span class="line">                filename = <span class="string">f&quot;<span class="subst">&#123;hostname&#125;</span>_backup_<span class="subst">&#123;time.strftime(<span class="string">&#x27;%Y%m%d_%H%M%S&#x27;</span>)&#125;</span>.txt&quot;</span></span><br><span class="line">                <span class="keyword">with</span> <span class="built_in">open</span>(filename, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">                    f.write(config)</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&quot;配置已保存到 <span class="subst">&#123;filename&#125;</span>&quot;</span>)</span><br><span class="line">            </span><br><span class="line">            <span class="variable language_">self</span>.disconnect()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用示例</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">automate_network_tasks</span>():</span><br><span class="line">    <span class="comment"># 设备列表</span></span><br><span class="line">    devices = [</span><br><span class="line">        <span class="string">&quot;192.168.1.1&quot;</span>,</span><br><span class="line">        <span class="string">&quot;192.168.1.2&quot;</span>,</span><br><span class="line">        <span class="string">&quot;192.168.1.3&quot;</span></span><br><span class="line">    ]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 配置命令</span></span><br><span class="line">    config_commands = [</span><br><span class="line">        <span class="string">&quot;hostname Core-Switch-01&quot;</span>,</span><br><span class="line">        <span class="string">&quot;vlan 10&quot;</span>,</span><br><span class="line">        <span class="string">&quot; name Management&quot;</span>,</span><br><span class="line">        <span class="string">&quot; exit&quot;</span>,</span><br><span class="line">        <span class="string">&quot;interface vlan 10&quot;</span>,</span><br><span class="line">        <span class="string">&quot; ip address 192.168.10.1 255.255.255.0&quot;</span>,</span><br><span class="line">        <span class="string">&quot; no shutdown&quot;</span>,</span><br><span class="line">        <span class="string">&quot; exit&quot;</span></span><br><span class="line">    ]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 创建自动化实例</span></span><br><span class="line">    automator = NetworkAutomation(<span class="string">&quot;admin&quot;</span>, <span class="string">&quot;cisco123&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 批量配置设备</span></span><br><span class="line">    <span class="keyword">for</span> device <span class="keyword">in</span> devices:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;\n正在处理设备: <span class="subst">&#123;device&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> automator.connect_to_device(device):</span><br><span class="line">            automator.configure_device(config_commands)</span><br><span class="line">            automator.disconnect()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 备份所有设备配置</span></span><br><span class="line">    <span class="keyword">for</span> device <span class="keyword">in</span> devices:</span><br><span class="line">        automator.backup_config(device)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 注意：在实际环境中使用前，请先在小范围测试</span></span><br><span class="line"><span class="comment"># automate_network_tasks()</span></span><br></pre></td></tr></table></figure>
+<h1 id="结语"><a class="markdownIt-Anchor" href="#结语"></a> 结语</h1>
+<p>网络基础知识是理解现代数字世界的钥匙。本文涵盖了从基本概念到实践操作的广泛内容，但网络技术是一个不断发展的领域，还有许多高级主题值得探索，如IPv6、软件定义网络（SDN）、云计算网络、网络安全等。</p>
+<p>学习网络知识最好的方法是理论与实践相结合。实际操作网络设备（可以使用模拟器如GNS3或Packet Tracer），使用Wireshark等工具分析网络流量，逐步构建和调试自己的网络环境。</p>
+<p>网络故障排除是一个系统性的过程：从物理层开始逐层向上检查，使用适当的工具诊断问题，并记录解决方案以便将来参考。</p>
+<h1 id="附加资源"><a class="markdownIt-Anchor" href="#附加资源"></a> 附加资源</h1>
+<p>在线学习平台：Coursera、edX、Udemy上的网络课程</p>
+<p>模拟器：GNS3、Packet Tracer（思科网络模拟器）</p>
+<p>协议分析工具：Wireshark（网络抓包和分析）</p>
+<p>实践平台：Subnetting Practice（子网划分练习网站）</p>
+<p>官方文档：RFC文档（网络协议标准官方说明）</p>
+<p>Happy networking！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%95%99%E7%A8%8B/" rel="tag">教程</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="https://d-sketon.top/img/_backwebp/bg1.webp" data-sizes="auto" alt="Wireshark网络流量分析" class="lazyload">
+          
+        
+        <a href="/2025/05/18/Wireshark%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/"></a>
+        <div class="article-nav-caption">Prev</div>
+        <h3 class="article-nav-title">
+          
+            Wireshark网络流量分析
+          
+        </h3>
+      </div>
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="https://d-sketon.top/img/_backwebp/bg1.webp" data-sizes="auto" alt="docker" class="lazyload">
+        
+      
+      <a href="/2025/02/06/docker/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          docker
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2020-2025
+      
+      <span class="footer-info-sep rotate"></span>
+      xiaozhaoz1
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        33.8k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        02:12
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text"> 第一章：网络基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="toc-number">1.1.</span> <span class="toc-text"> 什么是计算机网络？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%9A%84%E4%B8%BB%E8%A6%81%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text"> 网络的主要类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%80%E5%9F%9F%E7%BD%91lan-local-area-network"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 局域网（LAN - Local Area Network）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%8E%E5%9F%9F%E7%BD%91man-metropolitan-area-network"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 城域网（MAN - Metropolitan Area Network）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%BF%E5%9F%9F%E7%BD%91wan-wide-area-network"><span class="toc-number">1.2.3.</span> <span class="toc-text"> 广域网（WAN - Wide Area Network）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AA%E4%BA%BA%E5%8C%BA%E5%9F%9F%E7%BD%91%E7%BB%9Cpan-personal-area-network"><span class="toc-number">1.2.4.</span> <span class="toc-text"> 个人区域网络（PAN - Personal Area Network）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%8B%93%E6%89%91%E7%BB%93%E6%9E%84"><span class="toc-number">1.3.</span> <span class="toc-text"> 网络拓扑结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF%E5%9E%8B%E6%8B%93%E6%89%91"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 总线型拓扑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%9F%E5%9E%8B%E6%8B%93%E6%89%91"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 星型拓扑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%9E%8B%E6%8B%93%E6%89%91"><span class="toc-number">1.3.3.</span> <span class="toc-text"> 环型拓扑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%8A%B6%E6%8B%93%E6%89%91"><span class="toc-number">1.3.4.</span> <span class="toc-text"> 网状拓扑</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0osi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E4%B8%8Etcpip%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text"> 第二章：OSI七层模型与TCP&#x2F;IP模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#osi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.1.</span> <span class="toc-text"> OSI七层模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E5%B1%82%E7%AC%AC1%E5%B1%82"><span class="toc-number">2.1.1.</span> <span class="toc-text"> 物理层（第1层）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E7%AC%AC2%E5%B1%82"><span class="toc-number">2.1.2.</span> <span class="toc-text"> 数据链路层（第2层）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82%E7%AC%AC3%E5%B1%82"><span class="toc-number">2.1.3.</span> <span class="toc-text"> 网络层（第3层）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E5%B1%82%E7%AC%AC4%E5%B1%82"><span class="toc-number">2.1.4.</span> <span class="toc-text"> 传输层（第4层）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%9A%E8%AF%9D%E5%B1%82%E7%AC%AC5%E5%B1%82"><span class="toc-number">2.1.5.</span> <span class="toc-text"> 会话层（第5层）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E7%A4%BA%E5%B1%82%E7%AC%AC6%E5%B1%82"><span class="toc-number">2.1.6.</span> <span class="toc-text"> 表示层（第6层）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%B1%82%E7%AC%AC7%E5%B1%82"><span class="toc-number">2.1.7.</span> <span class="toc-text"> 应用层（第7层）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tcpip%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.2.</span> <span class="toc-text"> TCP&#x2F;IP模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%8E%A5%E5%8F%A3%E5%B1%82%E5%AF%B9%E5%BA%94osi%E7%89%A9%E7%90%86%E5%B1%82%E5%92%8C%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="toc-number">2.2.1.</span> <span class="toc-text"> 网络接口层（对应OSI物理层和数据链路层）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%92%E8%81%94%E7%BD%91%E5%B1%82%E5%AF%B9%E5%BA%94osi%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="toc-number">2.2.2.</span> <span class="toc-text"> 互联网层（对应OSI网络层）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AF%B9%E5%BA%94osi%E4%BC%A0%E8%BE%93%E5%B1%82"><span class="toc-number">2.2.3.</span> <span class="toc-text"> 传输层（对应OSI传输层）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%B1%82%E5%AF%B9%E5%BA%94osi%E4%BC%9A%E8%AF%9D%E5%B1%82-%E8%A1%A8%E7%A4%BA%E5%B1%82%E5%92%8C%E5%BA%94%E7%94%A8%E5%B1%82"><span class="toc-number">2.2.4.</span> <span class="toc-text"> 应用层（对应OSI会话层、表示层和应用层）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%B0%81%E8%A3%85%E8%BF%87%E7%A8%8B"><span class="toc-number">2.3.</span> <span class="toc-text"> 数据封装过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E6%A8%A1%E6%8B%9F%E6%95%B0%E6%8D%AE%E5%B0%81%E8%A3%85%E8%BF%87%E7%A8%8B"><span class="toc-number">2.4.</span> <span class="toc-text"> 代码示例：模拟数据封装过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8Btcp%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E6%A8%A1%E6%8B%9F"><span class="toc-number">2.5.</span> <span class="toc-text"> 代码示例：TCP三次握手模拟</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0ip%E5%9C%B0%E5%9D%80%E4%B8%8E%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86"><span class="toc-number">3.</span> <span class="toc-text"> 第三章：IP地址与子网划分</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ip%E5%9C%B0%E5%9D%80%E5%9F%BA%E7%A1%80"><span class="toc-number">3.1.</span> <span class="toc-text"> IP地址基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ipv4%E5%9C%B0%E5%9D%80%E6%A0%BC%E5%BC%8F"><span class="toc-number">3.1.1.</span> <span class="toc-text"> IPv4地址格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ip%E5%9C%B0%E5%9D%80%E5%88%86%E7%B1%BB"><span class="toc-number">3.1.2.</span> <span class="toc-text"> IP地址分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AC%E6%9C%89ip%E5%92%8C%E7%A7%81%E6%9C%89ip"><span class="toc-number">3.1.3.</span> <span class="toc-text"> 公有IP和私有IP</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86"><span class="toc-number">3.2.</span> <span class="toc-text"> 子网划分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81"><span class="toc-number">3.2.1.</span> <span class="toc-text"> 子网掩码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cidr%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="toc-number">3.2.2.</span> <span class="toc-text"> CIDR表示法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E6%AD%A5%E9%AA%A4"><span class="toc-number">3.2.3.</span> <span class="toc-text"> 子网划分步骤</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ipv6%E7%AE%80%E4%BB%8B"><span class="toc-number">3.3.</span> <span class="toc-text"> IPv6简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8Bip%E5%9C%B0%E5%9D%80%E8%AE%A1%E7%AE%97%E5%B7%A5%E5%85%B7"><span class="toc-number">3.4.</span> <span class="toc-text"> 代码示例：IP地址计算工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8Bvlsm%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86"><span class="toc-number">3.5.</span> <span class="toc-text"> 代码示例：VLSM子网划分</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87%E9%85%8D%E7%BD%AE%E4%B8%8E%E7%AE%A1%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text"> 第四章：网络设备配置与管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87"><span class="toc-number">4.1.</span> <span class="toc-text"> 常见网络设备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E5%8D%A1nic-network-interface-card"><span class="toc-number">4.1.1.</span> <span class="toc-text"> 网卡（NIC - Network Interface Card）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E5%88%B6%E8%A7%A3%E8%B0%83%E5%99%A8modem"><span class="toc-number">4.1.2.</span> <span class="toc-text"> 调制解调器（Modem）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E7%BA%BF%E5%99%A8hub"><span class="toc-number">4.1.3.</span> <span class="toc-text"> 集线器（Hub）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A4%E6%8D%A2%E6%9C%BAswitch"><span class="toc-number">4.1.4.</span> <span class="toc-text"> 交换机（Switch）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8router"><span class="toc-number">4.1.5.</span> <span class="toc-text"> 路由器（Router）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E7%BA%BF%E6%8E%A5%E5%85%A5%E7%82%B9wireless-access-point"><span class="toc-number">4.1.6.</span> <span class="toc-text"> 无线接入点（Wireless Access Point）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vlan%E8%99%9A%E6%8B%9F%E5%B1%80%E5%9F%9F%E7%BD%91"><span class="toc-number">4.2.</span> <span class="toc-text"> VLAN（虚拟局域网）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%8B%93%E6%89%91%E5%AE%9E%E8%B7%B5"><span class="toc-number">4.3.</span> <span class="toc-text"> 网络拓扑实践</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E5%B1%82"><span class="toc-number">4.3.1.</span> <span class="toc-text"> 核心层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%B1%82"><span class="toc-number">4.3.2.</span> <span class="toc-text"> 分布层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E5%85%A5%E5%B1%82"><span class="toc-number">4.3.3.</span> <span class="toc-text"> 接入层</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8Bcisco%E8%AE%BE%E5%A4%87%E9%85%8D%E7%BD%AE%E7%94%9F%E6%88%90"><span class="toc-number">4.4.</span> <span class="toc-text"> 代码示例：Cisco设备配置生成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8Bvlan%E9%85%8D%E7%BD%AE%E7%94%9F%E6%88%90"><span class="toc-number">4.5.</span> <span class="toc-text"> 代码示例：VLAN配置生成</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0%E5%85%B3%E9%94%AE%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.</span> <span class="toc-text"> 第五章：关键网络协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cp%E4%B8%8Eudp"><span class="toc-number">5.1.</span> <span class="toc-text"> CP与UDP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tcp%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.1.1.</span> <span class="toc-text"> TCP协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#udp%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.1.2.</span> <span class="toc-text"> UDP协议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ip%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.2.</span> <span class="toc-text"> IP协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http%E5%92%8Chttps"><span class="toc-number">5.3.</span> <span class="toc-text"> HTTP和HTTPS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#http"><span class="toc-number">5.3.1.</span> <span class="toc-text"> HTTP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#https"><span class="toc-number">5.3.2.</span> <span class="toc-text"> HTTPS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dns"><span class="toc-number">5.4.</span> <span class="toc-text"> DNS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dhcp"><span class="toc-number">5.5.</span> <span class="toc-text"> DHCP</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80"><span class="toc-number">6.</span> <span class="toc-text"> 第六章：网络安全基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%AE%89%E5%85%A8%E5%A8%81%E8%83%81"><span class="toc-number">6.1.</span> <span class="toc-text"> 常见安全威胁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6"><span class="toc-number">6.1.1.</span> <span class="toc-text"> 恶意软件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E9%92%93%E9%B1%BC"><span class="toc-number">6.1.2.</span> <span class="toc-text"> 网络钓鱼</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1%E6%94%BB%E5%87%BBdosddos"><span class="toc-number">6.1.3.</span> <span class="toc-text"> 拒绝服务攻击（DoS&#x2F;DDoS）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BBmitm"><span class="toc-number">6.1.4.</span> <span class="toc-text"> 中间人攻击（MitM）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E9%98%B2%E6%8A%A4%E6%8E%AA%E6%96%BD"><span class="toc-number">6.2.</span> <span class="toc-text"> 安全防护措施</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-number">6.2.1.</span> <span class="toc-text"> 防火墙</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86"><span class="toc-number">6.2.2.</span> <span class="toc-text"> 加密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E5%92%8C%E6%8E%88%E6%9D%83"><span class="toc-number">6.2.3.</span> <span class="toc-text"> 身份验证和授权</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E5%8D%8F%E8%AE%AE"><span class="toc-number">6.2.4.</span> <span class="toc-text"> 安全协议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8Bacl%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5"><span class="toc-number">6.3.</span> <span class="toc-text"> 代码示例：ACL配置与安全策略</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E7%AB%A0%E5%AE%9E%E8%B7%B5%E6%93%8D%E4%BD%9C%E4%B8%8E%E6%95%85%E9%9A%9C%E6%8E%92%E9%99%A4"><span class="toc-number">7.</span> <span class="toc-text"> 第七章：实践操作与故障排除</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4"><span class="toc-number">7.1.</span> <span class="toc-text"> 常用网络命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ipconfigwindows-ifconfiglinuxmacos"><span class="toc-number">7.1.1.</span> <span class="toc-text"> ipconfig（Windows）&#x2F; ifconfig（Linux&#x2F;macOS）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ping"><span class="toc-number">7.1.2.</span> <span class="toc-text"> ping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tracertwindows-traceroutelinuxmacos"><span class="toc-number">7.1.3.</span> <span class="toc-text"> tracert（Windows）&#x2F; traceroute（Linux&#x2F;macOS）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nslookup"><span class="toc-number">7.1.4.</span> <span class="toc-text"> nslookup</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#netstat"><span class="toc-number">7.1.5.</span> <span class="toc-text"> netstat</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-number">7.2.</span> <span class="toc-text"> 常见网络问题及解决方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E5%88%B0%E4%BA%92%E8%81%94%E7%BD%91"><span class="toc-number">7.2.1.</span> <span class="toc-text"> 无法连接到互联网</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E9%80%9F%E5%BA%A6%E6%85%A2"><span class="toc-number">7.2.2.</span> <span class="toc-text"> 网络速度慢</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ip%E5%9C%B0%E5%9D%80%E5%86%B2%E7%AA%81"><span class="toc-number">7.2.3.</span> <span class="toc-text"> IP地址冲突</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E7%BD%91%E7%BB%9C%E8%AF%8A%E6%96%AD%E5%B7%A5%E5%85%B7"><span class="toc-number">7.3.</span> <span class="toc-text"> 代码示例：网络诊断工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90"><span class="toc-number">7.4.</span> <span class="toc-text"> 代码示例：网络协议分析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0%E8%87%AA%E5%8A%A8%E5%8C%96%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4"><span class="toc-number">8.</span> <span class="toc-text"> 第八章：自动化网络运维</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8python%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87%E6%89%B9%E9%87%8F%E9%85%8D%E7%BD%AE"><span class="toc-number">8.1.</span> <span class="toc-text"> 使用Python进行网络设备批量配置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">9.</span> <span class="toc-text"> 结语</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%99%84%E5%8A%A0%E8%B5%84%E6%BA%90"><span class="toc-number">10.</span> <span class="toc-text"> 附加资源</span></a></li></ol>
+  
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="xiaozhaoz1" class="lazyload">
+  <div class="sidebar-author-name">xiaozhaoz1</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">8</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">12</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+  <script>
+    function initLive2d() {
+      live2d.init("https://fastly.jsdelivr.net/gh/D-Sketon/plugin-live2d/", {themeTipsPath: ""});
+    }
+  </script>
+  
+<script src="https://fastly.jsdelivr.net/gh/D-Sketon/plugin-live2d/js/live2d-autoload.js" onload="initLive2d &amp;&amp; initLive2d()" async></script>
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "xiaozhaoz1",
+          title: "网络基础知识",
+          url: "http://example.com/2025/04/17/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/",
+          excerpt: "",
+          description: "",
+          stripContent: " 第一章：网络基本概念  什么是计算机网络？ 简单来说，计算机网络是指通过通信线路和网络设备，将分布在不同地理位置的多台计算机及其外部设备连接起来，在网络操作系统、网络管理软件及网络通信协议的管理和协调下，实现资源共享和信息传递的系统。 想象一下计算机网络就像城市的道路系统： 计算机和设备就像城市中的建筑物（家庭、商店、办公室） 网络线路就像连接这些建筑物的道路 数据就像在道路上行驶的车辆 协议就像交通规则，确保车辆有序通行 网络设备（路由器、交换机）就像十字路口的交通信号灯和立交桥  网络的主",
+          date: "Thu Apr 17 2025 22:22:35 GMT+0800",
+          updated: "Sun Sep 21 2025 14:06:18 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.1' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+

@@ -1,0 +1,1000 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  
+  <title>
+    Wireshark网络流量分析 |
+    
+    Hexo
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <link rel="preload" as="style" href="https://fontsapi.zeoseven.com/292/main/result.css" onload="this.rel&#x3D;&#39;stylesheet&#39;" crossorigin>
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="Wireshark简介与安装  什么是Wireshark？ Wireshark是一款开源网络协议分析器，可以截取各种网络数据包，并显示数据包的详细信息。它广泛应用于网络故障排查、性能分析、网络安全检测和教育培训等领域。Wireshark支持多种操作系统（Windows、macOS、Linux），能够解析上千种网络协议，是网络专业人士必备的工具之一。  Wireshark的安装步骤 在Window">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wireshark网络流量分析">
+<meta property="og:url" content="http://example.com/2025/05/18/Wireshark%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Wireshark简介与安装  什么是Wireshark？ Wireshark是一款开源网络协议分析器，可以截取各种网络数据包，并显示数据包的详细信息。它广泛应用于网络故障排查、性能分析、网络安全检测和教育培训等领域。Wireshark支持多种操作系统（Windows、macOS、Linux），能够解析上千种网络协议，是网络专业人士必备的工具之一。  Wireshark的安装步骤 在Window">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-18T14:48:59.000Z">
+<meta property="article:modified_time" content="2025-09-21T06:07:33.506Z">
+<meta property="article:author" content="xiaozhaoz1">
+<meta property="article:tag" content="-网络 -教程 -Wireshark">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">Loading...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/">Home</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/archives">Archives</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/about">About</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/friend">Friend</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed" target="_blank"></a>
+    
+    
+    
+  </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture>
+          
+        </picture>
+        
+          <img  fetchpriority="high" src="/images/banner.webp" alt="Wireshark网络流量分析">
+        
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">Wireshark网络流量分析</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  <div class="sidebar-wrapper-container sticky">
+  
+    
+    
+  
+ 
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#wireshark%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85"><span class="toc-number">1.</span> <span class="toc-text"> Wireshark简介与安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFwireshark"><span class="toc-number">1.1.</span> <span class="toc-text"> 什么是Wireshark？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#wireshark%E7%9A%84%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.2.</span> <span class="toc-text"> Wireshark的安装步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98"><span class="toc-number">1.3.</span> <span class="toc-text"> 解决权限问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#wireshark%E4%B8%BB%E7%95%8C%E9%9D%A2%E4%BB%8B%E7%BB%8D"><span class="toc-number">2.</span> <span class="toc-text"> Wireshark主界面介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8D%95%E8%8E%B7%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%8C%85"><span class="toc-number">3.</span> <span class="toc-text"> 捕获第一个数据包</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C%E6%8E%A5%E5%8F%A3"><span class="toc-number">3.1.</span> <span class="toc-text"> 选择网络接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E6%8D%95%E8%8E%B7%E6%95%B0%E6%8D%AE"><span class="toc-number">3.2.</span> <span class="toc-text"> 开始捕获数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%9D%E5%AD%98%E6%8D%95%E8%8E%B7%E6%96%87%E4%BB%B6"><span class="toc-number">3.3.</span> <span class="toc-text"> 保存捕获文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#wireshark%E8%BF%87%E6%BB%A4%E5%99%A8%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7"><span class="toc-number">4.</span> <span class="toc-text"> Wireshark过滤器使用技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8D%95%E8%8E%B7%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-number">4.1.</span> <span class="toc-text"> 捕获过滤器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-number">4.2.</span> <span class="toc-text"> 显示过滤器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E8%BF%87%E6%BB%A4%E6%8A%80%E5%B7%A7"><span class="toc-number">4.3.</span> <span class="toc-text"> 高级过滤技巧</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%9D%E5%AD%98%E5%92%8C%E7%AE%A1%E7%90%86%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-number">4.4.</span> <span class="toc-text"> 保存和管理过滤器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E5%B8%B8%E8%A7%81%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.</span> <span class="toc-text"> 分析常见协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90tcp%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.1.</span> <span class="toc-text"> 分析TCP协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90http%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.2.</span> <span class="toc-text"> 分析HTTP协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90dns%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.3.</span> <span class="toc-text"> 分析DNS协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90icmp%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.4.</span> <span class="toc-text"> 分析ICMP协议</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E5%AE%9E%E6%88%98"><span class="toc-number">6.</span> <span class="toc-text"> 网络故障排查实战</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98"><span class="toc-number">6.1.</span> <span class="toc-text"> 网络延迟问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%B8%A2%E5%8C%85%E9%97%AE%E9%A2%98"><span class="toc-number">6.2.</span> <span class="toc-text"> 数据丢包问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98"><span class="toc-number">6.3.</span> <span class="toc-text"> 连接异常问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dns%E9%97%AE%E9%A2%98"><span class="toc-number">6.4.</span> <span class="toc-text"> DNS问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%88%86%E6%9E%90"><span class="toc-number">7.</span> <span class="toc-text"> 网络安全分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E6%B5%8B%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F"><span class="toc-number">7.1.</span> <span class="toc-text"> 检测端口扫描</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E6%B5%8Bdos%E6%94%BB%E5%87%BB"><span class="toc-number">7.2.</span> <span class="toc-text"> 检测DoS攻击</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E6%B5%8B%E5%8F%AF%E7%96%91dns%E6%B4%BB%E5%8A%A8"><span class="toc-number">7.3.</span> <span class="toc-text"> 检测可疑DNS活动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%86%E5%88%AB%E6%98%8E%E6%96%87%E5%87%AD%E6%8D%AE%E4%BC%A0%E8%BE%93"><span class="toc-number">7.4.</span> <span class="toc-text"> 识别明文凭据传输</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6%E6%8A%80%E5%B7%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-number">8.</span> <span class="toc-text"> 进阶技巧与最佳实践</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7"><span class="toc-number">8.1.</span> <span class="toc-text"> 使用命令行工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E4%B8%AA%E6%80%A7%E5%8C%96%E8%A7%A3%E7%A0%81%E5%99%A8"><span class="toc-number">8.2.</span> <span class="toc-text"> 配置个性化解码器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%9B%BE%E8%A1%A8%E5%92%8C%E5%9B%BE%E5%BD%A2"><span class="toc-number">8.3.</span> <span class="toc-text"> 使用图表和图形</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E7%BB%84%E7%BD%91%E7%BB%9C%E4%BC%9A%E8%AF%9D"><span class="toc-number">8.4.</span> <span class="toc-text"> 重组网络会话</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-number">8.5.</span> <span class="toc-text"> 最佳实践</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">9.</span> <span class="toc-text"> 总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9B%E4%B8%80%E6%AD%A5%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90"><span class="toc-number">10.</span> <span class="toc-text"> 进一步学习资源</span></a></li></ol>
+  
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="xiaozhaoz1" class="lazyload">
+  <div class="sidebar-author-name">xiaozhaoz1</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">8</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">12</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+  
+  <div class="sidebar-widget">
+  
+  </div>
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-Wireshark网络流量分析" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2025-05-18T14:48:59.000Z" itemprop="datePublished">2025-05-18</time>
+    <time style="display: none;" id="post-update-time">2025-09-21</time>
+  </span>
+  
+</div>
+
+      
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="wireshark简介与安装"><a class="markdownIt-Anchor" href="#wireshark简介与安装"></a> Wireshark简介与安装</h1>
+<h2 id="什么是wireshark"><a class="markdownIt-Anchor" href="#什么是wireshark"></a> 什么是Wireshark？</h2>
+<p>Wireshark是一款开源网络协议分析器，可以截取各种网络数据包，并显示数据包的详细信息。它广泛应用于网络故障排查、性能分析、网络安全检测和教育培训等领域。Wireshark支持多种操作系统（Windows、macOS、Linux），能够解析上千种网络协议，是网络专业人士必备的工具之一。</p>
+<h2 id="wireshark的安装步骤"><a class="markdownIt-Anchor" href="#wireshark的安装步骤"></a> Wireshark的安装步骤</h2>
+<p>在Windows系统上安装<br />
+下载安装程序：访问Wireshark官网（<a target="_blank" rel="noopener" href="https://www.wireshark.org/download.html%EF%BC%89%E4%B8%8B%E8%BD%BD%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC%E7%9A%84%E5%AE%89%E8%A3%85%E7%A8%8B%E5%BA%8F%E3%80%82">https://www.wireshark.org/download.html）下载最新版本的安装程序。</a></p>
+<p>以管理员身份运行安装包：右键点击安装程序，选择&quot;以管理员身份运行&quot;。</p>
+<p>阅读并接受许可协议：点击&quot;Next&quot;继续。</p>
+<p>选择组件：默认选择即可，第二个选项为创建桌面图标，可按照自己的情况选择。</p>
+<p>选择安装位置：建议使用默认路径，也可自定义。</p>
+<p>安装NPcap：安装过程中会提示安装NPcap，这是抓包所必需的驱动，务必安装。</p>
+<p>完成安装：点击&quot;Finish&quot;完成安装过程。</p>
+<p>在Ubuntu/Linux系统上安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 更新软件包列表</span></span><br><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装Wireshark</span></span><br><span class="line"><span class="built_in">sudo</span> apt install wireshark -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动Wireshark</span></span><br><span class="line">wireshark</span><br></pre></td></tr></table></figure>
+<p>安装完成后，建议重启系统以确保所有驱动正确加载。</p>
+<h2 id="解决权限问题"><a class="markdownIt-Anchor" href="#解决权限问题"></a> 解决权限问题</h2>
+<p>在首次运行Wireshark时，可能会遇到权限问题。解决方法是以管理员身份运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Windows系统：以管理员身份运行Wireshark</span></span><br><span class="line"><span class="comment"># Linux系统：使用sudo权限</span></span><br><span class="line"><span class="built_in">sudo</span> wireshark</span><br></pre></td></tr></table></figure>
+<p>或者将当前用户添加到wireshark用户组中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将用户添加到wireshark组</span></span><br><span class="line"><span class="built_in">sudo</span> usermod -a -G wireshark <span class="variable">$USER</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新登录使更改生效</span></span><br></pre></td></tr></table></figure>
+<h1 id="wireshark主界面介绍"><a class="markdownIt-Anchor" href="#wireshark主界面介绍"></a> Wireshark主界面介绍</h1>
+<p>当你第一次打开Wireshark时，可能会被它的界面所震撼。别担心，我们将逐步分解各个部分的功能。</p>
+<p>菜单栏：包含文件、编辑、视图、跳转、捕获、分析、统计、电话、工具、窗口和帮助等菜单，提供了Wireshark的所有功能入口。</p>
+<p>工具栏：常用功能的快捷方式，如开始捕获、停止捕获、重新开始捕获等。</p>
+<p>过滤栏：用于设置显示过滤器条件，过滤数据包列表。</p>
+<p>数据包列表：显示捕获到的数据包，每个数据包包含编号、时间戳、源地址、目标地址、协议、长度和信息等。</p>
+<p>数据包详细信息：显示选中数据包的所有详细信息，包括各层协议的字段和值。</p>
+<p>数据包字节流：显示数据包对应的字节流，以十六进制和ASCII格式显示。</p>
+<p>Wireshark的主界面中，数据包列表区的不同协议使用了不同的颜色区分。这些颜色规则可以在菜单栏的View --&gt; Coloring Rules中查看和自定义。</p>
+<h1 id="捕获第一个数据包"><a class="markdownIt-Anchor" href="#捕获第一个数据包"></a> 捕获第一个数据包</h1>
+<p>现在让我们开始实际捕获数据包，体验Wireshark的基本功能。</p>
+<h2 id="选择网络接口"><a class="markdownIt-Anchor" href="#选择网络接口"></a> 选择网络接口</h2>
+<p>启动Wireshark后，主界面会显示可用的网络接口列表。</p>
+<p>选择活跃的网络接口（通常有流量指示条）。如果是无线网络，选择WLAN或Wi-Fi接口；如果是有线网络，选择以太网接口。</p>
+<p>点击选中的网络接口即可开始捕获数据包。</p>
+<h2 id="开始捕获数据"><a class="markdownIt-Anchor" href="#开始捕获数据"></a> 开始捕获数据</h2>
+<p>点击选中的网络接口后，Wireshark立即开始捕获数据包。</p>
+<p>打开浏览器，访问任何一个网站，如<a target="_blank" rel="noopener" href="http://www.google.com">http://www.google.com</a>，生成一些网络流量。</p>
+<p>回到Wireshark，你会看到数据包列表在不断更新。</p>
+<p>捕获到一定数量的数据包后（20-30个），点击工具栏中的红色方形按钮停止捕获。</p>
+<h2 id="保存捕获文件"><a class="markdownIt-Anchor" href="#保存捕获文件"></a> 保存捕获文件</h2>
+<p>捕获完成后，建议保存数据包文件以便后续分析：</p>
+<p>点击菜单栏的 File &gt; Save。</p>
+<p>选择保存位置和文件名。</p>
+<p>点击保存按钮。</p>
+<p>Wireshark默认保存为.pcapng格式，这是推荐的保存格式，因为它包含了更多的元信息。你也可以选择保存为传统的.pcap格式，以兼容一些老版本工具。</p>
+<h1 id="wireshark过滤器使用技巧"><a class="markdownIt-Anchor" href="#wireshark过滤器使用技巧"></a> Wireshark过滤器使用技巧</h1>
+<p>Wireshark的强大功能之一就是过滤器系统，它可以帮助我们从海量的数据包中筛选出我们感兴趣的内容。Wireshark提供了两种类型的过滤器：捕获过滤器和显示过滤器。</p>
+<h2 id="捕获过滤器"><a class="markdownIt-Anchor" href="#捕获过滤器"></a> 捕获过滤器</h2>
+<p>捕获过滤器在开始捕获前设置，用于限制只捕获符合条件的数据包，可以减少捕获的数据量，提高效率。</p>
+<p>基本语法<br />
+捕获过滤器使用伯克利封包过滤器（BPF） 语法，由四个核心元素组成：</p>
+<p>类型（Type）：主机（host）、网段（net）、端口（port）</p>
+<p>方向（Dir）：源地址（src）、目标地址（dst）</p>
+<p>协议（Proto）：tcp、udp、http、icmp等</p>
+<p>逻辑运算符：与（&amp;&amp;）、或（||）、非（！）</p>
+<p>常用捕获过滤器示例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 只捕获特定主机的流量</span></span><br><span class="line">host 192.168.1.100</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只捕获来自特定源的流量</span></span><br><span class="line">src host 192.168.1.100</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只捕获去往特定目标的流量</span></span><br><span class="line">dst host 192.168.1.100</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只捕获HTTP流量（端口80）</span></span><br><span class="line">port 80</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只捕获TCP或UDP流量</span></span><br><span class="line">tcp or udp</span><br><span class="line"></span><br><span class="line"><span class="comment"># 不捕获ARP流量</span></span><br><span class="line">not arp</span><br><span class="line"></span><br><span class="line"><span class="comment"># 组合条件：捕获来自192.168.1.100的HTTP流量</span></span><br><span class="line">src host 192.168.1.100 and port 80</span><br><span class="line"></span><br><span class="line"><span class="comment"># 捕获特定子网的流量</span></span><br><span class="line">net 192.168.1.0/24</span><br></pre></td></tr></table></figure>
+<p>设置捕获过滤器的方法：</p>
+<p>点击Capture &gt; Options。</p>
+<p>在&quot;Capture Filter&quot;输入框中输入过滤条件。</p>
+<p>输入框变绿色表示语法正确，红色表示语法错误。</p>
+<p>点击Start开始捕获。</p>
+<h2 id="显示过滤器"><a class="markdownIt-Anchor" href="#显示过滤器"></a> 显示过滤器</h2>
+<p>显示过滤器用于在捕获完成后筛选数据包，不会删除数据，只是隐藏不符合条件的数据包。</p>
+<p>比较运算符<br />
+显示过滤器支持多种比较运算符：</p>
+<p>==：等于</p>
+<p>!=：不等于</p>
+<blockquote>
+<p>：大于</p>
+</blockquote>
+<p>&lt;：小于</p>
+<blockquote>
+<p>=：大于等于</p>
+</blockquote>
+<p>&lt;=：小于等于</p>
+<p>contains：包含</p>
+<p>matches：匹配正则表达式</p>
+<p>逻辑运算符<br />
+and：逻辑与</p>
+<p>or：逻辑或</p>
+<p>not：逻辑非</p>
+<p>in：包含于</p>
+<p>常用显示过滤器示例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 协议过滤</span></span><br><span class="line">tcp</span><br><span class="line">udp</span><br><span class="line">http</span><br><span class="line">icmp</span><br><span class="line">dns</span><br><span class="line"></span><br><span class="line"><span class="comment"># IP地址过滤</span></span><br><span class="line">ip.src == 192.168.1.100    <span class="comment"># 源IP为192.168.1.100</span></span><br><span class="line">ip.dst == 192.168.1.1      <span class="comment"># 目标IP为192.168.1.1</span></span><br><span class="line">ip.addr == 192.168.1.100   <span class="comment"># 源或目标IP为192.168.1.100</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 端口过滤</span></span><br><span class="line">tcp.port == 80             <span class="comment"># 源或目标端口为80</span></span><br><span class="line">tcp.srcport == 80          <span class="comment"># TCP源端口为80</span></span><br><span class="line">tcp.dstport == 80          <span class="comment"># TCP目标端口为80</span></span><br><span class="line">udp.port == 53             <span class="comment"># UDP端口53(DNS)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># HTTP过滤</span></span><br><span class="line">http.request.method == <span class="string">&quot;GET&quot;</span></span><br><span class="line">http.request.method == <span class="string">&quot;POST&quot;</span></span><br><span class="line">http.response.code == 200</span><br><span class="line">http.response.code == 404</span><br><span class="line">http contains <span class="string">&quot;Google&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 组合过滤</span></span><br><span class="line">http and ip.src == 192.168.1.100</span><br><span class="line">tcp.port == 80 or udp.port == 53</span><br><span class="line">not arp and not icmp</span><br></pre></td></tr></table></figure>
+<h2 id="高级过滤技巧"><a class="markdownIt-Anchor" href="#高级过滤技巧"></a> 高级过滤技巧</h2>
+<p>除了基本过滤外，Wireshark还提供了一些高级过滤功能：</p>
+<p>基于数据包大小的过滤</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 过滤长度大于100字节的数据包</span></span><br><span class="line">frame.len &gt; 100</span><br><span class="line"></span><br><span class="line"><span class="comment"># 过滤TCP负载长度在100到500字节之间的数据包</span></span><br><span class="line">tcp.len &gt;= 100 and tcp.len &lt;= 500</span><br></pre></td></tr></table></figure>
+<p>基于特定内容的过滤</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 过滤包含&quot;password&quot;文本的数据包</span></span><br><span class="line">frame contains <span class="string">&quot;password&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 过滤包含&quot;login&quot;文本的数据包</span></span><br><span class="line">frame contains <span class="string">&quot;login&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 过滤主机头包含&quot;google&quot;的HTTP流量</span></span><br><span class="line">http.host contains <span class="string">&quot;google&quot;</span></span><br></pre></td></tr></table></figure>
+<p>基于时间间隔的过滤</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 过滤与前一个数据包时间间隔大于100毫秒的数据包</span></span><br><span class="line">frame.time_delta &gt; 0.1</span><br></pre></td></tr></table></figure>
+<p>基于TCP标志位的过滤</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 过滤TCP SYN包</span></span><br><span class="line">tcp.flags.syn == 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 过滤TCP SYN-ACK包</span></span><br><span class="line">tcp.flags.syn == 1 and tcp.flags.ack == 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 过滤TCP RST包</span></span><br><span class="line">tcp.flags.reset == 1</span><br></pre></td></tr></table></figure>
+<h2 id="保存和管理过滤器"><a class="markdownIt-Anchor" href="#保存和管理过滤器"></a> 保存和管理过滤器</h2>
+<p>如果你经常使用某些过滤器，可以将它们保存为过滤器按钮或过滤器表达式：</p>
+<p>在过滤器输入框输入过滤条件</p>
+<p>点击过滤器输入框右侧的+按钮</p>
+<p>输入过滤器名称</p>
+<p>点击OK保存</p>
+<p>这样下次使用时，只需点击已保存的过滤器按钮即可应用该过滤条件。</p>
+<h1 id="分析常见协议"><a class="markdownIt-Anchor" href="#分析常见协议"></a> 分析常见协议</h1>
+<p>接下来，我们学习如何使用Wireshark分析常见的网络协议。</p>
+<h2 id="分析tcp协议"><a class="markdownIt-Anchor" href="#分析tcp协议"></a> 分析TCP协议</h2>
+<p>TCP（传输控制协议）是互联网中最常用的传输层协议，提供可靠的、面向连接的通信。</p>
+<p>TCP三次握手分析<br />
+TCP通过三次握手建立连接：</p>
+<p>SYN：客户端发送SYN包（SYN=1, ACK=0）到服务器，序列号为随机值（如Seq=100）</p>
+<p>SYN-ACK：服务器回应SYN-ACK包（SYN=1, ACK=1），序列号为随机值（如Seq=300），确认号为客户端序列号加1（Ack=101）</p>
+<p>ACK：客户端发送ACK包（SYN=0, ACK=1），序列号为101，确认号为服务器序列号加1（Ack=301）</p>
+<p>使用过滤器查看TCP三次握手：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 过滤特定IP之间的TCP握手包</span></span><br><span class="line">tcp.flags.syn == 1 and ip.addr == 192.168.1.100 and ip.addr == 93.184.216.34</span><br></pre></td></tr></table></figure>
+<p>TCP数据传输<br />
+建立连接后，双方开始数据传输。每个TCP包都包含序列号和确认号，确保数据按序到达和确认。</p>
+<p>TCP四次挥手<br />
+TCP通过四次挥手终止连接：</p>
+<p>FIN：一方发送FIN包（FIN=1, ACK=1）</p>
+<p>ACK：另一方回应ACK包</p>
+<p>FIN：另一方发送FIN包</p>
+<p>ACK：一方回应ACK包</p>
+<h2 id="分析http协议"><a class="markdownIt-Anchor" href="#分析http协议"></a> 分析HTTP协议</h2>
+<p>HTTP是应用最广泛的Web协议，Wireshark可以很好地解析和分析HTTP流量。</p>
+<p>HTTP请求和响应</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 过滤HTTP请求</span></span><br><span class="line">http.request</span><br><span class="line"></span><br><span class="line"><span class="comment"># 过滤HTTP GET请求</span></span><br><span class="line">http.request.method == <span class="string">&quot;GET&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 过滤HTTP POST请求</span></span><br><span class="line">http.request.method == <span class="string">&quot;POST&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 过滤HTTP响应代码</span></span><br><span class="line">http.response.code == 200</span><br><span class="line">http.response.code == 404</span><br><span class="line">http.response.code &gt;= 400</span><br></pre></td></tr></table></figure>
+<p>分析HTTP头信息<br />
+在数据包详细信息面板，可以查看HTTP请求和响应的详细信息：</p>
+<p>Request Method：请求方法（GET、POST等）</p>
+<p>Request URI：请求的URI</p>
+<p>Request Version：HTTP版本</p>
+<p>Host：主机名</p>
+<p>User-Agent：客户端浏览器信息</p>
+<p>Response Code：响应状态码</p>
+<p>Content-Type：内容类型</p>
+<p>提取HTTP传输的文件<br />
+过滤HTTP流量：http</p>
+<p>选择文件传输的HTTP响应包</p>
+<p>右键选择Follow &gt; HTTP Stream</p>
+<p>在打开的窗口中选择Save as保存文件</p>
+<h2 id="分析dns协议"><a class="markdownIt-Anchor" href="#分析dns协议"></a> 分析DNS协议</h2>
+<p>DNS（域名系统）将域名解析为IP地址，是互联网的重要基础设施。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 过滤DNS查询</span></span><br><span class="line">dns</span><br><span class="line"></span><br><span class="line"><span class="comment"># 过滤DNS响应</span></span><br><span class="line">dns.flags.response == 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 过滤特定域名的DNS查询</span></span><br><span class="line">dns.qry.name contains <span class="string">&quot;google&quot;</span></span><br></pre></td></tr></table></figure>
+<p>DNS数据包中的重要字段：</p>
+<p>Transaction ID：事务ID，匹配查询和响应</p>
+<p>Queries：查询部分，包含查询名称、类型和类</p>
+<p>Answers：响应部分，包含资源记录</p>
+<h2 id="分析icmp协议"><a class="markdownIt-Anchor" href="#分析icmp协议"></a> 分析ICMP协议</h2>
+<p>ICMP（互联网控制消息协议）用于网络设备之间发送控制消息。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 过滤ICMP流量</span></span><br><span class="line">icmp</span><br><span class="line"></span><br><span class="line"><span class="comment"># 过滤ping请求</span></span><br><span class="line">icmp.type == 8</span><br><span class="line"></span><br><span class="line"><span class="comment"># 过滤ping响应</span></span><br><span class="line">icmp.type == 0</span><br></pre></td></tr></table></figure>
+<h1 id="网络故障排查实战"><a class="markdownIt-Anchor" href="#网络故障排查实战"></a> 网络故障排查实战</h1>
+<p>Wireshark是网络故障排查的强大工具，下面介绍一些常见问题的排查方法。</p>
+<h2 id="网络延迟问题"><a class="markdownIt-Anchor" href="#网络延迟问题"></a> 网络延迟问题</h2>
+<p>当网络访问缓慢时，可以使用Wireshark分析延迟原因。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看TCP握手时间</span></span><br><span class="line">tcp.flags.syn == 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看TCP重传包</span></span><br><span class="line">tcp.analysis.retransmission</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看TCP零窗口包（接收方缓冲区满）</span></span><br><span class="line">tcp.analysis.zero_window</span><br></pre></td></tr></table></figure>
+<p>分析方法：</p>
+<p>添加时间列：右键列标题 &gt; Column Preferences &gt; 添加列 “Time since previous frame”</p>
+<p>如果连续包间隔 &gt;200ms，可能存在网络延迟</p>
+<p>检查是否有大量重传包，表明网络不稳定</p>
+<p>检查是否有零窗口包，表明接收方处理能力不足</p>
+<h2 id="数据丢包问题"><a class="markdownIt-Anchor" href="#数据丢包问题"></a> 数据丢包问题</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 过滤重传包</span></span><br><span class="line">tcp.analysis.retransmission</span><br><span class="line"></span><br><span class="line"><span class="comment"># 过滤重复ACK</span></span><br><span class="line">tcp.analysis.duplicate_ack</span><br></pre></td></tr></table></figure>
+<p>分析方法：</p>
+<p>打开Statistics &gt; TCP Stream Graph &gt; Time-Sequence Graph</p>
+<p>观察序列号增长情况，突然下降表示重传</p>
+<p>重传率超过5%可能影响网络性能</p>
+<h2 id="连接异常问题"><a class="markdownIt-Anchor" href="#连接异常问题"></a> 连接异常问题</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 过滤RST包（连接重置）</span></span><br><span class="line">tcp.flags.reset == 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 过滤ICMP目标不可达</span></span><br><span class="line">icmp.type == 3</span><br></pre></td></tr></table></figure>
+<p>分析方法：</p>
+<p>检查RST包来源，可能是服务端主动拒绝连接</p>
+<p>检查ICMP不可达消息，可能是路由问题或防火墙拦截</p>
+<h2 id="dns问题"><a class="markdownIt-Anchor" href="#dns问题"></a> DNS问题</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 过滤DNS响应代码</span></span><br><span class="line">dns.flags.rcode != 0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 过滤不成功的DNS响应</span></span><br><span class="line">dns.flags.rcode != 0</span><br></pre></td></tr></table></figure>
+<p>分析方法：</p>
+<p>检查DNS响应代码：0表示成功，3表示域名不存在，其他值表示不同类型的错误</p>
+<p>比较DNS查询和响应时间，长时间无响应可能表示DNS服务器问题</p>
+<h1 id="网络安全分析"><a class="markdownIt-Anchor" href="#网络安全分析"></a> 网络安全分析</h1>
+<p>Wireshark也是网络安全分析的重要工具，可以检测各种网络攻击和异常行为。</p>
+<h2 id="检测端口扫描"><a class="markdownIt-Anchor" href="#检测端口扫描"></a> 检测端口扫描</h2>
+<p>端口扫描是攻击者收集目标信息的常用技术。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 过滤TCP SYN包</span></span><br><span class="line">tcp.flags.syn == 1 and tcp.flags.ack == 0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 过滤从单个源到多个端口的连接尝试</span></span><br><span class="line">ip.src == 192.168.1.100 and tcp.flags.syn == 1</span><br></pre></td></tr></table></figure>
+<p>检测方法：</p>
+<p>应用过滤器查看SYN包</p>
+<p>如果发现从单个源IP到多个目标端口的大量SYN包，可能是端口扫描</p>
+<p>使用Statistics &gt; Conversations &gt; TCP查看对话统计</p>
+<h2 id="检测dos攻击"><a class="markdownIt-Anchor" href="#检测dos攻击"></a> 检测DoS攻击</h2>
+<p>拒绝服务（DoS）攻击试图耗尽目标资源使其无法提供服务。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 过滤SYN Flood攻击</span></span><br><span class="line">tcp.flags.syn == 1 and tcp.flags.ack == 0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 过滤UDP Flood攻击</span></span><br><span class="line">udp</span><br><span class="line"></span><br><span class="line"><span class="comment"># 过滤ICMP Flood攻击</span></span><br><span class="line">icmp</span><br></pre></td></tr></table></figure>
+<p>检测方法：</p>
+<p>统计特定类型数据包的出现频率</p>
+<p>检查是否来自大量源IP向单一目标发送流量</p>
+<p>使用Statistics &gt; IO Graphs查看流量趋势</p>
+<h2 id="检测可疑dns活动"><a class="markdownIt-Anchor" href="#检测可疑dns活动"></a> 检测可疑DNS活动</h2>
+<p>攻击者可能使用DNS隧道泄露数据或进行命令控制。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 过滤DNS查询</span></span><br><span class="line">dns</span><br><span class="line"></span><br><span class="line"><span class="comment"># 过滤异常长的域名</span></span><br><span class="line">dns.qry.name.len &gt; 50</span><br><span class="line"></span><br><span class="line"><span class="comment"># 过滤TXT记录查询（常用于数据传输）</span></span><br><span class="line">dns.qry.type == 16</span><br></pre></td></tr></table></figure>
+<p>检测方法：</p>
+<p>查找异常长的域名或对于同一域的大量DNS请求</p>
+<p>检查非标准记录类型（如TXT）的查询</p>
+<p>查找域名中包含可疑编码（如Base64）的查询</p>
+<h2 id="识别明文凭据传输"><a class="markdownIt-Anchor" href="#识别明文凭据传输"></a> 识别明文凭据传输</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 过滤包含关键词的HTTP流量</span></span><br><span class="line">http contains <span class="string">&quot;password&quot;</span></span><br><span class="line">http contains <span class="string">&quot;user&quot;</span></span><br><span class="line">http contains <span class="string">&quot;login&quot;</span></span><br><span class="line">http contains <span class="string">&quot;cookie&quot;</span></span><br></pre></td></tr></table></figure>
+<p>检测方法：</p>
+<p>应用上述过滤器查找敏感信息</p>
+<p>检查HTTP登录表单提交的POST请求</p>
+<p>关注使用HTTP而不是HTTPS的登录页面</p>
+<h1 id="进阶技巧与最佳实践"><a class="markdownIt-Anchor" href="#进阶技巧与最佳实践"></a> 进阶技巧与最佳实践</h1>
+<h2 id="使用命令行工具"><a class="markdownIt-Anchor" href="#使用命令行工具"></a> 使用命令行工具</h2>
+<p>Wireshark提供了命令行工具tshark和dumpcap，可用于自动化捕获和分析。</p>
+<p>使用dumpcap捕获数据</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 捕获所有流量并保存到文件</span></span><br><span class="line">dumpcap -i eth0 -w capture.pcap</span><br><span class="line"></span><br><span class="line"><span class="comment"># 捕获HTTP流量并保存到文件</span></span><br><span class="line">dumpcap -i eth0 -w http.pcap -f <span class="string">&quot;tcp port 80&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 捕获特定IP的流量</span></span><br><span class="line">dumpcap -i eth0 -w target.pcap -f <span class="string">&quot;host 192.168.1.100&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 限制捕获包大小</span></span><br><span class="line">dumpcap -i eth0 -w capture.pcap -s 100</span><br><span class="line"></span><br><span class="line"><span class="comment"># 限制捕获文件大小</span></span><br><span class="line">dumpcap -i eth0 -w capture.pcap -a filesize:100000</span><br></pre></td></tr></table></figure>
+<p>使用tshark分析数据</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 读取捕获文件并显示HTTP请求</span></span><br><span class="line">tshark -r capture.pcap -Y <span class="string">&quot;http.request&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 统计Top 10流量主机</span></span><br><span class="line">tshark -r capture.pcap -z hosts,ipv4</span><br><span class="line"></span><br><span class="line"><span class="comment"># 导出HTTP对象（文件）</span></span><br><span class="line">tshark -r capture.pcap --export-objects http,./outputdir</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提取DNS查询域名</span></span><br><span class="line">tshark -r capture.pcap -Y dns -T fields -e dns.qry.name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 导出特定字段到CSV</span></span><br><span class="line">tshark -r capture.pcap -Y <span class="string">&quot;http&quot;</span> -T fields -e frame.time -e ip.src -e ip.dst -e http.request.method -e http.request.uri -e http.response.code &gt; http.csv </span><br></pre></td></tr></table></figure>
+<h2 id="配置个性化解码器"><a class="markdownIt-Anchor" href="#配置个性化解码器"></a> 配置个性化解码器</h2>
+<p>如果Wireshark不能正确解析某些自定义协议，你可以添加解码器：</p>
+<p>点击Analyze &gt; Decode As</p>
+<p>选择字段和值</p>
+<p>选择要解码为的协议</p>
+<p>点击OK保存设置</p>
+<h2 id="使用图表和图形"><a class="markdownIt-Anchor" href="#使用图表和图形"></a> 使用图表和图形</h2>
+<p>Wireshark提供了多种统计图表，帮助可视化分析流量：</p>
+<p>IO Graphs：显示流量随时间变化趋势</p>
+<p>Round Trip Time Graph：显示TCP往返时间</p>
+<p>Throughput Graph：显示吞吐量</p>
+<p>TCP Stream Graph：显示TCP流序列号随时间变化</p>
+<h2 id="重组网络会话"><a class="markdownIt-Anchor" href="#重组网络会话"></a> 重组网络会话</h2>
+<p>Wireshark可以重组TCP流，查看完整会话：</p>
+<p>选择TCP包</p>
+<p>右键选择Follow &gt; TCP Stream</p>
+<p>查看完整的请求和响应内容</p>
+<p>可以保存整个会话内容</p>
+<h2 id="最佳实践"><a class="markdownIt-Anchor" href="#最佳实践"></a> 最佳实践</h2>
+<p>明确分析目标：抓包前明确要解决的问题，避免捕获过多无用数据</p>
+<p>选择合适的抓包位置：根据问题选择在客户端、服务端或中间节点抓包</p>
+<p>使用过滤器：尽量使用捕获过滤器减少数据量，显示过滤器聚焦分析重点</p>
+<p>保存基线数据：在正常运行时保存基线数据，便于与异常时对比</p>
+<p>注意隐私和法律：不要在不授权的网络抓包，注意保护敏感数据</p>
+<p>分段捕获大流量：对于高流量网络，使用循环缓冲区或多文件捕获</p>
+<p>文档化分析过程：记录分析步骤和发现，便于后续回顾和分享</p>
+<h1 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h1>
+<p>Wireshark是一个功能强大的网络分析工具，学习曲线可能有些陡峭，但掌握它将为你提供前所未有的网络洞察能力。本文从基础安装到高级技巧，提供了全面的Wireshark使用指南，希望能够帮助你开始使用这个强大工具。</p>
+<p>记住，成为Wireshark专家需要时间和实践，建议从简单的情境开始，逐步尝试更复杂的分析任务。网络抓包和分析是一门实践性很强的技能，只有通过实际操作才能真正掌握。</p>
+<h1 id="进一步学习资源"><a class="markdownIt-Anchor" href="#进一步学习资源"></a> 进一步学习资源</h1>
+<p>官方文档：<a target="_blank" rel="noopener" href="https://www.wireshark.org/docs/">https://www.wireshark.org/docs/</a></p>
+<p>样本捕获文件：<a target="_blank" rel="noopener" href="https://wiki.wireshark.org/SampleCaptures">https://wiki.wireshark.org/SampleCaptures</a></p>
+<p>网络分析教程：<a target="_blank" rel="noopener" href="https://www.wireshark.org/#learnWS">https://www.wireshark.org/#learnWS</a></p>
+<p>书籍：《Wireshark网络分析的艺术》《Wireshark网络分析实战》</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C-%E6%95%99%E7%A8%8B-Wireshark/" rel="tag">-网络 -教程 -Wireshark</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="https://d-sketon.top/img/_backwebp/bg1.webp" data-sizes="auto" alt="FRP内网穿透" class="lazyload">
+          
+        
+        <a href="/2025/08/18/FRP%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/"></a>
+        <div class="article-nav-caption">Prev</div>
+        <h3 class="article-nav-title">
+          
+            FRP内网穿透
+          
+        </h3>
+      </div>
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="https://d-sketon.top/img/_backwebp/bg1.webp" data-sizes="auto" alt="网络基础知识" class="lazyload">
+        
+      
+      <a href="/2025/04/17/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          网络基础知识
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2020-2025
+      
+      <span class="footer-info-sep rotate"></span>
+      xiaozhaoz1
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        33.8k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        02:12
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#wireshark%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85"><span class="toc-number">1.</span> <span class="toc-text"> Wireshark简介与安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFwireshark"><span class="toc-number">1.1.</span> <span class="toc-text"> 什么是Wireshark？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#wireshark%E7%9A%84%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.2.</span> <span class="toc-text"> Wireshark的安装步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98"><span class="toc-number">1.3.</span> <span class="toc-text"> 解决权限问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#wireshark%E4%B8%BB%E7%95%8C%E9%9D%A2%E4%BB%8B%E7%BB%8D"><span class="toc-number">2.</span> <span class="toc-text"> Wireshark主界面介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8D%95%E8%8E%B7%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%8C%85"><span class="toc-number">3.</span> <span class="toc-text"> 捕获第一个数据包</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C%E6%8E%A5%E5%8F%A3"><span class="toc-number">3.1.</span> <span class="toc-text"> 选择网络接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E6%8D%95%E8%8E%B7%E6%95%B0%E6%8D%AE"><span class="toc-number">3.2.</span> <span class="toc-text"> 开始捕获数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%9D%E5%AD%98%E6%8D%95%E8%8E%B7%E6%96%87%E4%BB%B6"><span class="toc-number">3.3.</span> <span class="toc-text"> 保存捕获文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#wireshark%E8%BF%87%E6%BB%A4%E5%99%A8%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7"><span class="toc-number">4.</span> <span class="toc-text"> Wireshark过滤器使用技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8D%95%E8%8E%B7%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-number">4.1.</span> <span class="toc-text"> 捕获过滤器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-number">4.2.</span> <span class="toc-text"> 显示过滤器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E8%BF%87%E6%BB%A4%E6%8A%80%E5%B7%A7"><span class="toc-number">4.3.</span> <span class="toc-text"> 高级过滤技巧</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%9D%E5%AD%98%E5%92%8C%E7%AE%A1%E7%90%86%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-number">4.4.</span> <span class="toc-text"> 保存和管理过滤器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E5%B8%B8%E8%A7%81%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.</span> <span class="toc-text"> 分析常见协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90tcp%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.1.</span> <span class="toc-text"> 分析TCP协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90http%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.2.</span> <span class="toc-text"> 分析HTTP协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90dns%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.3.</span> <span class="toc-text"> 分析DNS协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90icmp%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.4.</span> <span class="toc-text"> 分析ICMP协议</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E5%AE%9E%E6%88%98"><span class="toc-number">6.</span> <span class="toc-text"> 网络故障排查实战</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98"><span class="toc-number">6.1.</span> <span class="toc-text"> 网络延迟问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%B8%A2%E5%8C%85%E9%97%AE%E9%A2%98"><span class="toc-number">6.2.</span> <span class="toc-text"> 数据丢包问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98"><span class="toc-number">6.3.</span> <span class="toc-text"> 连接异常问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dns%E9%97%AE%E9%A2%98"><span class="toc-number">6.4.</span> <span class="toc-text"> DNS问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%88%86%E6%9E%90"><span class="toc-number">7.</span> <span class="toc-text"> 网络安全分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E6%B5%8B%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F"><span class="toc-number">7.1.</span> <span class="toc-text"> 检测端口扫描</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E6%B5%8Bdos%E6%94%BB%E5%87%BB"><span class="toc-number">7.2.</span> <span class="toc-text"> 检测DoS攻击</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E6%B5%8B%E5%8F%AF%E7%96%91dns%E6%B4%BB%E5%8A%A8"><span class="toc-number">7.3.</span> <span class="toc-text"> 检测可疑DNS活动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%86%E5%88%AB%E6%98%8E%E6%96%87%E5%87%AD%E6%8D%AE%E4%BC%A0%E8%BE%93"><span class="toc-number">7.4.</span> <span class="toc-text"> 识别明文凭据传输</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6%E6%8A%80%E5%B7%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-number">8.</span> <span class="toc-text"> 进阶技巧与最佳实践</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7"><span class="toc-number">8.1.</span> <span class="toc-text"> 使用命令行工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E4%B8%AA%E6%80%A7%E5%8C%96%E8%A7%A3%E7%A0%81%E5%99%A8"><span class="toc-number">8.2.</span> <span class="toc-text"> 配置个性化解码器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%9B%BE%E8%A1%A8%E5%92%8C%E5%9B%BE%E5%BD%A2"><span class="toc-number">8.3.</span> <span class="toc-text"> 使用图表和图形</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E7%BB%84%E7%BD%91%E7%BB%9C%E4%BC%9A%E8%AF%9D"><span class="toc-number">8.4.</span> <span class="toc-text"> 重组网络会话</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-number">8.5.</span> <span class="toc-text"> 最佳实践</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">9.</span> <span class="toc-text"> 总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9B%E4%B8%80%E6%AD%A5%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90"><span class="toc-number">10.</span> <span class="toc-text"> 进一步学习资源</span></a></li></ol>
+  
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="xiaozhaoz1" class="lazyload">
+  <div class="sidebar-author-name">xiaozhaoz1</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">8</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">12</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+  <script>
+    function initLive2d() {
+      live2d.init("https://fastly.jsdelivr.net/gh/D-Sketon/plugin-live2d/", {themeTipsPath: ""});
+    }
+  </script>
+  
+<script src="https://fastly.jsdelivr.net/gh/D-Sketon/plugin-live2d/js/live2d-autoload.js" onload="initLive2d &amp;&amp; initLive2d()" async></script>
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "xiaozhaoz1",
+          title: "Wireshark网络流量分析",
+          url: "http://example.com/2025/05/18/Wireshark%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/",
+          excerpt: "",
+          description: "",
+          stripContent: " Wireshark简介与安装  什么是Wireshark？ Wireshark是一款开源网络协议分析器，可以截取各种网络数据包，并显示数据包的详细信息。它广泛应用于网络故障排查、性能分析、网络安全检测和教育培训等领域。Wireshark支持多种操作系统（Windows、macOS、Linux），能够解析上千种网络协议，是网络专业人士必备的工具之一。  Wireshark的安装步骤 在Windows系统上安装 下载安装程序：访问Wireshark官网（https://www.wireshark.",
+          date: "Sun May 18 2025 22:48:59 GMT+0800",
+          updated: "Sun Sep 21 2025 14:07:33 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.1' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+
