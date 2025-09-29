@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-09-21T06:06:32.674Z</updated>
+  <updated>2025-09-29T11:33:19.006Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>从零开始构建一个Linux服务器</title>
+    <link href="http://example.com/2025/09/27/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E4%B8%80%E4%B8%AALinux%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    <id>http://example.com/2025/09/27/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E4%B8%80%E4%B8%AALinux%E6%9C%8D%E5%8A%A1%E5%99%A8/</id>
+    <published>2025-09-27T06:21:39.000Z</published>
+    <updated>2025-09-29T11:33:19.006Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;总体规划&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#总体规划&quot;&gt;&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="-Linux -服务器 -教程" scheme="http://example.com/tags/Linux-%E6%9C%8D%E5%8A%A1%E5%99%A8-%E6%95%99%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>FRP内网穿透</title>

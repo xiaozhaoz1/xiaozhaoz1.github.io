@@ -1,0 +1,1358 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  
+  <title>
+    从零开始构建一个Linux服务器 |
+    
+    Hexo
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <link rel="preload" as="style" href="https://fontsapi.zeoseven.com/292/main/result.css" onload="this.rel&#x3D;&#39;stylesheet&#39;" crossorigin>
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="总体规划 板块一：服务器运维基石——稳固、安全与高效 《从零开始构建一个Linux服务器》  内容方向：系统选型、分区方案、安全初始化（SSH密钥、防火墙）、基础服务安装与配置。  《Shell脚本自动化运维实战》  内容方向：展示几个实用的Shell脚本，如自动备份、日志轮转、服务监控告警，体现自动化思维。  《深入理解Systemd：从服务管理到系统守护》  内容方向：告别传统的&#x2F;etc&#x2F;i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零开始构建一个Linux服务器">
+<meta property="og:url" content="http://example.com/2025/09/27/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E4%B8%80%E4%B8%AALinux%E6%9C%8D%E5%8A%A1%E5%99%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="总体规划 板块一：服务器运维基石——稳固、安全与高效 《从零开始构建一个Linux服务器》  内容方向：系统选型、分区方案、安全初始化（SSH密钥、防火墙）、基础服务安装与配置。  《Shell脚本自动化运维实战》  内容方向：展示几个实用的Shell脚本，如自动备份、日志轮转、服务监控告警，体现自动化思维。  《深入理解Systemd：从服务管理到系统守护》  内容方向：告别传统的&#x2F;etc&#x2F;i">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-09-27T06:21:39.000Z">
+<meta property="article:modified_time" content="2025-09-29T11:33:19.006Z">
+<meta property="article:author" content="xiaozhaoz1">
+<meta property="article:tag" content="-Linux -服务器 -教程">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">Loading...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/">Home</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/archives">Archives</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/about">About</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/friend">Friend</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed" target="_blank"></a>
+    
+    
+    
+  </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture>
+          
+        </picture>
+        
+          <img  fetchpriority="high" src="/images/banner.webp" alt="从零开始构建一个Linux服务器">
+        
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">从零开始构建一个Linux服务器</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  <div class="sidebar-wrapper-container sticky">
+  
+    
+    
+  
+ 
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E4%BD%93%E8%A7%84%E5%88%92"><span class="toc-number">1.</span> <span class="toc-text"> 总体规划</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E4%B8%80%E4%B8%AAlinux%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">2.</span> <span class="toc-text"> 一：《从零开始构建一个Linux服务器》</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E4%B8%8E%E9%A6%96%E6%AC%A1%E7%99%BB%E5%BD%95"><span class="toc-number">2.1.</span> <span class="toc-text"> 系统安装与首次登录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F"><span class="toc-number">2.2.</span> <span class="toc-text"> 更新系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%99%AE%E9%80%9A%E7%94%A8%E6%88%B7%E5%B9%B6%E7%A6%81%E6%AD%A2root%E7%99%BB%E5%BD%95"><span class="toc-number">2.3.</span> <span class="toc-text"> 创建普通用户并禁止Root登录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEssh%E5%AF%86%E9%92%A5%E7%99%BB%E5%BD%95%E5%B9%B6%E7%A6%81%E7%94%A8%E5%AF%86%E7%A0%81"><span class="toc-number">2.4.</span> <span class="toc-text"> 配置SSH密钥登录并禁用密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E9%98%B2%E7%81%AB%E5%A2%99ufw"><span class="toc-number">2.5.</span> <span class="toc-text"> 配置防火墙（UFW）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7%E5%BF%85%E5%A4%87%E5%B7%A5%E5%85%B7"><span class="toc-number">2.6.</span> <span class="toc-text"> 安装系统监控必备工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E6%A3%80%E6%9F%A5%E6%B8%85%E5%8D%95"><span class="toc-number">2.7.</span> <span class="toc-text"> 总结与检查清单</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#shell%E8%84%9A%E6%9C%AC%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4%E5%AE%9E%E6%88%98"><span class="toc-number">3.</span> <span class="toc-text"> 《Shell脚本自动化运维实战》</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#shell%E8%84%9A%E6%9C%AC%E5%85%A5%E9%97%A8"><span class="toc-number">3.1.</span> <span class="toc-text"> Shell脚本入门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E8%84%9A%E6%9C%AC%E4%B8%80%E8%87%AA%E5%8A%A8%E5%A4%87%E4%BB%BD%E7%BD%91%E7%AB%99%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">3.2.</span> <span class="toc-text"> 实战脚本一：自动备份网站与数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%91%E6%8E%A7%E7%BD%91%E7%AB%99%E7%8A%B6%E6%80%81%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%91%8A%E8%AD%A6"><span class="toc-number">3.3.</span> <span class="toc-text"> 监控网站状态并自动告警</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E8%87%AA%E5%8A%A8%E6%B8%85%E7%90%86%E6%97%A5%E5%BF%97%E8%BD%AE%E8%BD%AC"><span class="toc-number">3.4.</span> <span class="toc-text"> 日志文件自动清理（日志轮转）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.5.</span> <span class="toc-text"> 总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3systemd%E4%BB%8E%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86%E5%88%B0%E7%B3%BB%E7%BB%9F%E5%AE%88%E6%8A%A4"><span class="toc-number">4.</span> <span class="toc-text"> 《深入理解Systemd：从服务管理到系统守护》</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81systemd%E4%BB%8E%E6%89%8B%E5%8A%A8%E5%88%B0%E8%87%AA%E5%8A%A8%E7%9A%84%E8%BF%9B%E5%8C%96"><span class="toc-number">4.1.</span> <span class="toc-text"> 为什么需要Systemd？从手动到自动的进化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#systemd%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%92%8C%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">4.2.</span> <span class="toc-text"> Systemd基础概念和常用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%8E%B0%E6%9C%89%E6%9C%8D%E5%8A%A1"><span class="toc-number">4.3.</span> <span class="toc-text"> 查看现有服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%86%E6%88%91%E4%BB%AC%E7%9A%84%E7%BD%91%E7%AB%99%E7%9B%91%E6%8E%A7%E8%84%9A%E6%9C%AC%E5%8F%98%E6%88%90%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1"><span class="toc-number">4.4.</span> <span class="toc-text"> 将我们的网站监控脚本变成系统服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7"><span class="toc-number">4.5.</span> <span class="toc-text"> 更多实用技巧</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-2"><span class="toc-number">4.6.</span> <span class="toc-text"> 总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#linux%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%A4%A7%E5%B8%88%E5%BF%AB%E9%80%9F%E5%AE%9A%E4%BD%8D%E7%B3%BB%E7%BB%9F%E7%93%B6%E9%A2%88%E7%9A%84%E4%B8%89%E6%9D%BF%E6%96%A7"><span class="toc-number">5.</span> <span class="toc-text"> 《Linux性能优化大师：快速定位系统瓶颈的&quot;三板斧&quot;》</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5"><span class="toc-number">5.1.</span> <span class="toc-text"> 整体健康检查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cpu%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90tophtop"><span class="toc-number">5.2.</span> <span class="toc-text"> CPU性能分析（top&#x2F;htop）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90freevmstat"><span class="toc-number">5.3.</span> <span class="toc-text"> 内存分析（free&#x2F;vmstat）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A3%81%E7%9B%98io%E5%88%86%E6%9E%90iostatiotop"><span class="toc-number">5.4.</span> <span class="toc-text"> 磁盘I&#x2F;O分析（iostat&#x2F;iotop）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90ssnetstat"><span class="toc-number">5.5.</span> <span class="toc-text"> 网络性能分析（ss&#x2F;netstat）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E6%AC%A1%E5%AE%8C%E6%95%B4%E7%9A%84%E6%80%A7%E8%83%BD%E6%8E%92%E6%9F%A5"><span class="toc-number">5.6.</span> <span class="toc-text"> 一次完整的性能排查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-3"><span class="toc-number">5.7.</span> <span class="toc-text"> 总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#iptablesfirewalld%E5%AE%9E%E6%88%98%E9%85%8D%E7%BD%AE"><span class="toc-number">6.</span> <span class="toc-text"> 《iptables&#x2F;firewalld实战配置》</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99%E5%9F%BA%E7%A1%80%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-number">6.1.</span> <span class="toc-text"> 防火墙基础——为什么需要防火墙？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ufw%E5%85%A5%E9%97%A8%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E9%98%B2%E7%81%AB%E5%A2%99%E9%85%8D%E7%BD%AE"><span class="toc-number">6.2.</span> <span class="toc-text"> UFW入门——最简单的防火墙配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#firewalld%E8%AF%A6%E8%A7%A3%E4%BC%81%E4%B8%9A%E7%BA%A7%E9%98%B2%E7%81%AB%E5%A2%99%E7%AE%A1%E7%90%86"><span class="toc-number">6.3.</span> <span class="toc-text"> firewalld详解——企业级防火墙管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iptables%E5%9F%BA%E7%A1%80%E7%90%86%E8%A7%A3%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86"><span class="toc-number">6.4.</span> <span class="toc-text"> iptables基础——理解底层原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%98%B2%E7%81%AB%E5%A2%99%E9%85%8D%E7%BD%AE"><span class="toc-number">6.5.</span> <span class="toc-text"> Web服务器防火墙配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%8A%80%E5%B7%A7"><span class="toc-number">6.6.</span> <span class="toc-text"> 防火墙故障排查技巧</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-number">6.7.</span> <span class="toc-text"> 防火墙最佳实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-4"><span class="toc-number">6.8.</span> <span class="toc-text"> 总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%91%E7%AB%AF%E6%9E%B6%E6%9E%84%E5%AE%9E%E6%88%98%E5%9F%BA%E4%BA%8Edocker%E6%90%AD%E5%BB%BA%E9%AB%98%E5%8F%AF%E7%94%A8lnmp%E7%8E%AF%E5%A2%83"><span class="toc-number">7.</span> <span class="toc-text"> 《云端架构实战：基于Docker搭建高可用LNMP环境》</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9docker%E4%BC%A0%E7%BB%9F%E9%83%A8%E7%BD%B2%E7%9A%84%E7%97%9B%E7%82%B9"><span class="toc-number">7.1.</span> <span class="toc-text"> 为什么选择Docker？传统部署的痛点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4"><span class="toc-number">7.2.</span> <span class="toc-text"> Docker安装和基础命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-compose%E5%A4%9A%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92%E5%B7%A5%E5%85%B7"><span class="toc-number">7.3.</span> <span class="toc-text"> Docker Compose——多容器编排工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%A7%84%E5%88%92"><span class="toc-number">7.4.</span> <span class="toc-text"> 项目结构规划</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99docker-compose%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">7.5.</span> <span class="toc-text"> 编写Docker Compose配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%90%84%E4%B8%AA%E6%9C%8D%E5%8A%A1"><span class="toc-number">7.6.</span> <span class="toc-text"> 配置各个服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8lnmp%E7%8E%AF%E5%A2%83"><span class="toc-number">7.7.</span> <span class="toc-text"> 启动LNMP环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%B8%B8%E7%AE%A1%E7%90%86%E5%92%8C%E7%BB%B4%E6%8A%A4"><span class="toc-number">7.8.</span> <span class="toc-text"> 日常管理和维护</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E5%8F%AF%E7%94%A8%E5%92%8C%E6%89%A9%E5%B1%95%E9%85%8D%E7%BD%AE"><span class="toc-number">7.9.</span> <span class="toc-text"> 高可用和扩展配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%8A%80%E5%B7%A7"><span class="toc-number">7.10.</span> <span class="toc-text"> 故障排查技巧</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96%E5%BB%BA%E8%AE%AE"><span class="toc-number">7.11.</span> <span class="toc-text"> 生产环境优化建议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-5"><span class="toc-number">7.12.</span> <span class="toc-text"> 总结</span></a></li></ol></li></ol>
+  
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="xiaozhaoz1" class="lazyload">
+  <div class="sidebar-author-name">xiaozhaoz1</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">9</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">13</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+  
+  <div class="sidebar-widget">
+  
+  </div>
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-从零开始构建一个Linux服务器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2025-09-27T06:21:39.000Z" itemprop="datePublished">2025-09-27</time>
+    <time style="display: none;" id="post-update-time">2025-09-29</time>
+  </span>
+  
+</div>
+
+      
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="总体规划"><a class="markdownIt-Anchor" href="#总体规划"></a> 总体规划</h1>
+<p>板块一：服务器运维基石——稳固、安全与高效</p>
+<pre><code>《从零开始构建一个Linux服务器》
+
+内容方向：系统选型、分区方案、安全初始化（SSH密钥、防火墙）、基础服务安装与配置。
+
+《Shell脚本自动化运维实战》
+
+内容方向：展示几个实用的Shell脚本，如自动备份、日志轮转、服务监控告警，体现自动化思维。
+
+《深入理解Systemd：从服务管理到系统守护》
+
+内容方向：告别传统的/etc/init.d，详解如何为自定义服务编写专业的Systemd Unit文件。
+
+《Linux性能优化大师：快速定位系统瓶颈的“三板斧”》
+
+内容方向：介绍并实战使用top/htop, iostat, netstat/ss 等命令分析CPU、内存、IO、网络问题。
+
+《iptables/firewalld实战配置》
+
+内容方向：详解防火墙策略，如何仅开放必要端口，防范常见扫描和攻击。
+
+《基于Docker搭建高可用LNMP/LAMP环境》
+
+内容方向：使用Docker容器化部署Web栈，并组合成高可用架构。
+</code></pre>
+<h1 id="一从零开始构建一个linux服务器"><a class="markdownIt-Anchor" href="#一从零开始构建一个linux服务器"></a> 一：《从零开始构建一个Linux服务器》</h1>
+<h2 id="系统安装与首次登录"><a class="markdownIt-Anchor" href="#系统安装与首次登录"></a> 系统安装与首次登录</h2>
+<p>选择云服务器或虚拟机：你可以选择阿里云、腾讯云等云服务商购买一台ECS，或者在自己的电脑上用VirtualBox/VMware创建一个虚拟机。</p>
+<p>系统选择：在安装时，务必选择 Ubuntu Server 22.04 LTS（长期支持版），它意味着5年的安全更新，非常稳定。</p>
+<p>最小化安装：在安装过程中，选择“最小化安装”（Minimal Installation）。这只会安装最基本的系统组件，没有图形界面，减少了潜在的攻击面，也更节省资源。</p>
+<p>首次登录：安装完成后，使用云服务商提供的IP地址、用户名（通常是ubuntu）和密码（或SSH密钥）通过SSH登录。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在你自己电脑的终端（Terminal）里输入</span></span><br><span class="line">ssh ubuntu@你的服务器IP地址</span><br><span class="line"><span class="comment"># 然后输入密码，或者如果是密钥登录会自动认证</span></span><br></pre></td></tr></table></figure>
+<h2 id="更新系统"><a class="markdownIt-Anchor" href="#更新系统"></a> 更新系统</h2>
+<p>登录后第一件事，永远是更新系统的软件包列表并升级所有已安装的包。这能确保你拥有最新的安全补丁。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 更新软件包列表</span></span><br><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 升级所有已安装的软件包（这可能需要一点时间）</span></span><br><span class="line"><span class="built_in">sudo</span> apt upgrade -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可选：进行深度升级（会处理依赖关系的变化）</span></span><br><span class="line"><span class="built_in">sudo</span> apt dist-upgrade -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清理无用的软件包，释放空间</span></span><br><span class="line"><span class="built_in">sudo</span> apt autoremove -y</span><br></pre></td></tr></table></figure>
+<h2 id="创建普通用户并禁止root登录"><a class="markdownIt-Anchor" href="#创建普通用户并禁止root登录"></a> 创建普通用户并禁止Root登录</h2>
+<p>直接使用root用户是极度危险的。我们应该创建一个拥有管理员权限（sudo）的普通用户。</p>
+<p>创建新用户（例如，用户名为myadmin）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> adduser myadmin</span><br><span class="line"><span class="comment"># 根据提示设置一个强密码</span></span><br></pre></td></tr></table></figure>
+<p>赋予新用户sudo权限：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> usermod -aG <span class="built_in">sudo</span> myadmin</span><br></pre></td></tr></table></figure>
+<p>切换到新用户，测试sudo权限：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 切换用户</span></span><br><span class="line">su - myadmin</span><br><span class="line"><span class="comment"># 测试一下是否能执行管理员命令</span></span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">whoami</span></span><br><span class="line"><span class="comment"># 如果返回 `root`，说明配置成功。</span></span><br></pre></td></tr></table></figure>
+<h2 id="配置ssh密钥登录并禁用密码"><a class="markdownIt-Anchor" href="#配置ssh密钥登录并禁用密码"></a> 配置SSH密钥登录并禁用密码</h2>
+<p>密码可能被暴力破解，而SSH密钥是目前最安全、最方便的登录方式。</p>
+<p>在你自己电脑上生成SSH密钥对（如果你还没有的话）：</p>
+<p>Linux/macOS：打开终端，输入 ssh-keygen -t rsa -b 4096，然后一路回车。</p>
+<p>Windows：使用WSL，或者PuTTYgen工具。</p>
+<p>生成后，你的公钥通常在 ~/.ssh/id_rsa.pub，私钥在 ~/.ssh/id_rsa。</p>
+<p>将公钥上传到服务器：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 确保你在服务器上使用的是新创建的 myadmin 用户</span></span><br><span class="line"><span class="comment"># 创建 .ssh 目录并设置正确权限</span></span><br><span class="line"><span class="built_in">mkdir</span> -p ~/.ssh</span><br><span class="line"><span class="built_in">chmod</span> 700 ~/.ssh</span><br><span class="line"><span class="comment"># 将你的公钥内容（id_rsa.pub里的所有文本）写入 authorized_keys 文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;你的公钥内容&quot;</span> &gt;&gt; ~/.ssh/authorized_keys</span><br><span class="line"><span class="comment"># 设置 authorized_keys 文件的权限</span></span><br><span class="line"><span class="built_in">chmod</span> 600 ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+<p>测试密钥登录：</p>
+<p>退出当前的SSH连接（输入exit），然后尝试用新用户和密钥登录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh myadmin@你的服务器IP地址</span><br></pre></td></tr></table></figure>
+<p>如果无需输入密码直接登录成功，说明密钥配置正确。</p>
+<p>配置SSH服务，强化安全：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 编辑SSH配置文件</span></span><br><span class="line"><span class="built_in">sudo</span> nano /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure>
+<p>找到并修改以下行（如果行首有#注释，请删除）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 禁止root用户直接SSH登录</span></span><br><span class="line">PermitRootLogin no</span><br><span class="line"><span class="comment"># 禁止使用密码登录，只允许密钥登录（确保密钥登录成功后再改！）</span></span><br><span class="line">PasswordAuthentication no</span><br><span class="line"><span class="comment"># 使用更现代的SSH-2协议</span></span><br><span class="line">Protocol 2</span><br><span class="line"><span class="comment"># 可选：更改默认的22端口，可以减少自动化扫描（例如改为 45678）</span></span><br><span class="line">Port 45678</span><br></pre></td></tr></table></figure>
+<p>⚠️ 重要警告：修改端口后，下次登录需要指定端口：ssh -p 45678 myadmin@你的服务器IP。同时，务必在防火墙中开放新端口（见下一步）！</p>
+<p>重启SSH服务使配置生效：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> systemctl restart sshd</span><br></pre></td></tr></table></figure>
+<p>不要关闭当前窗口！ 新开一个终端窗口测试新的SSH配置（特别是新端口和密钥登录）是否工作正常，确认无误后再关闭当前窗口。</p>
+<h2 id="配置防火墙ufw"><a class="markdownIt-Anchor" href="#配置防火墙ufw"></a> 配置防火墙（UFW）</h2>
+<p>Ubuntu有一个非常简单的防火墙配置工具叫ufw（Uncomplicated Firewall）。</p>
+<p>安装并启用UFW：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install ufw</span><br></pre></td></tr></table></figure>
+<p>设置默认规则：拒绝所有传入连接，允许所有传出连接。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> ufw default deny incoming</span><br><span class="line"><span class="built_in">sudo</span> ufw default allow outgoing</span><br></pre></td></tr></table></figure>
+<p>放行必要的端口：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> ufw allow 45678/tcp</span><br></pre></td></tr></table></figure>
+<p>HTTP/HTTPS端口（为后续搭建网站准备）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> ufw allow 80/tcp</span><br><span class="line"><span class="built_in">sudo</span> ufw allow 443/tcp</span><br></pre></td></tr></table></figure>
+<p>启用防火墙：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> ufw <span class="built_in">enable</span></span><br><span class="line"><span class="comment"># 查看规则状态</span></span><br><span class="line"><span class="built_in">sudo</span> ufw status verbose</span><br></pre></td></tr></table></figure>
+<h2 id="安装系统监控必备工具"><a class="markdownIt-Anchor" href="#安装系统监控必备工具"></a> 安装系统监控必备工具</h2>
+<p>让我们安装几个小工具，可以随时查看服务器的健康状况。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install -y htop net-tools</span><br><span class="line">htop：一个强大的、交互式的进程查看器，比系统自带的top更直观。</span><br><span class="line"></span><br><span class="line">用法：直接在终端输入 htop。</span><br><span class="line"></span><br><span class="line">net-tools：包含了经典的 ifconfig、netstat 等命令，用于查看网络信息。</span><br></pre></td></tr></table></figure>
+<h2 id="总结与检查清单"><a class="markdownIt-Anchor" href="#总结与检查清单"></a> 总结与检查清单</h2>
+<p>现在，服务器已经具备了生产环境的基础要求：</p>
+<p>系统是最新的</p>
+<p>存在一个具有sudo权限的普通用户</p>
+<p>禁止了危险的Root SSH登录</p>
+<p>强制使用更安全的SSH密钥认证</p>
+<p>防火墙已开启，只开放必要端口</p>
+<p>安装了基础监控工具</p>
+<h1 id="shell脚本自动化运维实战"><a class="markdownIt-Anchor" href="#shell脚本自动化运维实战"></a> 《Shell脚本自动化运维实战》</h1>
+<h2 id="shell脚本入门"><a class="markdownIt-Anchor" href="#shell脚本入门"></a> Shell脚本入门</h2>
+<p>什么是Shell脚本？<br />
+简单来说，它就是一个包含一系列Linux命令的文本文件。</p>
+<p>编写和运行脚本的极简步骤：</p>
+<p>创建文件：vim <a target="_blank" rel="noopener" href="http://backup.sh">backup.sh</a></p>
+<p>指定解释器（Shebang）：文件第一行写 #!/bin/bash，告诉系统用Bash来执行。</p>
+<p>编写命令：写下你需要执行的命令，就像在终端里输入一样。</p>
+<p>赋予执行权限：chmod +x <a target="_blank" rel="noopener" href="http://backup.sh">backup.sh</a> （让文件变成可执行程序）</p>
+<p>运行：./backup.sh （执行它）</p>
+<p>一个最简单的热身脚本：system_info.sh<br />
+让我们创建一个能快速显示系统关键信息的脚本。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># 文件名：system_info.sh</span></span><br><span class="line"><span class="comment"># 功能：快速查看系统基本状态</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;======================================&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;        系统基本信息速览&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;======================================&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;- 主机名: <span class="subst">$(hostname)</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;- 系统运行时间: <span class="subst">$(uptime | cut -d&#x27;,&#x27; -f1)</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;- 当前登录用户: <span class="subst">$(whoami)</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;--------------------------------------&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;- 内存使用情况:&quot;</span></span><br><span class="line">free -h</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;--------------------------------------&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;- 磁盘使用情况:&quot;</span></span><br><span class="line"><span class="built_in">df</span> -h / /home /var <span class="comment"># 查看关键目录的磁盘空间</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;======================================&quot;</span></span><br></pre></td></tr></table></figure>
+<p>运行它：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x system_info.sh</span><br><span class="line">./system_info.sh</span><br></pre></td></tr></table></figure>
+<h2 id="实战脚本一自动备份网站与数据库"><a class="markdownIt-Anchor" href="#实战脚本一自动备份网站与数据库"></a> 实战脚本一：自动备份网站与数据库</h2>
+<p>场景：你的服务器上运行着一个WordPress博客（包含网站文件和MySQL数据库）。你需要每天凌晨3点自动备份，防止数据丢失。</p>
+<p>脚本思路：</p>
+<p>定义备份目录和日期。</p>
+<p>备份MySQL数据库（导出为SQL文件）。</p>
+<p>备份网站文件（打包压缩）。</p>
+<p>清理7天前的旧备份，节省空间。</p>
+<p>脚本代码：auto_backup.sh</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># 文件名：auto_backup.sh</span></span><br><span class="line"><span class="comment"># 功能：自动备份网站文件和数据库</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ！重要：使用前需要修改下面的变量！</span></span><br><span class="line"><span class="comment"># 设置MySQL数据库信息</span></span><br><span class="line">MYSQL_USER=<span class="string">&quot;your_db_username&quot;</span></span><br><span class="line">MYSQL_PASSWORD=<span class="string">&quot;your_db_password&quot;</span></span><br><span class="line">MYSQL_DATABASE=<span class="string">&quot;your_database_name&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置要备份的网站目录</span></span><br><span class="line">WEBSITE_DIR=<span class="string">&quot;/var/www/html&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置备份文件存放的根目录</span></span><br><span class="line">BACKUP_ROOT=<span class="string">&quot;/opt/backups&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据当前日期创建备份目录，格式：2024-10-27</span></span><br><span class="line">DATE=$(<span class="built_in">date</span> +%Y-%m-%d)</span><br><span class="line">BACKUP_DIR=<span class="string">&quot;<span class="variable">$BACKUP_ROOT</span>/<span class="variable">$DATE</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 日志函数，方便记录和查看执行情况</span></span><br><span class="line"><span class="function"><span class="title">log</span></span>() &#123;</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;[<span class="subst">$(date &#x27;+%Y-%m-%d %H:%M:%S&#x27;)</span>] <span class="variable">$1</span>&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建备份目录</span></span><br><span class="line"><span class="built_in">mkdir</span> -p <span class="variable">$BACKUP_DIR</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$BACKUP_DIR</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">log</span> <span class="string">&quot;开始今日备份...&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. 备份MySQL数据库</span></span><br><span class="line"><span class="built_in">log</span> <span class="string">&quot;正在备份MySQL数据库: <span class="variable">$MYSQL_DATABASE</span>&quot;</span></span><br><span class="line">mysqldump -u<span class="variable">$MYSQL_USER</span> -p<span class="variable">$MYSQL_PASSWORD</span> <span class="variable">$MYSQL_DATABASE</span> &gt; <span class="variable">$BACKUP_DIR</span>/db_backup.sql</span><br><span class="line"><span class="comment"># 检查上一条命令是否执行成功</span></span><br><span class="line"><span class="keyword">if</span> [ $? -eq 0 ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">log</span> <span class="string">&quot;数据库备份成功！&quot;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">log</span> <span class="string">&quot;***数据库备份失败！***&quot;</span></span><br><span class="line">    <span class="built_in">exit</span> 1 <span class="comment"># 失败则退出脚本</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 备份网站文件</span></span><br><span class="line"><span class="built_in">log</span> <span class="string">&quot;正在备份网站目录: <span class="variable">$WEBSITE_DIR</span>&quot;</span></span><br><span class="line">tar -czf <span class="variable">$BACKUP_DIR</span>/website_backup.tar.gz <span class="variable">$WEBSITE_DIR</span></span><br><span class="line"><span class="keyword">if</span> [ $? -eq 0 ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">log</span> <span class="string">&quot;网站文件备份成功！&quot;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">log</span> <span class="string">&quot;***网站文件备份失败！***&quot;</span></span><br><span class="line">    <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 清理7天前的旧备份</span></span><br><span class="line"><span class="built_in">log</span> <span class="string">&quot;正在清理7天前的旧备份...&quot;</span></span><br><span class="line">find <span class="variable">$BACKUP_ROOT</span> -<span class="built_in">type</span> d -name <span class="string">&quot;*-*-*&quot;</span> -mtime +7 -<span class="built_in">exec</span> <span class="built_in">rm</span> -rf &#123;&#125; \; 2&gt;/dev/null</span><br><span class="line"></span><br><span class="line"><span class="built_in">log</span> <span class="string">&quot;今日备份全部完成！备份文件存放在: <span class="variable">$BACKUP_DIR</span>&quot;</span></span><br><span class="line"><span class="built_in">log</span> <span class="string">&quot;备份内容：&quot;</span></span><br><span class="line"><span class="built_in">ls</span> -lh <span class="variable">$BACKUP_DIR</span></span><br></pre></td></tr></table></figure>
+<p>如何使用：</p>
+<p>修改变量：将 MYSQL_USER, MYSQL_PASSWORD 等替换成你自己的信息。</p>
+<p>测试运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x auto_backup.sh</span><br><span class="line">./auto_backup.sh</span><br></pre></td></tr></table></figure>
+<p>设置为定时任务（Cron）：让脚本每天自动运行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 编辑当前用户的定时任务</span></span><br><span class="line">crontab -e</span><br><span class="line"><span class="comment"># 在文件末尾添加一行，表示每天凌晨3点执行</span></span><br><span class="line"><span class="comment"># 基本格式：分 时 日 月 周 命令</span></span><br><span class="line">0 3 * * * /bin/bash /path/to/your/auto_backup.sh &gt;&gt; /opt/backups/backup.log 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+<h2 id="监控网站状态并自动告警"><a class="markdownIt-Anchor" href="#监控网站状态并自动告警"></a> 监控网站状态并自动告警</h2>
+<p>场景：你的Web服务可能因为某些原因挂掉。你需要一个脚本定期检查，并在发现问题时第一时间通知你。</p>
+<p>脚本思路：</p>
+<p>使用 curl 命令访问网站，检查HTTP状态码。</p>
+<p>如果访问失败（状态码非200），记录日志并发送告警（例如通过邮件、钉钉、企业微信等）。</p>
+<p>本脚本以发送邮件为例（需要配置邮件系统），并记录到日志文件。</p>
+<p>脚本代码：website_monitor.sh</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># 文件名：website_monitor.sh</span></span><br><span class="line"><span class="comment"># 功能：监控网站是否可访问</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 要监控的网站URL</span></span><br><span class="line">WEBSITE_URL=<span class="string">&quot;https://www.yourdomain.com&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 日志文件路径</span></span><br><span class="line">LOG_FILE=<span class="string">&quot;/var/log/website_monitor.log&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查网站状态</span></span><br><span class="line">HTTP_CODE=$(curl -o /dev/null -s -w <span class="string">&quot;%&#123;http_code&#125;\n&quot;</span> --connect-timeout 10 <span class="variable">$WEBSITE_URL</span>)</span><br><span class="line">TIMESTAMP=$(<span class="built_in">date</span> <span class="string">&#x27;+%Y-%m-%d %H:%M:%S&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 判断状态码是否为200（正常）</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$HTTP_CODE</span> -eq 200 ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$TIMESTAMP</span> - [OK] 网站 <span class="variable">$WEBSITE_URL</span> 访问正常 (状态码: <span class="variable">$HTTP_CODE</span>)&quot;</span> &gt;&gt; <span class="variable">$LOG_FILE</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="comment"># 这里是不正常的情况</span></span><br><span class="line">    ERROR_MSG=<span class="string">&quot;<span class="variable">$TIMESTAMP</span> - [ERROR] 网站 <span class="variable">$WEBSITE_URL</span> 访问异常！ (状态码: <span class="variable">$HTTP_CODE</span>)&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$ERROR_MSG</span> &gt;&gt; <span class="variable">$LOG_FILE</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># ！！！这里是告警动作，你需要根据实际情况实现！！！</span></span><br><span class="line">    <span class="comment"># 示例1: 发送邮件（需要配置mailx或sendmail）</span></span><br><span class="line">    <span class="comment"># echo &quot;$ERROR_MSG&quot; | mail -s &quot;网站宕机告警！&quot; your_email@example.com</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 示例2: 记录到系统日志，方便集中管理</span></span><br><span class="line">    logger -t WebsiteMonitor <span class="string">&quot;<span class="variable">$ERROR_MSG</span>&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 示例3: 可以调用一个发送告警到钉钉/企业微信的脚本</span></span><br><span class="line">    <span class="comment"># /path/to/your/dingding_alert.sh &quot;$ERROR_MSG&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<p>如何使用：</p>
+<p>修改 WEBSITE_URL 为你自己的网站地址。</p>
+<p>创建日志文件并确保脚本有写入权限：sudo touch /var/log/website_monitor.log &amp;&amp; sudo chown $USER /var/log/website_monitor.log</p>
+<p>手动测试：./website_monitor.sh，然后查看日志 tail -f /var/log/website_monitor.log。</p>
+<p>设置为每5分钟检查一次：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br><span class="line"><span class="comment"># 添加以下行</span></span><br><span class="line">*/5 * * * * /bin/bash /path/to/your/website_monitor.sh</span><br></pre></td></tr></table></figure>
+<h2 id="日志文件自动清理日志轮转"><a class="markdownIt-Anchor" href="#日志文件自动清理日志轮转"></a> 日志文件自动清理（日志轮转）</h2>
+<p>场景：应用程序（如Nginx, MySQL）会持续产生日志文件，如果不加管理，很快就会占满磁盘。</p>
+<p>脚本思路：</p>
+<p>找到需要清理的日志文件。</p>
+<p>压缩旧日志（节省空间）。</p>
+<p>清理过于陈旧的日志（例如超过30天）。</p>
+<p>脚本代码：log_cleanup.sh</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># 文件名：log_cleanup.sh</span></span><br><span class="line"><span class="comment"># 功能：清理和归档旧日志</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 日志目录</span></span><br><span class="line">LOG_DIR=<span class="string">&quot;/var/log&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 保留日志的天数</span></span><br><span class="line">DAYS_TO_KEEP=30</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">log</span></span>() &#123;</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;[<span class="subst">$(date &#x27;+%Y-%m-%d %H:%M:%S&#x27;)</span>] <span class="variable">$1</span>&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">log</span> <span class="string">&quot;开始日志清理任务...&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. 压缩7天前的未压缩日志文件（如 .log 文件）</span></span><br><span class="line">find <span class="variable">$LOG_DIR</span> -name <span class="string">&quot;*.log&quot;</span> -<span class="built_in">type</span> f -mtime +7 -<span class="built_in">exec</span> gzip &#123;&#125; \;</span><br><span class="line"><span class="built_in">log</span> <span class="string">&quot;已压缩7天前的日志文件。&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 删除超过指定天数的 .gz 压缩日志</span></span><br><span class="line">find <span class="variable">$LOG_DIR</span> -name <span class="string">&quot;*.gz&quot;</span> -<span class="built_in">type</span> f -mtime +<span class="variable">$DAYS_TO_KEEP</span> -delete</span><br><span class="line"><span class="built_in">log</span> <span class="string">&quot;已删除超过<span class="variable">$&#123;DAYS_TO_KEEP&#125;</span>天的压缩日志。&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">log</span> <span class="string">&quot;日志清理任务完成。&quot;</span></span><br></pre></td></tr></table></figure>
+<p>如何使用：</p>
+<p>这个脚本相对通用，可以直接使用。</p>
+<p>设置为每周执行一次：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br><span class="line"><span class="comment"># 添加以下行，表示每周日凌晨2点执行</span></span><br><span class="line">0 2 * * 0 /bin/bash /path/to/your/log_cleanup.sh</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h2>
+<p>通过这些实战脚本，你应该能感受到Shell自动化带来的强大力量：</p>
+<p>system_info.sh：快速诊断，一目了然。</p>
+<p>auto_backup.sh：数据安全，高枕无忧。</p>
+<p>website_monitor.sh：主动发现，防患未然。</p>
+<p>log_cleanup.sh：资源管理，井井有条。</p>
+<p>核心思想：将任何你需要重复执行两次以上的操作，都考虑写成一个脚本。</p>
+<h1 id="深入理解systemd从服务管理到系统守护"><a class="markdownIt-Anchor" href="#深入理解systemd从服务管理到系统守护"></a> 《深入理解Systemd：从服务管理到系统守护》</h1>
+<h2 id="为什么需要systemd从手动到自动的进化"><a class="markdownIt-Anchor" href="#为什么需要systemd从手动到自动的进化"></a> 为什么需要Systemd？从手动到自动的进化</h2>
+<p>以前的烦恼（SysV init时代）：</p>
+<p>脚本需要手动启动，服务器重启后不会自动恢复</p>
+<p>脚本崩溃了，需要人工介入重启</p>
+<p>查看脚本日志很不方便</p>
+<p>管理多个服务时，启动顺序混乱</p>
+<p>Systemd带来的便利：</p>
+<p>开机自启：设置一次，永久生效</p>
+<p>自动重启：服务崩溃后自动重新启动</p>
+<p>集中管理：统一的命令管理所有服务</p>
+<p>日志集成：所有服务的日志都通过journalctl命令查看</p>
+<p>依赖管理：确保服务按正确顺序启动</p>
+<p>简单理解Systemd：<br />
+想象一下，Systemd就像是一个智能的酒店管家。你告诉他：“这个服务（比如你的备份脚本）很重要，要一直运行，如果它意外停止了，请立即重新启动它。” 管家就会照办。</p>
+<h2 id="systemd基础概念和常用命令"><a class="markdownIt-Anchor" href="#systemd基础概念和常用命令"></a> Systemd基础概念和常用命令</h2>
+<ol>
+<li>服务单元（Service Unit）<br />
+Systemd管理的每个服务都对应一个.service文件，存放在特定目录：</li>
+</ol>
+<p>系统服务：/etc/systemd/system/</p>
+<p>用户服务：/usr/lib/systemd/system/</p>
+<ol start="2">
+<li>必备的systemctl命令<br />
+这些命令是你管理服务的&quot;瑞士军刀&quot;：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动一个服务</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl start 服务名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止一个服务</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl stop 服务名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启服务</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl restart 服务名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看服务状态（最重要！）</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl status 服务名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置开机自启</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl <span class="built_in">enable</span> 服务名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 禁止开机自启</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl <span class="built_in">disable</span> 服务名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新加载systemd配置（修改服务文件后必须执行）</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl daemon-reload</span><br></pre></td></tr></table></figure>
+<h2 id="查看现有服务"><a class="markdownIt-Anchor" href="#查看现有服务"></a> 查看现有服务</h2>
+<p>让我们先看看系统已有的服务，熟悉一下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看nginx服务的状态（如果没有安装nginx，可以换其他服务如ssh）</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl status nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有正在运行的服务</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl list-units --<span class="built_in">type</span>=service --state=running</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有已启用开机自启的服务</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl list-unit-files --<span class="built_in">type</span>=service --state=enabled</span><br></pre></td></tr></table></figure>
+<h2 id="将我们的网站监控脚本变成系统服务"><a class="markdownIt-Anchor" href="#将我们的网站监控脚本变成系统服务"></a> 将我们的网站监控脚本变成系统服务</h2>
+<p>我们将把上一篇文章中的website_monitor.sh脚本封装成Systemd服务。</p>
+<p>步骤1：准备脚本<br />
+首先，确保脚本放在合适的位置，并具有可执行权限：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将脚本移动到标准位置</span></span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">mv</span> website_monitor.sh /usr/local/bin/</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> +x /usr/local/bin/website_monitor.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建日志目录</span></span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">mkdir</span> -p /var/log/website-monitor</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">chown</span> <span class="variable">$USER</span> /var/log/website-monitor</span><br></pre></td></tr></table></figure>
+<p>步骤2：创建Systemd服务文件<br />
+这是最关键的一步！创建服务配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vim /etc/systemd/system/website-monitor.service</span><br></pre></td></tr></table></figure>
+<p>文件内容如下（我会逐行解释）：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=Website Monitoring Service</span><br><span class="line"><span class="attr">Documentation</span>=https://example.com/docs</span><br><span class="line"><span class="attr">After</span>=network.target nss-lookup.target</span><br><span class="line"><span class="attr">Wants</span>=network.target</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">Type</span>=simple</span><br><span class="line"><span class="attr">User</span>=root</span><br><span class="line"><span class="attr">Group</span>=root</span><br><span class="line"><span class="attr">ExecStart</span>=/usr/local/bin/website_monitor.sh</span><br><span class="line"><span class="attr">Restart</span>=always</span><br><span class="line"><span class="attr">RestartSec</span>=<span class="number">10</span></span><br><span class="line"><span class="attr">StandardOutput</span>=journal</span><br><span class="line"><span class="attr">StandardError</span>=journal</span><br><span class="line"><span class="attr">Environment</span>=WEBSITE_URL=https://www.yourdomain.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可选：工作目录，脚本中相对路径的基准</span></span><br><span class="line"><span class="attr">WorkingDirectory</span>=/tmp</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可选：资源限制，防止脚本异常消耗资源</span></span><br><span class="line"><span class="attr">LimitNOFILE</span>=<span class="number">65536</span></span><br><span class="line"><span class="attr">MemoryLimit</span>=<span class="number">100</span>M</span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=multi-user.target</span><br><span class="line">配置文件详解：</span><br><span class="line"></span><br><span class="line"><span class="section">[Unit]</span> 部分：描述服务的基本信息</span><br><span class="line"></span><br><span class="line">Description：服务的描述信息</span><br><span class="line"></span><br><span class="line">After：指定在哪些服务之后启动（网络就绪后）</span><br><span class="line"></span><br><span class="line">Wants：表示弱依赖关系</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span> 部分：定义如何运行服务</span><br><span class="line"></span><br><span class="line"><span class="attr">Type</span>=simple：最常见的类型，服务在前台运行</span><br><span class="line"></span><br><span class="line">User/Group：以什么用户身份运行</span><br><span class="line"></span><br><span class="line">ExecStart：启动服务的命令（最重要！）</span><br><span class="line"></span><br><span class="line"><span class="attr">Restart</span>=always：服务退出时总是重启</span><br><span class="line"></span><br><span class="line"><span class="attr">RestartSec</span>=<span class="number">10</span>：重启前等待<span class="number">10</span>秒</span><br><span class="line"></span><br><span class="line">Environment：设置环境变量</span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span> 部分：定义如何安装服务</span><br><span class="line"></span><br><span class="line"><span class="attr">WantedBy</span>=multi-user.target：在系统多用户模式下启用</span><br></pre></td></tr></table></figure>
+<p>步骤3：修改脚本以适应Systemd<br />
+我们需要稍微修改原来的脚本，让它更适合作为长期运行的服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vim /usr/local/bin/website_monitor.sh</span><br></pre></td></tr></table></figure>
+<p>修改后的脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># Systemd版本：网站监控服务</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以从环境变量或服务文件参数获取URL</span></span><br><span class="line">WEBSITE_URL=<span class="variable">$&#123;WEBSITE_URL:-&quot;https://www.yourdomain.com&quot;&#125;</span></span><br><span class="line">LOG_FILE=<span class="string">&quot;/var/log/website-monitor/monitor.log&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建日志函数</span></span><br><span class="line"><span class="function"><span class="title">log</span></span>() &#123;</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;[<span class="subst">$(date &#x27;+%Y-%m-%d %H:%M:%S&#x27;)</span>] <span class="variable">$1</span>&quot;</span> | <span class="built_in">tee</span> -a <span class="variable">$LOG_FILE</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 监控函数</span></span><br><span class="line"><span class="function"><span class="title">check_website</span></span>() &#123;</span><br><span class="line">    HTTP_CODE=$(curl -o /dev/null -s -w <span class="string">&quot;%&#123;http_code&#125;\n&quot;</span> --connect-timeout 10 <span class="variable">$WEBSITE_URL</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> [ <span class="variable">$HTTP_CODE</span> -eq 200 ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">log</span> <span class="string">&quot;OK - 网站访问正常 (状态码: <span class="variable">$HTTP_CODE</span>)&quot;</span></span><br><span class="line">        <span class="built_in">return</span> 0</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">log</span> <span class="string">&quot;ERROR - 网站访问异常! (状态码: <span class="variable">$HTTP_CODE</span>)&quot;</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 发送告警（这里可以调用你的告警脚本）</span></span><br><span class="line">        <span class="comment"># /path/to/alert.sh &quot;网站异常: $HTTP_CODE&quot;</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 记录到系统日志</span></span><br><span class="line">        logger -t WebsiteMonitor <span class="string">&quot;网站 <span class="variable">$WEBSITE_URL</span> 异常，状态码: <span class="variable">$HTTP_CODE</span>&quot;</span></span><br><span class="line">        <span class="built_in">return</span> 1</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 主循环</span></span><br><span class="line"><span class="built_in">log</span> <span class="string">&quot;网站监控服务启动，监控URL: <span class="variable">$WEBSITE_URL</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span></span><br><span class="line">    check_website</span><br><span class="line">    <span class="comment"># 每分钟检查一次</span></span><br><span class="line">    <span class="built_in">sleep</span> 60</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p>步骤4:启用并启动我们的服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 重新加载systemd配置（必须！）</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl daemon-reload</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl start website-monitor</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看服务状态</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl status website-monitor</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置开机自启</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl <span class="built_in">enable</span> website-monitor</span><br></pre></td></tr></table></figure>
+<p>如果一切正常，你会看到类似这样的输出：</p>
+<p>text<br />
+● website-monitor.service - Website Monitoring Service<br />
+Loaded: loaded (/etc/systemd/system/website-monitor.service; enabled; vendor preset: enabled)<br />
+Active: active (running) since Mon 2024-01-01 10:00:00 CST; 10s ago<br />
+Main PID: 1234 (website_monitor.)<br />
+Tasks: 2 (limit: 4915)<br />
+Memory: 1.2M<br />
+CGroup: /system.slice/website-monitor.service<br />
+└─1234 /bin/bash /usr/local/bin/website_monitor.sh</p>
+<p>步骤5:测试服务功能</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看服务实时日志</span></span><br><span class="line"><span class="built_in">sudo</span> journalctl -u website-monitor -f</span><br><span class="line"></span><br><span class="line"><span class="comment"># 手动停止服务，观察是否会自动重启</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl stop website-monitor</span><br><span class="line"><span class="built_in">sudo</span> systemctl status website-monitor  <span class="comment"># 观察状态变化</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看服务的详细日志</span></span><br><span class="line"><span class="built_in">sudo</span> journalctl -u website-monitor --since <span class="string">&quot;1 hour ago&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="更多实用技巧"><a class="markdownIt-Anchor" href="#更多实用技巧"></a> 更多实用技巧</h2>
+<ol>
+<li>服务故障排查<br />
+如果服务启动失败，可以这样排查：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看详细的启动日志</span></span><br><span class="line"><span class="built_in">sudo</span> journalctl -u website-monitor -n 50</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查服务依赖关系</span></span><br><span class="line">systemd-analyze verify /etc/systemd/system/website-monitor.service</span><br><span class="line"></span><br><span class="line"><span class="comment"># 手动测试脚本执行</span></span><br><span class="line"><span class="built_in">sudo</span> -u root /usr/local/bin/website_monitor.sh</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建更多服务<br />
+你可以用同样的方法将其他脚本变成服务：</li>
+</ol>
+<p>备份服务：/etc/systemd/system/auto-backup.service</p>
+<p>日志清理服务：/etc/systemd/system/log-cleanup.service</p>
+<p>自定义应用服务：为你自己编写的程序创建服务</p>
+<ol start="3">
+<li>使用定时器（Systemd Timer）替代Cron<br />
+Systemd也有定时任务功能，可以替代cron：</li>
+</ol>
+<p>创建定时器文件：/etc/systemd/system/daily-backup.timer</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=Daily Backup Timer</span><br><span class="line"><span class="attr">Requires</span>=auto-backup.service</span><br><span class="line"></span><br><span class="line"><span class="section">[Timer]</span></span><br><span class="line"><span class="attr">OnCalendar</span>=daily</span><br><span class="line"><span class="attr">Persistent</span>=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=timers.target</span><br></pre></td></tr></table></figure>
+<p>然后启用定时器：sudo systemctl enable daily-backup.timer --now</p>
+<h2 id="总结-2"><a class="markdownIt-Anchor" href="#总结-2"></a> 总结</h2>
+<p>通过将脚本封装成Systemd服务，我们获得了：</p>
+<p>✅ 可靠性：服务崩溃自动重启</p>
+<p>✅ 可维护性：统一的管理接口</p>
+<p>✅ 可观测性：集中的日志查看</p>
+<p>✅ 自动化：开机自启，无需人工干预</p>
+<h1 id="linux性能优化大师快速定位系统瓶颈的三板斧"><a class="markdownIt-Anchor" href="#linux性能优化大师快速定位系统瓶颈的三板斧"></a> 《Linux性能优化大师：快速定位系统瓶颈的&quot;三板斧&quot;》</h1>
+<h2 id="整体健康检查"><a class="markdownIt-Anchor" href="#整体健康检查"></a> 整体健康检查</h2>
+<p>当收到报警或用户反馈&quot;服务器慢&quot;时，不要慌张。首先通过SSH登录服务器，然后按顺序执行以下命令，对系统做个快速&quot;体检&quot;。</p>
+<ol>
+<li>快速体检命令集：check_health.sh<br />
+我们可以创建一个一键检查脚本：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;======= 系统健康检查报告 =======&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;检查时间: <span class="subst">$(date)</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;=================================&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;\n1. 系统负载和运行时间:&quot;</span></span><br><span class="line"><span class="built_in">uptime</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;\n2. 内存使用情况:&quot;</span></span><br><span class="line">free -h</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;\n3. 磁盘空间使用情况:&quot;</span></span><br><span class="line"><span class="built_in">df</span> -h</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;\n4. TOP进程概览(前10行):&quot;</span></span><br><span class="line">top -bn1 | <span class="built_in">head</span> -10</span><br></pre></td></tr></table></figure>
+<p>保存为check_health.sh，赋予执行权限，需要时直接运行。</p>
+<h2 id="cpu性能分析tophtop"><a class="markdownIt-Anchor" href="#cpu性能分析tophtop"></a> CPU性能分析（top/htop）</h2>
+<p>问题症状：系统响应慢，执行命令卡顿，负载过高。</p>
+<p>工具1：top - 系统进程实时监控</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 最基本的用法</span></span><br><span class="line">top</span><br></pre></td></tr></table></figure>
+<p>看懂top的关键信息：</p>
+<p>第一行：load average: 0.05, 0.10, 0.15</p>
+<p>三个数字分别代表1分钟、5分钟、15分钟的平均负载</p>
+<p>如果值 &gt; CPU核心数，表示系统过载</p>
+<p>例如：4核CPU，负载&gt;4就需要注意了</p>
+<p>第三行：%Cpu(s)</p>
+<p>us：用户进程占用CPU百分比</p>
+<p>sy：系统内核占用CPU百分比</p>
+<p>id：空闲CPU百分比</p>
+<p>如果us或sy持续高于80%，说明CPU是瓶颈</p>
+<p>进程列表：按CPU使用率排序，找到&quot;罪魁祸首&quot;</p>
+<p>按 P 键按CPU排序</p>
+<p>按 M 键按内存排序</p>
+<p>按 q 键退出</p>
+<p>工具2：htop - top的增强版<br />
+如果没安装，先安装：sudo apt install htop</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">htop</span><br></pre></td></tr></table></figure>
+<p>htop的优势：</p>
+<p>彩色显示，更直观</p>
+<p>支持鼠标操作</p>
+<p>可以直接杀死进程（F9键）</p>
+<p>更容易查看进程树</p>
+<p>实战案例：CPU问题排查</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果发现负载很高，查看具体是哪个进程</span></span><br><span class="line">top -p $(pgrep -d<span class="string">&#x27;,&#x27;</span> -f 进程名关键词)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看CPU核心数</span></span><br><span class="line"><span class="built_in">nproc</span></span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">lscpu | grep -E <span class="string">&#x27;^CPU\(s\)&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 监控某个高CPU进程的详细情况</span></span><br><span class="line">pidstat -p 进程PID 1 5   <span class="comment"># 每1秒刷新，共5次</span></span><br></pre></td></tr></table></figure>
+<h2 id="内存分析freevmstat"><a class="markdownIt-Anchor" href="#内存分析freevmstat"></a> 内存分析（free/vmstat）</h2>
+<p>问题症状：系统开始使用Swap空间，程序频繁被OOM Killer杀死。</p>
+<p>工具1：free - 内存使用概况</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free -h</span><br></pre></td></tr></table></figure>
+<p>关键指标：</p>
+<p>available：可用内存（最重要的指标）</p>
+<p>swap used：Swap使用量（如果&gt;0，说明物理内存不足）</p>
+<p>工具2：vmstat - 虚拟内存统计</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 每2秒刷新一次，共10次</span></span><br><span class="line">vmstat 2 10</span><br></pre></td></tr></table></figure>
+<p>关注这些列：</p>
+<p>si：每秒从swap读入的内存大小（KB）</p>
+<p>so：每秒写入swap的内存大小（KB）</p>
+<p>如果si/so持续&gt;0，说明内存严重不足</p>
+<p>工具3：查看具体进程内存使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 显示内存占用最高的进程</span></span><br><span class="line">ps aux --<span class="built_in">sort</span>=-%mem | <span class="built_in">head</span> -10</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更详细的内存分析</span></span><br><span class="line"><span class="built_in">cat</span> /proc/meminfo</span><br></pre></td></tr></table></figure>
+<p>内存问题解决思路：</p>
+<p>找到内存消耗最大的进程</p>
+<p>检查是否是内存泄漏（进程内存持续增长）</p>
+<p>考虑增加物理内存或优化程序</p>
+<p>调整Swappiness（减少使用Swap的倾向）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;vm.swappiness=10&#x27;</span> &gt;&gt; /etc/sysctl.conf</span><br><span class="line">sysctl -p</span><br></pre></td></tr></table></figure>
+<h2 id="磁盘io分析iostatiotop"><a class="markdownIt-Anchor" href="#磁盘io分析iostatiotop"></a> 磁盘I/O分析（iostat/iotop）</h2>
+<p>问题症状：系统卡顿，但CPU和内存使用率不高，可能是磁盘I/O瓶颈。</p>
+<p>工具1：iostat - 磁盘I/O统计</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装sysstat包</span></span><br><span class="line"><span class="built_in">sudo</span> apt install sysstat</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有磁盘的IO情况，每2秒刷新</span></span><br><span class="line">iostat -dx 2</span><br></pre></td></tr></table></figure>
+<p>关键指标：</p>
+<p>%util：磁盘利用率（接近100%说明磁盘满负荷）</p>
+<p>await：I/O操作平均等待时间（ms），值越大说明越慢</p>
+<p>r/s, w/s：每秒读/写操作次数</p>
+<p>工具2：iotop - 类似top的I/O监控</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装iotop</span></span><br><span class="line"><span class="built_in">sudo</span> apt install iotop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行iotop（需要root权限）</span></span><br><span class="line"><span class="built_in">sudo</span> iotop</span><br></pre></td></tr></table></figure>
+<p>可以实时查看哪个进程在进行磁盘I/O操作。</p>
+<p>工具3：查找磁盘空间大户</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看哪个目录占用空间最大</span></span><br><span class="line"><span class="built_in">du</span> -sh /* 2&gt;/dev/null | <span class="built_in">sort</span> -hr | <span class="built_in">head</span> -10</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查找大文件（大于100MB）</span></span><br><span class="line">find / -<span class="built_in">type</span> f -size +100M 2&gt;/dev/null | xargs <span class="built_in">ls</span> -lh</span><br></pre></td></tr></table></figure>
+<h2 id="网络性能分析ssnetstat"><a class="markdownIt-Anchor" href="#网络性能分析ssnetstat"></a> 网络性能分析（ss/netstat）</h2>
+<p>问题症状：网络连接慢，端口冲突，连接数过多。</p>
+<p>工具1：ss - 套接字统计（推荐替代netstat）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看所有连接</span></span><br><span class="line">ss -tuln</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看ESTABLISHED状态的连接</span></span><br><span class="line">ss -tun state established</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看监听端口</span></span><br><span class="line">ss -tuln | grep LISTEN</span><br><span class="line"></span><br><span class="line"><span class="comment"># 统计各种状态的连接数</span></span><br><span class="line">ss -s</span><br></pre></td></tr></table></figure>
+<p>工具2：网络带宽监控</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装nload</span></span><br><span class="line"><span class="built_in">sudo</span> apt install nload</span><br><span class="line"></span><br><span class="line"><span class="comment"># 实时监控网络流量（按上下箭头切换网卡）</span></span><br><span class="line">nload</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者使用iftop（需要安装）</span></span><br><span class="line"><span class="built_in">sudo</span> apt install iftop</span><br><span class="line"><span class="built_in">sudo</span> iftop</span><br></pre></td></tr></table></figure>
+<h2 id="一次完整的性能排查"><a class="markdownIt-Anchor" href="#一次完整的性能排查"></a> 一次完整的性能排查</h2>
+<p>场景：用户反馈网站访问很慢，你需要快速定位问题。</p>
+<p>排查步骤：</p>
+<p>第1步：快速体检</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./check_health.sh</span><br></pre></td></tr></table></figure>
+<p>发现负载很高：load average: 8.32, 7.15, 5.60（4核CPU）</p>
+<p>第2步：分析CPU</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">htop</span><br></pre></td></tr></table></figure>
+<p>发现一个Java进程占用400% CPU（4个核心都跑满了）</p>
+<p>第3步：分析该进程</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看进程详情</span></span><br><span class="line">ps -p 进程PID -o pid,ppid,cmd,%cpu,%mem --forest</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看进程打开的文件</span></span><br><span class="line">lsof -p 进程PID</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果是Java进程，可以查看线程情况</span></span><br><span class="line">jstack 进程PID &gt; thread_dump.txt   <span class="comment"># 如果安装了JDK</span></span><br></pre></td></tr></table></figure>
+<p>第4步：分析内存</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free -h</span><br></pre></td></tr></table></figure>
+<p>发现内存使用正常，Swap基本没用</p>
+<p>第5步：分析磁盘I/O</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iostat -dx 2</span><br></pre></td></tr></table></figure>
+<p>发现磁盘利用率只有20%，不是瓶颈</p>
+<p>第6步：得出结论<br />
+问题很明确：某个Java进程CPU占用过高导致系统负载飙升。</p>
+<p>解决方案：</p>
+<p>临时解决：重启有问题的Java服务</p>
+<p>根本解决：分析Java进程的线程栈，找到问题代码</p>
+<p>监控预防：为该服务设置CPU使用率告警</p>
+<p>第七部分：高级工具推荐<br />
+当你需要更深入分析时，可以考虑这些工具：</p>
+<ol>
+<li>综合监控：glances</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install glances</span><br><span class="line">glances</span><br></pre></td></tr></table></figure>
+<p>一个集成了CPU、内存、磁盘、网络、进程等所有信息的综合工具。</p>
+<ol start="2">
+<li>系统性能数据记录：sar</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看今天的CPU历史数据</span></span><br><span class="line">sar</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看指定日期的内存使用历史</span></span><br><span class="line">sar -r -f /var/log/sysstat/sa15  <span class="comment"># 15号的数据</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>实时Web监控：netdata<br />
+更强大的实时监控系统，可以部署在服务器上通过网页访问。</li>
+</ol>
+<h2 id="总结-3"><a class="markdownIt-Anchor" href="#总结-3"></a> 总结</h2>
+<p>性能排查&quot;三板斧&quot;口诀：</p>
+<p>先看整体：uptime + free + df 快速定位方向</p>
+<p>从上到下：CPU → 内存 → 磁盘I/O → 网络，按顺序排查</p>
+<p>从宏观到微观：先看系统整体，再找具体进程</p>
+<p>记住这个排查流程：</p>
+<p>text<br />
+系统变慢 → 运行check_health.sh →<br />
+发现高负载 → htop看CPU →<br />
+找到问题进程 → 分析该进程 →<br />
+制定解决方案<br />
+最重要的建议：在系统正常时建立性能基线，知道&quot;正常&quot;是什么样子，才能快速识别&quot;异常&quot;。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 保存正常时的性能快照</span></span><br><span class="line">./check_health.sh &gt; system_baseline.txt</span><br></pre></td></tr></table></figure>
+<h1 id="iptablesfirewalld实战配置"><a class="markdownIt-Anchor" href="#iptablesfirewalld实战配置"></a> 《iptables/firewalld实战配置》</h1>
+<h2 id="防火墙基础为什么需要防火墙"><a class="markdownIt-Anchor" href="#防火墙基础为什么需要防火墙"></a> 防火墙基础——为什么需要防火墙？</h2>
+<p>想象这个场景：</p>
+<p>你的服务器只提供Web服务（80/443端口）和SSH管理（22端口）</p>
+<p>但默认情况下，所有端口都是&quot;打开&quot;的</p>
+<p>黑客可以通过扫描发现其他开放端口，进而攻击你的服务</p>
+<p>防火墙的作用：</p>
+<p>访问控制：只允许必要的网络流量</p>
+<p>安全防护：阻止恶意扫描和攻击</p>
+<p>服务隐藏：关闭不必要的端口，减少攻击面</p>
+<p>流量监控：记录网络访问日志</p>
+<p>Linux防火墙的两种主要工具：</p>
+<p>iptables：传统但强大的命令行工具</p>
+<p>firewalld：现代易用的管理工具（推荐新手使用）</p>
+<p>我们将重点学习firewalld，因为它更简单直观，是CentOS/RHEL 7+和Ubuntu 16.04+的默认工具。</p>
+<h2 id="ufw入门最简单的防火墙配置"><a class="markdownIt-Anchor" href="#ufw入门最简单的防火墙配置"></a> UFW入门——最简单的防火墙配置</h2>
+<p>UFW（Uncomplicated Firewall）是Ubuntu上的简化防火墙工具，非常适合新手。</p>
+<ol>
+<li>检查UFW状态</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看UFW状态</span></span><br><span class="line"><span class="built_in">sudo</span> ufw status</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果显示 inactive，表示防火墙未启用</span></span><br><span class="line"><span class="comment"># 如果显示 active，表示已启用</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>基本防火墙策略<br />
+在配置具体规则前，先设置默认策略：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 默认拒绝所有传入连接（最安全）</span></span><br><span class="line"><span class="built_in">sudo</span> ufw default deny incoming</span><br><span class="line"></span><br><span class="line"><span class="comment"># 默认允许所有传出连接（方便服务器访问外部）</span></span><br><span class="line"><span class="built_in">sudo</span> ufw default allow outgoing</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>允许必要的服务<br />
+现在开始&quot;开门&quot;，允许必要的服务通过：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 允许SSH连接（非常重要，否则会把自己锁在外面！）</span></span><br><span class="line"><span class="built_in">sudo</span> ufw allow ssh</span><br><span class="line"><span class="comment"># 或者指定端口号</span></span><br><span class="line"><span class="built_in">sudo</span> ufw allow 22/tcp</span><br><span class="line"></span><br><span class="line"><span class="comment"># 允许HTTP和HTTPS</span></span><br><span class="line"><span class="built_in">sudo</span> ufw allow http</span><br><span class="line"><span class="built_in">sudo</span> ufw allow https</span><br><span class="line"><span class="comment"># 或者指定端口号</span></span><br><span class="line"><span class="built_in">sudo</span> ufw allow 80/tcp</span><br><span class="line"><span class="built_in">sudo</span> ufw allow 443/tcp</span><br><span class="line"></span><br><span class="line"><span class="comment"># 允许特定自定义端口（比如你的应用服务）</span></span><br><span class="line"><span class="built_in">sudo</span> ufw allow 3000/tcp</span><br><span class="line"><span class="built_in">sudo</span> ufw allow 8080/tcp</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>启用防火墙<br />
+配置完成后，启用防火墙：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启用UFW</span></span><br><span class="line"><span class="built_in">sudo</span> ufw <span class="built_in">enable</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 再次查看状态</span></span><br><span class="line"><span class="built_in">sudo</span> ufw status verbose</span><br></pre></td></tr></table></figure>
+<p>你会看到类似这样的输出：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Status: active</span><br><span class="line">Logging: on (low)</span><br><span class="line">Default: deny (incoming), allow (outgoing), disabled (routed)</span><br><span class="line">New profiles: skip</span><br><span class="line"></span><br><span class="line">To                         Action      From</span><br><span class="line">--                         ------      ----</span><br><span class="line">22/tcp                     ALLOW IN    Anywhere</span><br><span class="line">80/tcp                     ALLOW IN    Anywhere</span><br><span class="line">443/tcp                    ALLOW IN    Anywhere</span><br><span class="line">22/tcp (v6)                ALLOW IN    Anywhere (v6)</span><br><span class="line">80/tcp (v6)                ALLOW IN    Anywhere (v6)</span><br><span class="line">443/tcp (v6)               ALLOW IN    Anywhere (v6)</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>更多UFW实用命令</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 拒绝某个端口（明确拒绝连接）</span></span><br><span class="line"><span class="built_in">sudo</span> ufw deny 21/tcp</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除规则（先查看规则编号）</span></span><br><span class="line"><span class="built_in">sudo</span> ufw status numbered</span><br><span class="line"><span class="built_in">sudo</span> ufw delete 规则编号</span><br><span class="line"></span><br><span class="line"><span class="comment"># 允许特定IP访问（比如只允许办公室IP连接SSH）</span></span><br><span class="line"><span class="built_in">sudo</span> ufw allow from 192.168.1.100 to any port 22</span><br><span class="line"></span><br><span class="line"><span class="comment"># 允许IP段</span></span><br><span class="line"><span class="built_in">sudo</span> ufw allow from 192.168.1.0/24 to any port 22</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重置UFW（恢复默认设置）</span></span><br><span class="line"><span class="built_in">sudo</span> ufw reset</span><br></pre></td></tr></table></figure>
+<h2 id="firewalld详解企业级防火墙管理"><a class="markdownIt-Anchor" href="#firewalld详解企业级防火墙管理"></a> firewalld详解——企业级防火墙管理</h2>
+<p>如果你的系统使用firewalld（如CentOS/RHEL），或者你想使用更强大的功能，firewalld是更好的选择。</p>
+<ol>
+<li>firewalld的核心概念</li>
+</ol>
+<p>zone（区域）：定义信任级别（如public、trusted、dmz）</p>
+<p>service（服务）：预定义的端口组合（如ssh、http、https）</p>
+<p>port（端口）：具体的端口号</p>
+<p>rich rule（富规则）：复杂的访问规则</p>
+<ol start="2">
+<li>基本命令</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看firewalld状态</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl status firewalld</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动firewalld</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl start firewalld</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置开机自启</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl <span class="built_in">enable</span> firewalld</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看默认区域</span></span><br><span class="line"><span class="built_in">sudo</span> firewall-cmd --get-default-zone</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看活动区域</span></span><br><span class="line"><span class="built_in">sudo</span> firewall-cmd --get-active-zones</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>配置基本规则</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加服务（永久生效）</span></span><br><span class="line"><span class="built_in">sudo</span> firewall-cmd --permanent --add-service=ssh</span><br><span class="line"><span class="built_in">sudo</span> firewall-cmd --permanent --add-service=http</span><br><span class="line"><span class="built_in">sudo</span> firewall-cmd --permanent --add-service=https</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加自定义端口</span></span><br><span class="line"><span class="built_in">sudo</span> firewall-cmd --permanent --add-port=3000/tcp</span><br><span class="line"><span class="built_in">sudo</span> firewall-cmd --permanent --add-port=8080/tcp</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重载配置（使永久规则生效）</span></span><br><span class="line"><span class="built_in">sudo</span> firewall-cmd --reload</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看当前规则</span></span><br><span class="line"><span class="built_in">sudo</span> firewall-cmd --list-all</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>高级配置：限制SSH访问来源<br />
+为了提高安全性，我们可以限制SSH只能从特定IP访问：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 移除原来的ssh规则（允许所有IP）</span></span><br><span class="line"><span class="built_in">sudo</span> firewall-cmd --permanent --remove-service=ssh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加只允许特定IP访问SSH的规则</span></span><br><span class="line"><span class="built_in">sudo</span> firewall-cmd --permanent --add-rich-rule=<span class="string">&#x27;</span></span><br><span class="line"><span class="string">  rule family=&quot;ipv4&quot;</span></span><br><span class="line"><span class="string">  source address=&quot;192.168.1.100/32&quot;</span></span><br><span class="line"><span class="string">  service name=&quot;ssh&quot;</span></span><br><span class="line"><span class="string">  accept&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果你有多个可信IP，可以添加多个规则</span></span><br><span class="line"><span class="built_in">sudo</span> firewall-cmd --permanent --add-rich-rule=<span class="string">&#x27;</span></span><br><span class="line"><span class="string">  rule family=&quot;ipv4&quot;</span></span><br><span class="line"><span class="string">  source address=&quot;203.0.113.50/32&quot;</span></span><br><span class="line"><span class="string">  service name=&quot;ssh&quot;</span></span><br><span class="line"><span class="string">  accept&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 重载配置</span></span><br><span class="line"><span class="built_in">sudo</span> firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+<p>⚠️ 重要警告：在配置IP限制前，确保你有其他方式访问服务器（如控制台），否则配置错误会导致无法连接！</p>
+<h2 id="iptables基础理解底层原理"><a class="markdownIt-Anchor" href="#iptables基础理解底层原理"></a> iptables基础——理解底层原理</h2>
+<p>虽然UFW和firewalld很友好，但了解底层的iptables有助于理解原理。</p>
+<ol>
+<li>查看当前规则</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看filter表的规则（最常用的表）</span></span><br><span class="line"><span class="built_in">sudo</span> iptables -L -n</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看更详细的信息，带行号</span></span><br><span class="line"><span class="built_in">sudo</span> iptables -L -n --line-numbers</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>iptables的基本结构<br />
+iptables使用&quot;表&quot;和&quot;链&quot;的概念：</li>
+</ol>
+<p>filter表：负责过滤数据包（最常用）</p>
+<p>INPUT链：处理进入本机的数据包</p>
+<p>OUTPUT链：处理从本机发出的数据包</p>
+<p>FORWARD链：处理转发的数据包</p>
+<ol start="3">
+<li>常用iptables命令</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 允许SSH连接</span></span><br><span class="line"><span class="built_in">sudo</span> iptables -A INPUT -p tcp --dport 22 -j ACCEPT</span><br><span class="line"></span><br><span class="line"><span class="comment"># 允许HTTP和HTTPS</span></span><br><span class="line"><span class="built_in">sudo</span> iptables -A INPUT -p tcp --dport 80 -j ACCEPT</span><br><span class="line"><span class="built_in">sudo</span> iptables -A INPUT -p tcp --dport 443 -j ACCEPT</span><br><span class="line"></span><br><span class="line"><span class="comment"># 允许本地回环接口</span></span><br><span class="line"><span class="built_in">sudo</span> iptables -A INPUT -i lo -j ACCEPT</span><br><span class="line"></span><br><span class="line"><span class="comment"># 允许已建立的连接和相关的连接（重要！）</span></span><br><span class="line"><span class="built_in">sudo</span> iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置默认策略（拒绝所有传入连接）</span></span><br><span class="line"><span class="built_in">sudo</span> iptables -P INPUT DROP</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存iptables规则（不同系统方法不同）</span></span><br><span class="line"><span class="comment"># Ubuntu: sudo iptables-save &gt; /etc/iptables/rules.v4</span></span><br><span class="line"><span class="comment"># CentOS: sudo service iptables save</span></span><br></pre></td></tr></table></figure>
+<h2 id="web服务器防火墙配置"><a class="markdownIt-Anchor" href="#web服务器防火墙配置"></a> Web服务器防火墙配置</h2>
+<p>让我们为一个典型的Web服务器配置防火墙：</p>
+<p>场景：服务器运行SSH、HTTP、HTTPS服务，需要：</p>
+<p>允许所有IP访问Web服务</p>
+<p>只允许办公室IP（192.168.1.0/24）访问SSH</p>
+<p>拒绝其他所有连接</p>
+<p>使用UFW配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 重置UFW</span></span><br><span class="line"><span class="built_in">sudo</span> ufw reset</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置默认策略</span></span><br><span class="line"><span class="built_in">sudo</span> ufw default deny incoming</span><br><span class="line"><span class="built_in">sudo</span> ufw default allow outgoing</span><br><span class="line"></span><br><span class="line"><span class="comment"># 允许Web服务</span></span><br><span class="line"><span class="built_in">sudo</span> ufw allow http</span><br><span class="line"><span class="built_in">sudo</span> ufw allow https</span><br><span class="line"></span><br><span class="line"><span class="comment"># 允许办公室IP段访问SSH</span></span><br><span class="line"><span class="built_in">sudo</span> ufw allow from 192.168.1.0/24 to any port 22</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启用UFW</span></span><br><span class="line"><span class="built_in">sudo</span> ufw <span class="built_in">enable</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看最终配置</span></span><br><span class="line"><span class="built_in">sudo</span> ufw status verbose</span><br></pre></td></tr></table></figure>
+<p>使用firewalld配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 确保firewalld运行</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl start firewalld</span><br><span class="line"></span><br><span class="line"><span class="comment"># 移除默认的ssh规则</span></span><br><span class="line"><span class="built_in">sudo</span> firewall-cmd --permanent --remove-service=ssh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加Web服务</span></span><br><span class="line"><span class="built_in">sudo</span> firewall-cmd --permanent --add-service=http</span><br><span class="line"><span class="built_in">sudo</span> firewall-cmd --permanent --add-service=https</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加办公室IP段的SSH规则</span></span><br><span class="line"><span class="built_in">sudo</span> firewall-cmd --permanent --add-rich-rule=<span class="string">&#x27;</span></span><br><span class="line"><span class="string">  rule family=&quot;ipv4&quot;</span></span><br><span class="line"><span class="string">  source address=&quot;192.168.1.0/24&quot;</span></span><br><span class="line"><span class="string">  service name=&quot;ssh&quot;</span></span><br><span class="line"><span class="string">  accept&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 重载配置</span></span><br><span class="line"><span class="built_in">sudo</span> firewall-cmd --reload</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看配置</span></span><br><span class="line"><span class="built_in">sudo</span> firewall-cmd --list-all</span><br></pre></td></tr></table></figure>
+<h2 id="防火墙故障排查技巧"><a class="markdownIt-Anchor" href="#防火墙故障排查技巧"></a> 防火墙故障排查技巧</h2>
+<p>配置防火墙时可能会遇到问题，这里是一些排查方法：</p>
+<ol>
+<li>检查端口是否真正开放</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从服务器本身检查端口监听</span></span><br><span class="line"><span class="built_in">sudo</span> netstat -tulpn | grep :80</span><br><span class="line"><span class="built_in">sudo</span> ss -tulpn | grep :80</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从外部测试端口连通性（需要另一台机器）</span></span><br><span class="line">telnet 你的服务器IP 80</span><br><span class="line">nmap -p 22,80,443 你的服务器IP</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>查看防火墙日志</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># UFW日志</span></span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">tail</span> -f /var/log/ufw.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># firewalld日志</span></span><br><span class="line"><span class="built_in">sudo</span> journalctl -u firewalld -f</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者查看系统日志</span></span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">tail</span> -f /var/log/syslog | grep firewall</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>临时禁用防火墙进行测试</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># UFW临时禁用</span></span><br><span class="line"><span class="built_in">sudo</span> ufw <span class="built_in">disable</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># firewalld临时停止</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl stop firewalld</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试完成后记得重新启用！</span></span><br><span class="line"><span class="built_in">sudo</span> ufw <span class="built_in">enable</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl start firewalld</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>常见问题解决</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果不小心把自己锁在外面，通过控制台登录后：</span></span><br><span class="line"><span class="built_in">sudo</span> ufw <span class="built_in">disable</span>  <span class="comment"># 禁用UFW</span></span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl stop firewalld  <span class="comment"># 停止firewalld</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 然后重新配置正确的规则</span></span><br></pre></td></tr></table></figure>
+<h2 id="防火墙最佳实践"><a class="markdownIt-Anchor" href="#防火墙最佳实践"></a> 防火墙最佳实践</h2>
+<p>安全配置原则：</p>
+<p>最小权限原则：只开放必要的端口</p>
+<p>默认拒绝策略：先拒绝所有，再逐个允许</p>
+<p>分层防御：防火墙只是第一道防线，还要有其他安全措施</p>
+<p>定期审计：定期检查防火墙规则是否仍然需要</p>
+<p>推荐配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建防火墙配置脚本，方便重现和版本管理</span></span><br><span class="line">vim ~/firewall-setup.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 脚本内容：</span></span><br><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="comment"># 防火墙初始化脚本</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;配置防火墙...&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 备份当前规则</span></span><br><span class="line"><span class="built_in">sudo</span> iptables-save &gt; /tmp/iptables-backup-$(<span class="built_in">date</span> +%Y%m%d).rules</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重置规则</span></span><br><span class="line"><span class="built_in">sudo</span> ufw reset</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置新规则</span></span><br><span class="line"><span class="built_in">sudo</span> ufw default deny incoming</span><br><span class="line"><span class="built_in">sudo</span> ufw default allow outgoing</span><br><span class="line"><span class="built_in">sudo</span> ufw allow ssh</span><br><span class="line"><span class="built_in">sudo</span> ufw allow http</span><br><span class="line"><span class="built_in">sudo</span> ufw allow https</span><br><span class="line"><span class="comment"># 添加你的自定义规则...</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">sudo</span> ufw <span class="built_in">enable</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;防火墙配置完成！&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 赋予执行权限</span></span><br><span class="line"><span class="built_in">chmod</span> +x ~/firewall-setup.sh</span><br></pre></td></tr></table></figure>
+<h2 id="总结-4"><a class="markdownIt-Anchor" href="#总结-4"></a> 总结</h2>
+<p>✅ 理解防火墙的重要性和工作原理</p>
+<p>✅ 使用UFW配置简单的防火墙规则</p>
+<p>✅ 使用firewalld进行更精细的访问控制</p>
+<p>✅ 排查常见的防火墙连接问题</p>
+<p>✅ 遵循防火墙配置的最佳实践</p>
+<p>记住：防火墙配置是一个持续的过程，随着服务的增加和变更，需要不断调整和优化。</p>
+<p>安全提醒：在修改生产环境的防火墙规则时，一定要先在测试环境验证，并且确保有应急恢复方案（如控制台访问权限）。</p>
+<h1 id="云端架构实战基于docker搭建高可用lnmp环境"><a class="markdownIt-Anchor" href="#云端架构实战基于docker搭建高可用lnmp环境"></a> 《云端架构实战：基于Docker搭建高可用LNMP环境》</h1>
+<h2 id="为什么选择docker传统部署的痛点"><a class="markdownIt-Anchor" href="#为什么选择docker传统部署的痛点"></a> 为什么选择Docker？传统部署的痛点</h2>
+<p>传统部署的问题：</p>
+<p>环境不一致：开发、测试、生产环境差异导致&quot;在我这里能运行&quot;的问题</p>
+<p>依赖冲突：不同应用需要不同版本的PHP、MySQL等</p>
+<p>部署复杂：安装配置步骤繁琐，容易出错</p>
+<p>资源浪费：每个服务都需要完整的操作系统环境</p>
+<p>Docker的优势：</p>
+<p>一致性：镜像打包所有依赖，处处运行</p>
+<p>隔离性：每个容器独立，互不干扰</p>
+<p>快速部署：秒级启动，一键部署</p>
+<p>资源高效：共享主机内核，占用资源少</p>
+<p>版本控制：镜像可以版本化管理</p>
+<p>简单理解Docker：</p>
+<p>镜像（Image）：像软件安装包（.exe文件），包含应用和运行环境</p>
+<p>容器（Container）：像运行中的程序，是镜像的实例</p>
+<p>仓库（Registry）：像应用商店，存放各种镜像</p>
+<h2 id="docker安装和基础命令"><a class="markdownIt-Anchor" href="#docker安装和基础命令"></a> Docker安装和基础命令</h2>
+<ol>
+<li>安装Docker（以Ubuntu为例）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 更新软件包索引</span></span><br><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装依赖包</span></span><br><span class="line"><span class="built_in">sudo</span> apt install apt-transport-https ca-certificates curl software-properties-common</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加Docker官方GPG密钥</span></span><br><span class="line">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | <span class="built_in">sudo</span> gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加Docker仓库</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu <span class="subst">$(lsb_release -cs)</span> stable&quot;</span> | <span class="built_in">sudo</span> <span class="built_in">tee</span> /etc/apt/sources.list.d/docker.list &gt; /dev/null</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装Docker引擎</span></span><br><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt install docker-ce docker-ce-cli containerd.io</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将当前用户加入docker组（避免每次使用sudo）</span></span><br><span class="line"><span class="built_in">sudo</span> usermod -aG docker <span class="variable">$USER</span></span><br><span class="line"><span class="comment"># 重新登录使组更改生效，或者执行：</span></span><br><span class="line">newgrp docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证安装</span></span><br><span class="line">docker --version</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>Docker基础命令</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看Docker信息</span></span><br><span class="line">docker info</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行第一个容器（Hello World）</span></span><br><span class="line">docker run hello-world</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看正在运行的容器</span></span><br><span class="line">docker ps</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有容器（包括停止的）</span></span><br><span class="line">docker ps -a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看本地镜像</span></span><br><span class="line">docker images</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止容器</span></span><br><span class="line">docker stop 容器名或ID</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除容器</span></span><br><span class="line">docker <span class="built_in">rm</span> 容器名或ID</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除镜像</span></span><br><span class="line">docker rmi 镜像名:标签</span><br></pre></td></tr></table></figure>
+<h2 id="docker-compose多容器编排工具"><a class="markdownIt-Anchor" href="#docker-compose多容器编排工具"></a> Docker Compose——多容器编排工具</h2>
+<p>对于LNMP这样包含多个服务的应用，我们使用Docker Compose来管理。</p>
+<p>安装Docker Compose：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载最新版本的Docker Compose</span></span><br><span class="line"><span class="built_in">sudo</span> curl -L <span class="string">&quot;https://github.com/docker/compose/releases/download/v2.20.0/docker-compose-<span class="subst">$(uname -s)</span>-<span class="subst">$(uname -m)</span>&quot;</span> -o /usr/local/bin/docker-compose</span><br><span class="line"></span><br><span class="line"><span class="comment"># 赋予执行权限</span></span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> +x /usr/local/bin/docker-compose</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证安装</span></span><br><span class="line">docker-compose --version</span><br></pre></td></tr></table></figure>
+<h2 id="项目结构规划"><a class="markdownIt-Anchor" href="#项目结构规划"></a> 项目结构规划</h2>
+<p>我们先创建项目的目录结构：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建项目目录</span></span><br><span class="line"><span class="built_in">mkdir</span> ~/docker-lnmp</span><br><span class="line"><span class="built_in">cd</span> ~/docker-lnmp</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建子目录</span></span><br><span class="line"><span class="built_in">mkdir</span> nginx mysql php www logs</span><br></pre></td></tr></table></figure>
+<p>最终目录结构：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">docker-lnmp/</span><br><span class="line">├── docker-compose.yml          # Docker Compose配置文件</span><br><span class="line">├── nginx/</span><br><span class="line">│   ├── nginx.conf              # Nginx主配置文件</span><br><span class="line">│   └── conf.d/</span><br><span class="line">│       └── default.conf        # 站点配置</span><br><span class="line">├── mysql/</span><br><span class="line">│   └── init.sql               # 数据库初始化脚本（可选）</span><br><span class="line">├── php/</span><br><span class="line">│   └── php.ini                # PHP自定义配置</span><br><span class="line">├── www/                       # 网站代码目录</span><br><span class="line">└── logs/                      # 日志目录</span><br></pre></td></tr></table></figure>
+<h2 id="编写docker-compose配置文件"><a class="markdownIt-Anchor" href="#编写docker-compose配置文件"></a> 编写Docker Compose配置文件</h2>
+<p>创建docker-compose.yml文件：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;3.8&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="comment"># MySQL数据库服务</span></span><br><span class="line">  <span class="attr">mysql:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">mysql:8.0</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">lnmp_mysql</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">MYSQL_ROOT_PASSWORD:</span> <span class="string">rootpassword123</span></span><br><span class="line">      <span class="attr">MYSQL_DATABASE:</span> <span class="string">myapp</span></span><br><span class="line">      <span class="attr">MYSQL_USER:</span> <span class="string">myuser</span></span><br><span class="line">      <span class="attr">MYSQL_PASSWORD:</span> <span class="string">mypassword</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./mysql/data:/var/lib/mysql</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./mysql/conf:/etc/mysql/conf.d</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;3306:3306&quot;</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">lnmp-network</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># PHP-FPM服务</span></span><br><span class="line">  <span class="attr">php:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">php:8.1-fpm</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">lnmp_php</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./www:/var/www/html</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./php/php.ini:/usr/local/etc/php/conf.d/custom.ini</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">lnmp-network</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">mysql</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Nginx Web服务</span></span><br><span class="line">  <span class="attr">nginx:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">nginx:alpine</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">lnmp_nginx</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;80:80&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;443:443&quot;</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./www:/var/www/html</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./nginx/conf.d:/etc/nginx/conf.d</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./logs/nginx:/var/log/nginx</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">lnmp-network</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">php</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># phpMyAdmin数据库管理（可选）</span></span><br><span class="line">  <span class="attr">phpmyadmin:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">phpmyadmin/phpmyadmin</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">lnmp_phpmyadmin</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">PMA_HOST:</span> <span class="string">mysql</span></span><br><span class="line">      <span class="attr">PMA_PORT:</span> <span class="number">3306</span></span><br><span class="line">      <span class="attr">MYSQL_ROOT_PASSWORD:</span> <span class="string">rootpassword123</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;8080:80&quot;</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">lnmp-network</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">mysql</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 自定义网络，让容器可以通过服务名互相访问</span></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line">  <span class="attr">lnmp-network:</span></span><br><span class="line">    <span class="attr">driver:</span> <span class="string">bridge</span></span><br><span class="line"><span class="string">配置文件详解：</span></span><br><span class="line"></span><br><span class="line"><span class="string">volumes：将主机目录挂载到容器内，实现数据持久化</span></span><br><span class="line"></span><br><span class="line"><span class="string">ports：将容器端口映射到主机端口</span></span><br><span class="line"></span><br><span class="line"><span class="string">environment：设置环境变量</span></span><br><span class="line"></span><br><span class="line"><span class="string">depends_on：定义启动顺序依赖</span></span><br><span class="line"></span><br><span class="line"><span class="string">networks：容器网络配置</span></span><br></pre></td></tr></table></figure>
+<h2 id="配置各个服务"><a class="markdownIt-Anchor" href="#配置各个服务"></a> 配置各个服务</h2>
+<ol>
+<li>配置Nginx<br />
+创建nginx/conf.d/default.conf：</li>
+</ol>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> localhost;</span><br><span class="line">    <span class="attribute">root</span> /var/www/html;</span><br><span class="line">    <span class="attribute">index</span> index.php index.html index.htm;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">access_log</span> /var/log/nginx/access.log;</span><br><span class="line">    <span class="attribute">error_log</span> /var/log/nginx/<span class="literal">error</span>.log;</span><br><span class="line"></span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="attribute">try_files</span> <span class="variable">$uri</span> <span class="variable">$uri</span>/ /index.php?<span class="variable">$query_string</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="section">location</span> <span class="regexp">~ \.php$</span> &#123;</span><br><span class="line">        <span class="attribute">fastcgi_pass</span> php:<span class="number">9000</span>;  <span class="comment"># 使用服务名&quot;php&quot;，Docker会自动解析</span></span><br><span class="line">        <span class="attribute">fastcgi_index</span> index.php;</span><br><span class="line">        <span class="attribute">fastcgi_param</span> SCRIPT_FILENAME <span class="variable">$document_root</span><span class="variable">$fastcgi_script_name</span>;</span><br><span class="line">        <span class="attribute">include</span> fastcgi_params;</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 增加超时时间</span></span><br><span class="line">        <span class="attribute">fastcgi_connect_timeout</span> <span class="number">300</span>;</span><br><span class="line">        <span class="attribute">fastcgi_send_timeout</span> <span class="number">300</span>;</span><br><span class="line">        <span class="attribute">fastcgi_read_timeout</span> <span class="number">300</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="section">location</span> <span class="regexp">~ /\.ht</span> &#123;</span><br><span class="line">        <span class="attribute">deny</span> all;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>配置PHP<br />
+创建php/php.ini：</li>
+</ol>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">; 错误显示配置</span></span><br><span class="line"><span class="attr">display_errors</span> = <span class="literal">On</span></span><br><span class="line"><span class="attr">display_startup_errors</span> = <span class="literal">On</span></span><br><span class="line"><span class="attr">error_reporting</span> = E_ALL</span><br><span class="line"></span><br><span class="line"><span class="comment">; 文件上传配置</span></span><br><span class="line"><span class="attr">upload_max_filesize</span> = <span class="number">64</span>M</span><br><span class="line"><span class="attr">post_max_size</span> = <span class="number">64</span>M</span><br><span class="line"><span class="attr">max_file_uploads</span> = <span class="number">20</span></span><br><span class="line"></span><br><span class="line"><span class="comment">; 内存和时间限制</span></span><br><span class="line"><span class="attr">memory_limit</span> = <span class="number">256</span>M</span><br><span class="line"><span class="attr">max_execution_time</span> = <span class="number">300</span></span><br><span class="line"><span class="attr">max_input_time</span> = <span class="number">300</span></span><br><span class="line"></span><br><span class="line"><span class="comment">; 时区设置</span></span><br><span class="line"><span class="attr">date.timezone</span> = Asia/Shanghai</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>创建测试页面<br />
+在www目录下创建index.php：</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// 显示PHP信息</span></span><br><span class="line"><span class="title function_ invoke__">phpinfo</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试MySQL连接</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;&lt;h2&gt;MySQL连接测试&lt;/h2&gt;&quot;</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="variable">$pdo</span> = <span class="keyword">new</span> <span class="title function_ invoke__">PDO</span>(<span class="string">&#x27;mysql:host=mysql;dbname=myapp&#x27;</span>, <span class="string">&#x27;myuser&#x27;</span>, <span class="string">&#x27;mypassword&#x27;</span>);</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;MySQL连接成功！&quot;</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 测试数据库操作</span></span><br><span class="line">    <span class="variable">$stmt</span> = <span class="variable">$pdo</span>-&gt;<span class="title function_ invoke__">query</span>(<span class="string">&quot;SELECT VERSION() as version&quot;</span>);</span><br><span class="line">    <span class="variable">$version</span> = <span class="variable">$stmt</span>-&gt;<span class="title function_ invoke__">fetch</span>();</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;MySQL版本: &quot;</span> . <span class="variable">$version</span>[<span class="string">&#x27;version&#x27;</span>];</span><br><span class="line">    </span><br><span class="line">&#125; <span class="keyword">catch</span> (PDOException <span class="variable">$e</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;MySQL连接失败: &quot;</span> . <span class="variable">$e</span>-&gt;<span class="title function_ invoke__">getMessage</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>数据库初始化（可选）<br />
+创建mysql/init.sql：</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建测试表</span></span><br><span class="line"><span class="keyword">CREATE TABLE</span> IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> `users` (</span><br><span class="line">  `id` <span class="type">int</span>(<span class="number">11</span>) <span class="keyword">NOT NULL</span> AUTO_INCREMENT,</span><br><span class="line">  `name` <span class="type">varchar</span>(<span class="number">100</span>) <span class="keyword">NOT NULL</span>,</span><br><span class="line">  `email` <span class="type">varchar</span>(<span class="number">100</span>) <span class="keyword">NOT NULL</span>,</span><br><span class="line">  `created_at` <span class="type">timestamp</span> <span class="keyword">DEFAULT</span> <span class="built_in">CURRENT_TIMESTAMP</span>,</span><br><span class="line">  <span class="keyword">PRIMARY KEY</span> (`id`)</span><br><span class="line">) ENGINE<span class="operator">=</span>InnoDB <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8mb4;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 插入测试数据</span></span><br><span class="line"><span class="keyword">INSERT INTO</span> `users` (`name`, `email`) <span class="keyword">VALUES</span></span><br><span class="line">(<span class="string">&#x27;张三&#x27;</span>, <span class="string">&#x27;zhangsan@example.com&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;李四&#x27;</span>, <span class="string">&#x27;lisi@example.com&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="启动lnmp环境"><a class="markdownIt-Anchor" href="#启动lnmp环境"></a> 启动LNMP环境</h2>
+<ol>
+<li>启动所有服务</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入项目目录</span></span><br><span class="line"><span class="built_in">cd</span> ~/docker-lnmp</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动服务（-d表示后台运行）</span></span><br><span class="line">docker-compose up -d</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看服务状态</span></span><br><span class="line">docker-compose ps</span><br></pre></td></tr></table></figure>
+<p>你应该看到类似输出：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">      Name                    Command               State          Ports        </span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">lnmp_mysql        docker-entrypoint.sh mysqld      Up      0.0.0.0:3306-&gt;3306/tcp</span><br><span class="line">lnmp_nginx        /docker-entrypoint.sh ngin ...   Up      0.0.0.0:443-&gt;443/tcp, 0.0.0.0:80-&gt;80/tcp</span><br><span class="line">lnmp_php          docker-php-entrypoint php-fpm    Up      9000/tcp             </span><br><span class="line">lnmp_phpmyadmin   /docker-entrypoint.sh apac ...   Up      0.0.0.0:8080-&gt;80/tcp</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>测试服务</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 测试Nginx+PHP</span></span><br><span class="line">curl http://localhost</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看容器日志</span></span><br><span class="line">docker-compose logs nginx</span><br><span class="line">docker-compose logs php</span><br><span class="line">docker-compose logs mysql</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入容器内部检查</span></span><br><span class="line">docker <span class="built_in">exec</span> -it lnmp_php bash</span><br><span class="line"><span class="comment"># 在容器内执行：</span></span><br><span class="line">php -v</span><br><span class="line">php -m | grep mysql</span><br><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>通过浏览器访问</li>
+</ol>
+<p>网站首页：<a target="_blank" rel="noopener" href="http://xn--IP-fr5c86lx7z">http://服务器IP</a></p>
+<p>phpMyAdmin：<a target="_blank" rel="noopener" href="http://xn--IP-fr5c86lx7z:8080">http://服务器IP:8080</a></p>
+<p>用户名：root</p>
+<p>密码：rootpassword123</p>
+<h2 id="日常管理和维护"><a class="markdownIt-Anchor" href="#日常管理和维护"></a> 日常管理和维护</h2>
+<p>常用管理命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看服务状态</span></span><br><span class="line">docker-compose ps</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看实时日志</span></span><br><span class="line">docker-compose logs -f nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止服务</span></span><br><span class="line">docker-compose down</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止并删除数据卷（谨慎使用！）</span></span><br><span class="line">docker-compose down -v</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新构建服务（修改配置后）</span></span><br><span class="line">docker-compose up -d --build</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入容器内部</span></span><br><span class="line">docker <span class="built_in">exec</span> -it lnmp_nginx sh</span><br><span class="line">docker <span class="built_in">exec</span> -it lnmp_php bash</span><br><span class="line">docker <span class="built_in">exec</span> -it lnmp_mysql mysql -uroot -p</span><br><span class="line"></span><br><span class="line"><span class="comment"># 备份数据库</span></span><br><span class="line">docker <span class="built_in">exec</span> lnmp_mysql sh -c <span class="string">&#x27;exec mysqldump --all-databases -uroot -p&quot;$MYSQL_ROOT_PASSWORD&quot;&#x27;</span> &gt; backup.sql</span><br><span class="line"></span><br><span class="line"><span class="comment"># 缩放服务（如果需要多个PHP实例）</span></span><br><span class="line">docker-compose up -d --scale php=3</span><br></pre></td></tr></table></figure>
+<p>数据持久化说明：</p>
+<p>./mysql/data：MySQL数据目录，删除容器数据不会丢失</p>
+<p>./www：网站代码目录</p>
+<p>./logs：日志文件目录</p>
+<h2 id="高可用和扩展配置"><a class="markdownIt-Anchor" href="#高可用和扩展配置"></a> 高可用和扩展配置</h2>
+<ol>
+<li>负载均衡配置<br />
+如果需要处理高流量，可以配置多个PHP实例和Nginx负载均衡：</li>
+</ol>
+<p>修改docker-compose.yml中的nginx配置部分：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">nginx:</span></span><br><span class="line">  <span class="comment"># ... 其他配置不变</span></span><br><span class="line">  <span class="attr">volumes:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">./www:/var/www/html</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">./nginx/nginx.conf:/etc/nginx/nginx.conf</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">./nginx/conf.d:/etc/nginx/conf.d</span></span><br></pre></td></tr></table></figure>
+<p>创建nginx/nginx.conf：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">events</span> &#123;</span><br><span class="line">    <span class="attribute">worker_connections</span> <span class="number">1024</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    <span class="section">upstream</span> php_servers &#123;</span><br><span class="line">        <span class="attribute">server</span> php:<span class="number">9000</span>;</span><br><span class="line">        <span class="comment"># 可以添加更多PHP实例</span></span><br><span class="line">        <span class="comment"># server php2:9000;</span></span><br><span class="line">        <span class="comment"># server php3:9000;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">include</span> /etc/nginx/conf.d/<span class="regexp">*.conf</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>健康检查配置<br />
+为服务添加健康检查，确保服务正常运行：</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">php:</span></span><br><span class="line">    <span class="comment"># ... 其他配置</span></span><br><span class="line">    <span class="attr">healthcheck:</span></span><br><span class="line">      <span class="attr">test:</span> [<span class="string">&quot;CMD&quot;</span>, <span class="string">&quot;php-fpm&quot;</span>, <span class="string">&quot;--status&quot;</span>]</span><br><span class="line">      <span class="attr">interval:</span> <span class="string">30s</span></span><br><span class="line">      <span class="attr">timeout:</span> <span class="string">10s</span></span><br><span class="line">      <span class="attr">retries:</span> <span class="number">3</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">nginx:</span></span><br><span class="line">    <span class="comment"># ... 其他配置</span></span><br><span class="line">    <span class="attr">healthcheck:</span></span><br><span class="line">      <span class="attr">test:</span> [<span class="string">&quot;CMD&quot;</span>, <span class="string">&quot;curl&quot;</span>, <span class="string">&quot;-f&quot;</span>, <span class="string">&quot;http://localhost/health&quot;</span>]</span><br><span class="line">      <span class="attr">interval:</span> <span class="string">30s</span></span><br><span class="line">      <span class="attr">timeout:</span> <span class="string">10s</span></span><br><span class="line">      <span class="attr">retries:</span> <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<h2 id="故障排查技巧"><a class="markdownIt-Anchor" href="#故障排查技巧"></a> 故障排查技巧</h2>
+<p>常见问题解决：</p>
+<p>容器启动失败</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看详细错误信息</span></span><br><span class="line">docker-compose logs</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查端口冲突</span></span><br><span class="line">netstat -tulpn | grep :80</span><br></pre></td></tr></table></figure>
+<p>PHP连接MySQL失败</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查MySQL容器是否正常运行</span></span><br><span class="line">docker-compose ps mysql</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查网络连接</span></span><br><span class="line">docker <span class="built_in">exec</span> lnmp_php ping mysql</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入MySQL容器测试连接</span></span><br><span class="line">docker <span class="built_in">exec</span> -it lnmp_mysql mysql -uroot -p</span><br></pre></td></tr></table></figure>
+<p>文件权限问题</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 确保挂载目录有正确权限</span></span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">chown</span> -R <span class="variable">$USER</span>:<span class="variable">$USER</span> ~/docker-lnmp</span><br></pre></td></tr></table></figure>
+<h2 id="生产环境优化建议"><a class="markdownIt-Anchor" href="#生产环境优化建议"></a> 生产环境优化建议</h2>
+<p>安全优化：</p>
+<p>修改默认密码和端口</p>
+<p>使用SSL证书（Let’s Encrypt）</p>
+<p>配置防火墙，只开放必要端口</p>
+<p>定期更新镜像版本</p>
+<p>性能优化：</p>
+<p>配置Nginx缓存</p>
+<p>启用PHP OPcache</p>
+<p>使用MySQL查询缓存</p>
+<p>配置适当的资源限制</p>
+<p>备份策略：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建备份脚本 backup.sh</span></span><br><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="comment"># 备份数据库</span></span><br><span class="line">docker <span class="built_in">exec</span> lnmp_mysql sh -c <span class="string">&#x27;exec mysqldump -uroot -p&quot;$MYSQL_ROOT_PASSWORD&quot; --all-databases&#x27;</span> &gt; backup/db-$(<span class="built_in">date</span> +%Y%m%d).sql</span><br><span class="line"></span><br><span class="line"><span class="comment"># 备份网站代码</span></span><br><span class="line">tar -czf backup/www-$(<span class="built_in">date</span> +%Y%m%d).tar.gz www/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清理7天前的备份</span></span><br><span class="line">find backup/ -name <span class="string">&quot;*.sql&quot;</span> -mtime +7 -delete</span><br><span class="line">find backup/ -name <span class="string">&quot;*.tar.gz&quot;</span> -mtime +7 -delete</span><br></pre></td></tr></table></figure>
+<h2 id="总结-5"><a class="markdownIt-Anchor" href="#总结-5"></a> 总结</h2>
+<p>通过本文的学习，我们实现了：</p>
+<p>✅ 容器化部署：使用Docker快速搭建LNMP环境</p>
+<p>✅ 服务编排：通过Docker Compose管理多容器应用</p>
+<p>✅ 数据持久化：确保数据安全不丢失</p>
+<p>✅ 高可用架构：为扩展和负载均衡打下基础</p>
+<p>Docker学习的下一步：</p>
+<p>学习Dockerfile编写，定制自己的镜像</p>
+<p>学习Docker网络和存储的更多知识</p>
+<p>了解Docker Swarm或Kubernetes进行集群管理</p>
+<p>实践CI/CD流水线，自动化构建和部署</p>
+<p>至此，板块一全部完成！ 我们从最基础的服务器搭建，到自动化脚本、服务管理、性能优化、安全防护，最后到现代化的容器化部署，建立了一套完整的服务器运维知识体系。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Linux-%E6%9C%8D%E5%8A%A1%E5%99%A8-%E6%95%99%E7%A8%8B/" rel="tag">-Linux -服务器 -教程</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="https://d-sketon.top/img/_backwebp/bg1.webp" data-sizes="auto" alt="FRP内网穿透" class="lazyload">
+        
+      
+      <a href="/2025/08/18/FRP%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          FRP内网穿透
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2020-2025
+      
+      <span class="footer-info-sep rotate"></span>
+      xiaozhaoz1
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        45k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        02:58
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E4%BD%93%E8%A7%84%E5%88%92"><span class="toc-number">1.</span> <span class="toc-text"> 总体规划</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E4%B8%80%E4%B8%AAlinux%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">2.</span> <span class="toc-text"> 一：《从零开始构建一个Linux服务器》</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E4%B8%8E%E9%A6%96%E6%AC%A1%E7%99%BB%E5%BD%95"><span class="toc-number">2.1.</span> <span class="toc-text"> 系统安装与首次登录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F"><span class="toc-number">2.2.</span> <span class="toc-text"> 更新系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%99%AE%E9%80%9A%E7%94%A8%E6%88%B7%E5%B9%B6%E7%A6%81%E6%AD%A2root%E7%99%BB%E5%BD%95"><span class="toc-number">2.3.</span> <span class="toc-text"> 创建普通用户并禁止Root登录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEssh%E5%AF%86%E9%92%A5%E7%99%BB%E5%BD%95%E5%B9%B6%E7%A6%81%E7%94%A8%E5%AF%86%E7%A0%81"><span class="toc-number">2.4.</span> <span class="toc-text"> 配置SSH密钥登录并禁用密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E9%98%B2%E7%81%AB%E5%A2%99ufw"><span class="toc-number">2.5.</span> <span class="toc-text"> 配置防火墙（UFW）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7%E5%BF%85%E5%A4%87%E5%B7%A5%E5%85%B7"><span class="toc-number">2.6.</span> <span class="toc-text"> 安装系统监控必备工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E6%A3%80%E6%9F%A5%E6%B8%85%E5%8D%95"><span class="toc-number">2.7.</span> <span class="toc-text"> 总结与检查清单</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#shell%E8%84%9A%E6%9C%AC%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4%E5%AE%9E%E6%88%98"><span class="toc-number">3.</span> <span class="toc-text"> 《Shell脚本自动化运维实战》</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#shell%E8%84%9A%E6%9C%AC%E5%85%A5%E9%97%A8"><span class="toc-number">3.1.</span> <span class="toc-text"> Shell脚本入门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E8%84%9A%E6%9C%AC%E4%B8%80%E8%87%AA%E5%8A%A8%E5%A4%87%E4%BB%BD%E7%BD%91%E7%AB%99%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">3.2.</span> <span class="toc-text"> 实战脚本一：自动备份网站与数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%91%E6%8E%A7%E7%BD%91%E7%AB%99%E7%8A%B6%E6%80%81%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%91%8A%E8%AD%A6"><span class="toc-number">3.3.</span> <span class="toc-text"> 监控网站状态并自动告警</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E8%87%AA%E5%8A%A8%E6%B8%85%E7%90%86%E6%97%A5%E5%BF%97%E8%BD%AE%E8%BD%AC"><span class="toc-number">3.4.</span> <span class="toc-text"> 日志文件自动清理（日志轮转）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.5.</span> <span class="toc-text"> 总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3systemd%E4%BB%8E%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86%E5%88%B0%E7%B3%BB%E7%BB%9F%E5%AE%88%E6%8A%A4"><span class="toc-number">4.</span> <span class="toc-text"> 《深入理解Systemd：从服务管理到系统守护》</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81systemd%E4%BB%8E%E6%89%8B%E5%8A%A8%E5%88%B0%E8%87%AA%E5%8A%A8%E7%9A%84%E8%BF%9B%E5%8C%96"><span class="toc-number">4.1.</span> <span class="toc-text"> 为什么需要Systemd？从手动到自动的进化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#systemd%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%92%8C%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">4.2.</span> <span class="toc-text"> Systemd基础概念和常用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%8E%B0%E6%9C%89%E6%9C%8D%E5%8A%A1"><span class="toc-number">4.3.</span> <span class="toc-text"> 查看现有服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%86%E6%88%91%E4%BB%AC%E7%9A%84%E7%BD%91%E7%AB%99%E7%9B%91%E6%8E%A7%E8%84%9A%E6%9C%AC%E5%8F%98%E6%88%90%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1"><span class="toc-number">4.4.</span> <span class="toc-text"> 将我们的网站监控脚本变成系统服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7"><span class="toc-number">4.5.</span> <span class="toc-text"> 更多实用技巧</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-2"><span class="toc-number">4.6.</span> <span class="toc-text"> 总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#linux%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%A4%A7%E5%B8%88%E5%BF%AB%E9%80%9F%E5%AE%9A%E4%BD%8D%E7%B3%BB%E7%BB%9F%E7%93%B6%E9%A2%88%E7%9A%84%E4%B8%89%E6%9D%BF%E6%96%A7"><span class="toc-number">5.</span> <span class="toc-text"> 《Linux性能优化大师：快速定位系统瓶颈的&quot;三板斧&quot;》</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5"><span class="toc-number">5.1.</span> <span class="toc-text"> 整体健康检查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cpu%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90tophtop"><span class="toc-number">5.2.</span> <span class="toc-text"> CPU性能分析（top&#x2F;htop）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90freevmstat"><span class="toc-number">5.3.</span> <span class="toc-text"> 内存分析（free&#x2F;vmstat）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A3%81%E7%9B%98io%E5%88%86%E6%9E%90iostatiotop"><span class="toc-number">5.4.</span> <span class="toc-text"> 磁盘I&#x2F;O分析（iostat&#x2F;iotop）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90ssnetstat"><span class="toc-number">5.5.</span> <span class="toc-text"> 网络性能分析（ss&#x2F;netstat）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E6%AC%A1%E5%AE%8C%E6%95%B4%E7%9A%84%E6%80%A7%E8%83%BD%E6%8E%92%E6%9F%A5"><span class="toc-number">5.6.</span> <span class="toc-text"> 一次完整的性能排查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-3"><span class="toc-number">5.7.</span> <span class="toc-text"> 总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#iptablesfirewalld%E5%AE%9E%E6%88%98%E9%85%8D%E7%BD%AE"><span class="toc-number">6.</span> <span class="toc-text"> 《iptables&#x2F;firewalld实战配置》</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99%E5%9F%BA%E7%A1%80%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-number">6.1.</span> <span class="toc-text"> 防火墙基础——为什么需要防火墙？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ufw%E5%85%A5%E9%97%A8%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E9%98%B2%E7%81%AB%E5%A2%99%E9%85%8D%E7%BD%AE"><span class="toc-number">6.2.</span> <span class="toc-text"> UFW入门——最简单的防火墙配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#firewalld%E8%AF%A6%E8%A7%A3%E4%BC%81%E4%B8%9A%E7%BA%A7%E9%98%B2%E7%81%AB%E5%A2%99%E7%AE%A1%E7%90%86"><span class="toc-number">6.3.</span> <span class="toc-text"> firewalld详解——企业级防火墙管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iptables%E5%9F%BA%E7%A1%80%E7%90%86%E8%A7%A3%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86"><span class="toc-number">6.4.</span> <span class="toc-text"> iptables基础——理解底层原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%98%B2%E7%81%AB%E5%A2%99%E9%85%8D%E7%BD%AE"><span class="toc-number">6.5.</span> <span class="toc-text"> Web服务器防火墙配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%8A%80%E5%B7%A7"><span class="toc-number">6.6.</span> <span class="toc-text"> 防火墙故障排查技巧</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-number">6.7.</span> <span class="toc-text"> 防火墙最佳实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-4"><span class="toc-number">6.8.</span> <span class="toc-text"> 总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%91%E7%AB%AF%E6%9E%B6%E6%9E%84%E5%AE%9E%E6%88%98%E5%9F%BA%E4%BA%8Edocker%E6%90%AD%E5%BB%BA%E9%AB%98%E5%8F%AF%E7%94%A8lnmp%E7%8E%AF%E5%A2%83"><span class="toc-number">7.</span> <span class="toc-text"> 《云端架构实战：基于Docker搭建高可用LNMP环境》</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9docker%E4%BC%A0%E7%BB%9F%E9%83%A8%E7%BD%B2%E7%9A%84%E7%97%9B%E7%82%B9"><span class="toc-number">7.1.</span> <span class="toc-text"> 为什么选择Docker？传统部署的痛点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4"><span class="toc-number">7.2.</span> <span class="toc-text"> Docker安装和基础命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-compose%E5%A4%9A%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92%E5%B7%A5%E5%85%B7"><span class="toc-number">7.3.</span> <span class="toc-text"> Docker Compose——多容器编排工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%A7%84%E5%88%92"><span class="toc-number">7.4.</span> <span class="toc-text"> 项目结构规划</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99docker-compose%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">7.5.</span> <span class="toc-text"> 编写Docker Compose配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%90%84%E4%B8%AA%E6%9C%8D%E5%8A%A1"><span class="toc-number">7.6.</span> <span class="toc-text"> 配置各个服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8lnmp%E7%8E%AF%E5%A2%83"><span class="toc-number">7.7.</span> <span class="toc-text"> 启动LNMP环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%B8%B8%E7%AE%A1%E7%90%86%E5%92%8C%E7%BB%B4%E6%8A%A4"><span class="toc-number">7.8.</span> <span class="toc-text"> 日常管理和维护</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E5%8F%AF%E7%94%A8%E5%92%8C%E6%89%A9%E5%B1%95%E9%85%8D%E7%BD%AE"><span class="toc-number">7.9.</span> <span class="toc-text"> 高可用和扩展配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%8A%80%E5%B7%A7"><span class="toc-number">7.10.</span> <span class="toc-text"> 故障排查技巧</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96%E5%BB%BA%E8%AE%AE"><span class="toc-number">7.11.</span> <span class="toc-text"> 生产环境优化建议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-5"><span class="toc-number">7.12.</span> <span class="toc-text"> 总结</span></a></li></ol></li></ol>
+  
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="xiaozhaoz1" class="lazyload">
+  <div class="sidebar-author-name">xiaozhaoz1</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">9</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">13</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+  <script>
+    function initLive2d() {
+      live2d.init("https://fastly.jsdelivr.net/gh/D-Sketon/plugin-live2d/", {themeTipsPath: ""});
+    }
+  </script>
+  
+<script src="https://fastly.jsdelivr.net/gh/D-Sketon/plugin-live2d/js/live2d-autoload.js" onload="initLive2d &amp;&amp; initLive2d()" async></script>
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "xiaozhaoz1",
+          title: "从零开始构建一个Linux服务器",
+          url: "http://example.com/2025/09/27/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E4%B8%80%E4%B8%AALinux%E6%9C%8D%E5%8A%A1%E5%99%A8/",
+          excerpt: "",
+          description: "",
+          stripContent: " 总体规划 板块一：服务器运维基石——稳固、安全与高效 《从零开始构建一个Linux服务器》  内容方向：系统选型、分区方案、安全初始化（SSH密钥、防火墙）、基础服务安装与配置。  《Shell脚本自动化运维实战》  内容方向：展示几个实用的Shell脚本，如自动备份、日志轮转、服务监控告警，体现自动化思维。  《深入理解Systemd：从服务管理到系统守护》  内容方向：告别传统的/etc/init.d，详解如何为自定义服务编写专业的Systemd Unit文件。  《Linux性能优化大师",
+          date: "Sat Sep 27 2025 14:21:39 GMT+0800",
+          updated: "Mon Sep 29 2025 19:33:19 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.1' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+
