@@ -1,0 +1,833 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  
+  <title>
+    LittleMaidMoreAction — 车万女仆「更多动作」模组开发记录 |
+    
+    Hexo
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <link rel="preload" as="style" href="https://fontsapi.zeoseven.com/292/main/result.css" onload="this.rel&#x3D;&#39;stylesheet&#39;" crossorigin>
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="项目简介 LittleMaidMoreAction 是车万女仆（Touhou Little Maid）的附属模组，为女仆添加可视化规则编辑器与事件驱动的战斗动作系统。基于 Minecraft 1.20.1 Forge，Java 17，169 个源文件。 GitHub: xiaozhaoz1&#x2F;LittleMaidMoreAction  核心功能  可视化规则编辑器 不用手写 JSON，通过游戏内">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LittleMaidMoreAction — 车万女仆「更多动作」模组开发记录">
+<meta property="og:url" content="http://example.com/2026/06/24/LittleMaidMoreAction-%E8%BD%A6%E4%B8%87%E5%A5%B3%E4%BB%86%E6%9B%B4%E5%A4%9A%E5%8A%A8%E4%BD%9C%E6%A8%A1%E7%BB%84/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="项目简介 LittleMaidMoreAction 是车万女仆（Touhou Little Maid）的附属模组，为女仆添加可视化规则编辑器与事件驱动的战斗动作系统。基于 Minecraft 1.20.1 Forge，Java 17，169 个源文件。 GitHub: xiaozhaoz1&#x2F;LittleMaidMoreAction  核心功能  可视化规则编辑器 不用手写 JSON，通过游戏内">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-06-24T14:30:00.000Z">
+<meta property="article:modified_time" content="2026-06-24T14:06:07.239Z">
+<meta property="article:author" content="xiaozhaoz1">
+<meta property="article:tag" content="Minecraft">
+<meta property="article:tag" content="Forge">
+<meta property="article:tag" content="模组开发">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">Loading...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/">Home</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/archives">Archives</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/about">About</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/friend">Friend</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed" target="_blank"></a>
+    
+    
+    
+  </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture>
+          
+        </picture>
+        
+          <img  fetchpriority="high" src="/images/banner.webp" alt="LittleMaidMoreAction — 车万女仆「更多动作」模组开发记录">
+        
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">LittleMaidMoreAction — 车万女仆「更多动作」模组开发记录</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  <div class="sidebar-wrapper-container sticky">
+  
+    
+    
+  
+ 
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text"> 项目简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD"><span class="toc-number">2.</span> <span class="toc-text"> 核心功能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%96%E8%A7%84%E5%88%99%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-number">2.1.</span> <span class="toc-text"> 可视化规则编辑器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E"><span class="toc-number">2.2.</span> <span class="toc-text"> 规则引擎</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB%E7%B3%BB%E7%BB%9F-magic-iss"><span class="toc-number">2.3.</span> <span class="toc-text"> 动画系统 (Magic-ISS)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">2.4.</span> <span class="toc-text"> 动态表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E8%A7%A3%E9%A9%B1%E5%8A%A8%E6%89%A9%E5%B1%95"><span class="toc-number">2.5.</span> <span class="toc-text"> 注解驱动扩展</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">3.</span> <span class="toc-text"> 架构设计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E5%8E%86%E7%A8%8B"><span class="toc-number">4.</span> <span class="toc-text"> 开发历程</span></a></li></ol>
+  
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="xiaozhaoz1" class="lazyload">
+  <div class="sidebar-author-name">xiaozhaoz1</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">12</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">1</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+  
+  <div class="sidebar-widget">
+  
+  </div>
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-LittleMaidMoreAction-车万女仆更多动作模组" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-06-24T14:30:00.000Z" itemprop="datePublished">2026-06-24</time>
+    <time style="display: none;" id="post-update-time">2026-06-24</time>
+  </span>
+  
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" data-aos="zoom-in">游戏开发</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="项目简介"><a class="markdownIt-Anchor" href="#项目简介"></a> 项目简介</h1>
+<p>LittleMaidMoreAction 是车万女仆（Touhou Little Maid）的附属模组，为女仆添加可视化规则编辑器与事件驱动的战斗动作系统。基于 Minecraft 1.20.1 Forge，Java 17，169 个源文件。</p>
+<p><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/xiaozhaoz1/LittleMaidMoreAction">xiaozhaoz1/LittleMaidMoreAction</a></p>
+<h1 id="核心功能"><a class="markdownIt-Anchor" href="#核心功能"></a> 核心功能</h1>
+<h2 id="可视化规则编辑器"><a class="markdownIt-Anchor" href="#可视化规则编辑器"></a> 可视化规则编辑器</h2>
+<p>不用手写 JSON，通过游戏内 GUI 即可配置复杂的战斗规则。三条预设（处决/闪避/弹反）开箱即用，27 种事件、54 种动作、35 个条件键全覆盖。</p>
+<p>每条规则的结构：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;处决僵尸&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;enabled&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;eventId&quot;</span><span class="punctuation">:</span> <span class="string">&quot;maid_hurt_target_pre&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;chance&quot;</span><span class="punctuation">:</span> <span class="number">1.0</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;cooldown&quot;</span><span class="punctuation">:</span> <span class="number">200</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;matchMode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ALL&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;conditions&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span> <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;target_is_undead&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span> <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;health_ratio&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;op&quot;</span><span class="punctuation">:</span> <span class="string">&quot;:&lt;:&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;val&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0.3&quot;</span> <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;actions&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;teleport&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;params&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;target&quot;</span><span class="punctuation">:</span> <span class="string">&quot;target&quot;</span> <span class="punctuation">&#125;</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;play_anim&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;params&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;anim&quot;</span><span class="punctuation">:</span> <span class="string">&quot;execution&quot;</span> <span class="punctuation">&#125;</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;wait&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;params&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;ticks&quot;</span><span class="punctuation">:</span> <span class="string">&quot;20&quot;</span> <span class="punctuation">&#125;</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;deal_damage&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;params&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;amount&quot;</span><span class="punctuation">:</span> <span class="string">&quot;999&quot;</span> <span class="punctuation">&#125;</span> <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="规则引擎"><a class="markdownIt-Anchor" href="#规则引擎"></a> 规则引擎</h2>
+<p>六边形架构，核心模块零 Minecraft 依赖，可纯 Java 单元测试。事件入口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TlmEventAdapter — 27 种事件统一入口</span></span><br><span class="line"><span class="meta">@SubscribeEvent</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onMaidAttack</span><span class="params">(MaidAttackEvent event)</span> &#123;</span><br><span class="line">    <span class="type">RuleContext</span> <span class="variable">ctx</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RuleContext</span>(event.getMaid(), event.getTarget(), <span class="literal">null</span>);</span><br><span class="line">    RuleEngine.handleEvent(<span class="string">&quot;maid_attack&quot;</span>, ctx);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>引擎内核——O(1) 索引查找、条件匹配、冷却管理、动作管道：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// RuleEngine.handleEvent()</span></span><br><span class="line">List&lt;data.RuleDef&gt; dataCandidates = RuleIndex.getByEvent(eventId);</span><br><span class="line"><span class="type">ConditionCache</span> <span class="variable">cache</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ConditionCache</span>(ctx);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (data.RuleDef dataRule : dataCandidates) &#123;</span><br><span class="line">    <span class="type">RuleDef</span> <span class="variable">rule</span> <span class="operator">=</span> dataRule.toCore();      <span class="comment">// 数据层 → 引擎层转换</span></span><br><span class="line">    <span class="keyword">if</span> (!rule.enabled()) <span class="keyword">continue</span>;</span><br><span class="line">    <span class="keyword">if</span> (rule.chance() &lt; <span class="number">1.0</span> &amp;&amp; random() &gt; rule.chance()) <span class="keyword">continue</span>;</span><br><span class="line">    <span class="keyword">if</span> (CooldownManager.isOnCooldown(rule, maid)) <span class="keyword">continue</span>;</span><br><span class="line">    <span class="keyword">if</span> (!ConditionMatcher.matches(rule, cache)) <span class="keyword">continue</span>;</span><br><span class="line">    </span><br><span class="line">    CooldownManager.applyCooldown(rule, maid);</span><br><span class="line">    <span class="keyword">return</span> ActionPipeline.execute(rule, ctx);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>条件匹配支持平铺和树形嵌套：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ConditionMatcher — ALL/ANY 平铺 or AND/OR/NOT 树</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">matches</span><span class="params">(RuleDef rule, ConditionCache cache)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (rule.hasConditionTree())</span><br><span class="line">        <span class="keyword">return</span> evaluateNode(rule.conditionTree(), cache);  <span class="comment">// 树形</span></span><br><span class="line">    <span class="keyword">return</span> evaluateFlat(rule.conditions(), rule.minMatch(), cache);  <span class="comment">// 平铺</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>WAIT/REPEAT 恢复路径——异步管道挂起后由 TickScheduler 恢复，复用完整的 v5 特性：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ActionPipeline.resumeFrom() — 从指定索引恢复</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">resumeFrom</span><span class="params">(RuleDef rule, RuleContext ctx, </span></span><br><span class="line"><span class="params">                       <span class="type">int</span> resumeIdx, <span class="type">int</span> repeatIdx, <span class="type">int</span> repeatCount)</span> &#123;</span><br><span class="line">    <span class="comment">// REPEAT: 回跳 + 减计数</span></span><br><span class="line">    <span class="keyword">if</span> (repeatIdx &gt;= <span class="number">0</span> &amp;&amp; repeatCount &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        TickScheduler.schedule(rule, ctx.maid(), ctx.target(),</span><br><span class="line">            repeatIdx, repeatIdx, repeatCount - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 截取剩余步骤 → 重新 GroupBuilder 分析 → 执行</span></span><br><span class="line">    List&lt;ActionStep&gt; remaining = steps.subList(resumeIdx, steps.size());</span><br><span class="line">    List&lt;ParallelGroup&gt; groups = GroupBuilder.build(remaining);</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="动画系统-magic-iss"><a class="markdownIt-Anchor" href="#动画系统-magic-iss"></a> 动画系统 (Magic-ISS)</h2>
+<p>接入 TLM 的魔法咏唱骨骼控制器，替代旧的 AnimationState 系统。INSTANT 模式瞬发、FULL 模式四阶段自动切换：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// LmaMagicCastingProvider — 客户端每帧被 TLM 调用</span></span><br><span class="line"><span class="keyword">public</span> IMagicCastingState <span class="title function_">getMagicCastingState</span><span class="params">(IMaid maid)</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">mode</span> <span class="operator">=</span> data.getString(<span class="string">&quot;lmma_anim_mode&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (mode.isEmpty()) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="string">&quot;INSTANT&quot;</span>.equals(mode)) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">seq</span> <span class="operator">=</span> data.getInt(<span class="string">&quot;lmma_anim_seq&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (seq == ms.lastAnimSeq) &#123;</span><br><span class="line">            cleanup(maid);  <span class="comment">// 已处理过 → 清理 → 返回 null</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ms.lastAnimSeq = seq;  <span class="comment">// 标记已处理</span></span><br><span class="line">        <span class="keyword">return</span> CastingPhase.INSTANT;  <span class="comment">// TLM 播放一次</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="string">&quot;FULL&quot;</span>.equals(mode)) &#123;</span><br><span class="line">        <span class="comment">// tick 驱动: START→CASTING→END→NONE</span></span><br><span class="line">        ms.phaseTicks++;</span><br><span class="line">        <span class="keyword">if</span> (ms.phaseTicks &gt; ms.phaseDuration) &#123;</span><br><span class="line">            ms.fullPhase = nextPhase(ms.fullPhase);  <span class="comment">// 阶段推进</span></span><br><span class="line">            ms.phaseTicks = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ms.castingState;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>动画名按阶段选择，CASTING 阶段循环播放：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> AnimationBuilder <span class="title function_">getAnimationBuilder</span><span class="params">(IMaid maid, IMagicCastingState s)</span> &#123;</span><br><span class="line">    animName = <span class="keyword">switch</span> (ms.fullPhase) &#123;</span><br><span class="line">        <span class="keyword">case</span> START   -&gt; data.getString(<span class="string">&quot;lmma_anim_start&quot;</span>);</span><br><span class="line">        <span class="keyword">case</span> CASTING -&gt; data.getString(<span class="string">&quot;lmma_anim_casting&quot;</span>);</span><br><span class="line">        <span class="keyword">case</span> END     -&gt; data.getString(<span class="string">&quot;lmma_anim_end&quot;</span>);</span><br><span class="line">        <span class="keyword">default</span>      -&gt; <span class="string">&quot;&quot;</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">// CASTING → LOOP, 其余 → PLAY_ONCE</span></span><br><span class="line">    <span class="type">EDefaultLoopTypes</span> <span class="variable">loopType</span> <span class="operator">=</span> (ms.fullPhase == CASTING) ? LOOP : PLAY_ONCE;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">AnimationBuilder</span>().addAnimation(animName, loopType);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>序列号去重防止死循环，per-maid 状态隔离防止多女仆覆盖：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 按女仆 ID 隔离状态 — 单例 Provider 服务所有女仆</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;Integer, MaidAnimState&gt; maidStates = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">MaidAnimState</span> &#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="type">LmaCastingState</span> <span class="variable">castingState</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">LmaCastingState</span>(NONE);</span><br><span class="line">    <span class="type">CastingPhase</span> <span class="variable">fullPhase</span> <span class="operator">=</span> NONE;</span><br><span class="line">    <span class="type">int</span> <span class="variable">phaseTicks</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">lastAnimSeq</span> <span class="operator">=</span> -<span class="number">1</span>;  <span class="comment">// seq 去重</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>TLM 源码确证——INSTANT 和 END 阶段强制播完，不会被切断：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TLM AnimationManager — phase 过渡逻辑</span></span><br><span class="line"><span class="keyword">if</span> (currentPhase == NONE) &#123;</span><br><span class="line">    <span class="comment">// INSTANT 或 END → NONE: 继续播放直到动画结束</span></span><br><span class="line">    <span class="keyword">if</span> ((lastPhase == INSTANT || lastPhase == END)</span><br><span class="line">            &amp;&amp; controller.getAnimationState() != STOPPED) &#123;</span><br><span class="line">        <span class="keyword">return</span> PlayState.CONTINUE;  <span class="comment">// 强制播完</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// START 或 CASTING → NONE: 允许终止</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="动态表达式"><a class="markdownIt-Anchor" href="#动态表达式"></a> 动态表达式</h2>
+<p>动作参数支持 <code>$keyName</code> 运行时变量引用和算术运算。参数合并三层优先级：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ParamMerger — 默认值 → 用户覆盖 → $expr 求值</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> Map&lt;String, String&gt; <span class="title function_">merge</span><span class="params">(IAction action, ActionStep step, RuleContext ctx)</span> &#123;</span><br><span class="line">    <span class="comment">// Layer 1: 默认值</span></span><br><span class="line">    <span class="keyword">for</span> (TypedParam&lt;?&gt; param : action.params())</span><br><span class="line">        merged.put(param.name(), String.valueOf(param.defaultValue()));</span><br><span class="line">    <span class="comment">// Layer 2: 用户覆盖</span></span><br><span class="line">    step.params().forEach(merged::put);</span><br><span class="line">    <span class="comment">// Layer 3: $keyName 表达式求值</span></span><br><span class="line">    merged.replaceAll((k, v) -&gt; ExpressionResolver.resolve(v, ctx));</span><br><span class="line">    <span class="keyword">return</span> merged;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>表达式引擎——正则匹配 <code>$keyName * 2</code> 模式，自动查注册表取值并做算术：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ExpressionResolver — $keyName 解析</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Pattern</span> <span class="variable">KEY_REF</span> <span class="operator">=</span> Pattern.compile(</span><br><span class="line">    <span class="string">&quot;\\$([a-z_]+)(?:\\s*([+\\-*/])\\s*(\\d+\\.?\\d*))?&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="type">String</span> <span class="variable">resolved</span> <span class="operator">=</span> ConditionEvaluator.resolveKey(key, ctx);  <span class="comment">// → &quot;10.5&quot;</span></span><br><span class="line"><span class="comment">// &quot;$health_ratio * 2&quot; → &quot;10.5&quot; * 2 → &quot;21.0&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="注解驱动扩展"><a class="markdownIt-Anchor" href="#注解驱动扩展"></a> 注解驱动扩展</h2>
+<p>新增条件或动作只需加注解，三层扫描自动注册：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RuleAction</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">DealDamageAction</span> <span class="keyword">implements</span> <span class="title class_">IAction</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> List&lt;TypedParam&lt;?&gt;&gt; PARAMS = List.of(</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">TypedParam</span>.StringParam(<span class="string">&quot;amount&quot;</span>, <span class="string">&quot;伤害量&quot;</span>, <span class="string">&quot;10.0&quot;</span>),</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">TypedParam</span>.SelectParam(<span class="string">&quot;target&quot;</span>, <span class="string">&quot;目标&quot;</span>, <span class="string">&quot;target&quot;</span>,</span><br><span class="line">            List.of(<span class="string">&quot;self&quot;</span>, <span class="string">&quot;target&quot;</span>, <span class="string">&quot;owner&quot;</span>))</span><br><span class="line">    );</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span> <span class="keyword">public</span> String <span class="title function_">id</span><span class="params">()</span> &#123; <span class="keyword">return</span> <span class="string">&quot;deal_damage&quot;</span>; &#125;</span><br><span class="line">    <span class="meta">@Override</span> <span class="keyword">public</span> String <span class="title function_">displayName</span><span class="params">()</span> &#123; <span class="keyword">return</span> <span class="string">&quot;造成伤害&quot;</span>; &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">execute</span><span class="params">(RuleContext ctx, Map&lt;String, String&gt; params)</span> &#123;</span><br><span class="line">        <span class="comment">// 解析目标 → 查伤害类型 → 应用伤害</span></span><br><span class="line">        <span class="type">LivingEntity</span> <span class="variable">target</span> <span class="operator">=</span> resolveTarget(ctx, params);</span><br><span class="line">        <span class="type">float</span> <span class="variable">dmg</span> <span class="operator">=</span> parseFloat(params.get(<span class="string">&quot;amount&quot;</span>), <span class="number">1.0f</span>);</span><br><span class="line">        target.hurt(maid.damageSources().mobAttack(maid), dmg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>类型安全的参数系统——sealed interface + Visitor 模式，GUI 自动渲染对应控件：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">sealed</span> <span class="keyword">interface</span> <span class="title class_">TypedParam</span>&lt;T&gt; <span class="keyword">permits</span></span><br><span class="line">    IntParam, DoubleParam, BoolParam, StringParam, SelectParam &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// GUI 工厂 — 编译器强制覆盖全部 5 种类型</span></span><br><span class="line"><span class="keyword">public</span> ParamWidget <span class="title function_">visit</span><span class="params">(SelectParam p)</span> &#123; <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ParamWidget</span>(..., DROPDOWN, ...); &#125;</span><br><span class="line"><span class="keyword">public</span> ParamWidget <span class="title function_">visit</span><span class="params">(BoolParam p)</span>   &#123; <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ParamWidget</span>(..., TOGGLE,  ...); &#125;</span><br><span class="line"><span class="keyword">public</span> ParamWidget <span class="title function_">visit</span><span class="params">(StringParam p)</span> &#123; <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ParamWidget</span>(..., TEXT_INPUT, ...); &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="架构设计"><a class="markdownIt-Anchor" href="#架构设计"></a> 架构设计</h1>
+<table>
+<thead>
+<tr>
+<th>层</th>
+<th>包</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>核心层</td>
+<td><code>core/model/</code>, <code>core/engine/</code>, <code>core/spi/</code></td>
+<td>零 Minecraft 依赖，可独立单元测试</td>
+</tr>
+<tr>
+<td>适配层</td>
+<td><code>adapter/tlm/</code></td>
+<td>TLM API 隔离，事件桥接，MagicCasting Provider</td>
+</tr>
+<tr>
+<td>实现层</td>
+<td><code>impl/condition/</code>, <code>impl/action/</code></td>
+<td>35 条件 + 54 动作具体逻辑</td>
+</tr>
+<tr>
+<td>数据层</td>
+<td><code>data/</code></td>
+<td>JSON 序列化 DTO</td>
+</tr>
+<tr>
+<td>界面层</td>
+<td><code>screen/</code></td>
+<td>Cloth Config GUI (10 屏幕)</td>
+</tr>
+<tr>
+<td>网络层</td>
+<td><code>network/</code></td>
+<td>动画数据同步包</td>
+</tr>
+</tbody>
+</table>
+<h1 id="开发历程"><a class="markdownIt-Anchor" href="#开发历程"></a> 开发历程</h1>
+<p>从 v3 的 JSON 驱动到 v5 的注解驱动加 SPI 架构经历完整重写。v7 将动画系统迁移到 TLM 的魔法咏唱控制器，解决了多女仆状态共享、跨线程数据可见性、动画死循环等关键问题。</p>
+<p>最近完成了一轮六阶段模块化重构：</p>
+<ul>
+<li><strong>消除重复</strong> — ConditionOperator、MatchMode、applyMath 三处 100% 重复代码合并</li>
+<li><strong>解决循环依赖</strong> — ExpressionResolver 和 ConditionEvaluator 移入 core 包，core 包从 3 处外部依赖降到 1 处</li>
+<li><strong>统一数据模型</strong> — <code>fromData()</code> 转换逻辑从 core 层内聚到 data 层 (<code>toCore()</code>)</li>
+<li><strong>拆分超大文件</strong> — MoreActionAPI 从 500 行拆为 3 个聚焦类 + 113 行委托存根</li>
+<li><strong>GUI 修复</strong> — SelectParam 正确渲染为下拉框（非输入框）、条件运算增加数值输入、武器动画布局修复</li>
+<li><strong>引擎超时修复</strong> — 动画阻塞超时从固定 600 tick (30秒) 改为按动画实际时长自适应</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Forge/" rel="tag">Forge</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Minecraft/" rel="tag">Minecraft</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%A8%A1%E7%BB%84%E5%BC%80%E5%8F%91/" rel="tag">模组开发</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="https://d-sketon.top/img/_backwebp/bg1.webp" data-sizes="auto" alt="通过部署MCP服务器和cline制作ai自动化" class="lazyload">
+        
+      
+      <a href="/2026/02/24/%E9%80%9A%E8%BF%87%E9%83%A8%E7%BD%B2MCP%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8Ccline%E5%88%B6%E4%BD%9Cai%E8%87%AA%E5%8A%A8%E5%8C%96/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          通过部署MCP服务器和cline制作ai自动化
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2020-2026
+      
+      <span class="footer-info-sep rotate"></span>
+      xiaozhaoz1
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        47.7k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        03:09
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text"> 项目简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD"><span class="toc-number">2.</span> <span class="toc-text"> 核心功能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%96%E8%A7%84%E5%88%99%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-number">2.1.</span> <span class="toc-text"> 可视化规则编辑器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E"><span class="toc-number">2.2.</span> <span class="toc-text"> 规则引擎</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB%E7%B3%BB%E7%BB%9F-magic-iss"><span class="toc-number">2.3.</span> <span class="toc-text"> 动画系统 (Magic-ISS)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">2.4.</span> <span class="toc-text"> 动态表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E8%A7%A3%E9%A9%B1%E5%8A%A8%E6%89%A9%E5%B1%95"><span class="toc-number">2.5.</span> <span class="toc-text"> 注解驱动扩展</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">3.</span> <span class="toc-text"> 架构设计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E5%8E%86%E7%A8%8B"><span class="toc-number">4.</span> <span class="toc-text"> 开发历程</span></a></li></ol>
+  
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="xiaozhaoz1" class="lazyload">
+  <div class="sidebar-author-name">xiaozhaoz1</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">12</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">1</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+  <script>
+    function initLive2d() {
+      live2d.init("https://fastly.jsdelivr.net/gh/D-Sketon/plugin-live2d/", {themeTipsPath: ""});
+    }
+  </script>
+  
+<script src="https://fastly.jsdelivr.net/gh/D-Sketon/plugin-live2d/js/live2d-autoload.js" onload="initLive2d &amp;&amp; initLive2d()" async></script>
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "xiaozhaoz1",
+          title: "LittleMaidMoreAction — 车万女仆「更多动作」模组开发记录",
+          url: "http://example.com/2026/06/24/LittleMaidMoreAction-%E8%BD%A6%E4%B8%87%E5%A5%B3%E4%BB%86%E6%9B%B4%E5%A4%9A%E5%8A%A8%E4%BD%9C%E6%A8%A1%E7%BB%84/",
+          excerpt: "",
+          description: "",
+          stripContent: " 项目简介 LittleMaidMoreAction 是车万女仆（Touhou Little Maid）的附属模组，为女仆添加可视化规则编辑器与事件驱动的战斗动作系统。基于 Minecraft 1.20.1 Forge，Java 17，169 个源文件。 GitHub: xiaozhaoz1/LittleMaidMoreAction  核心功能  可视化规则编辑器 不用手写 JSON，通过游戏内 GUI 即可配置复杂的战斗规则。三条预设（处决/闪避/弹反）开箱即用，27 种事件、54 种动作、3",
+          date: "Wed Jun 24 2026 22:30:00 GMT+0800",
+          updated: "Wed Jun 24 2026 22:06:07 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.1' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+
