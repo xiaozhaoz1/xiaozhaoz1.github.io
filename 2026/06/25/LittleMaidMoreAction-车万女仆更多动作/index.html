@@ -1,0 +1,173 @@
+
+  <!DOCTYPE html>
+  <html lang="zh-CN" data-theme-mode="auto">
+  <head>
+  <meta charset="utf-8">
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ"}};window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://xiaozhaoz1.github.io';</script>
+  <title>LittleMaidMoreAction — 车万女仆「更多动作」v8.2 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="preload" as="style" href="https://fontsapi.zeoseven.com/292/main/result.css" onload="this.rel='stylesheet'" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+  <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/loader.css">
+  <meta name="description" content="LittleMaidMoreAction 是 Touhou Little Maid (车万女仆) 的附属模组，为女仆添加了可配置的可视化战斗动作系统。v8.2 版本包含 100 个条件、75 个动作、全屏列表选择器、条件参数 Pipeline 等特性。">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="LittleMaidMoreAction — 车万女仆「更多动作」v8.2">
+  <meta property="og:url" content="https://xiaozhaoz1.github.io/2026/06/25/LittleMaidMoreAction-%E8%BD%A6%E4%B8%87%E5%A5%B3%E4%BB%86%E6%9B%B4%E5%A4%9A%E5%8A%A8%E4%BD%9C/index.html">
+  <meta property="og:site_name" content="xiaozhaoz1's Blog">
+  <meta property="og:description" content="车万女仆附属模组：100条件 + 75动作 + 可视化规则编辑器。基于 Minecraft Forge 1.20.1，六边形架构，注解驱动扩展。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image" content="https://xiaozhaoz1.github.io/images/banner.webp">
+  <meta property="article:published_time" content="2026-06-25T00:00:00.000Z">
+  <meta property="article:modified_time" content="2026-06-25T00:00:00.000Z">
+  <meta property="article:author" content="xiaozhaoz1">
+  <meta property="article:tag" content="Minecraft -Mod -车万女仆 -TLM -Forge">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://xiaozhaoz1.github.io/images/banner.webp">
+  <link rel="alternate" href="/atom.xml" title="xiaozhaoz1's Blog" type="application/atom+xml">
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css">
+  <script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"></script>
+  <link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css">
+  <meta name="generator" content="Hexo 7.3.0">
+  <style>
+    article { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem; font-size: 1.05rem; line-height: 1.85; color: #ddd; }
+    article h1 { font-size: 2rem; border-bottom: 2px solid #444; padding-bottom: .5rem; margin-bottom: 1rem; color: #FFD700; }
+    article h2 { font-size: 1.4rem; margin-top: 2rem; color: #FFA500; }
+    article h3 { font-size: 1.15rem; color: #87CEEB; }
+    article table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    article th, article td { border: 1px solid #555; padding: .4rem .6rem; text-align: left; font-size: .9rem; }
+    article th { background: #333; color: #FFD700; }
+    article code { background: #2a2a2a; padding: .15em .4em; border-radius: 3px; font-size: .9em; color: #FFA500; }
+    article pre { background: #1a1a1a; padding: 1rem; border-radius: 6px; overflow-x: auto; }
+    article a { color: #FFD700; }
+    .badge { display: inline-block; padding: .15em .5em; border-radius: 4px; font-size: .8em; margin-right: .3em; }
+    .badge-green { background: #2d5a27; color: #8f8; }
+    .badge-blue { background: #1a3a5c; color: #8cf; }
+    .badge-red { background: #5a2727; color: #f88; }
+  </style>
+  </head>
+  <body>
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box"><div class="loading-taichi"><svg viewBox="0 0 1024 1024" class="taichi-icon"><path d="M512 512m-512 0a512 512 0 1 0 1024 0 512 512 0 1 0-1024 0Z" fill="#4471b8"></path><path d="M512 64a448 448 0 0 0 0 896 224 224 0 0 0 0-448 224 224 0 0 1 0-448Z" fill="#f5cf65"></path><circle cx="512" cy="288" r="80" fill="#4471b8"></circle><circle cx="512" cy="736" r="80" fill="#f5cf65"></circle></svg></div></div>
+    <div class="loading-title">Just a moment...</div>
+  </div>
+  <div id="layout">
+  <article>
+    <p style="color:#888;font-size:.9rem">2026-06-25 · xiaozhaoz1 · Minecraft Mod</p>
+    <h1>LittleMaidMoreAction — 车万女仆「更多动作」v8.2</h1>
+
+    <p><span class="badge badge-green">Minecraft 1.20.1</span><span class="badge badge-blue">Forge 47.4.18</span><span class="badge badge-red">Java 17</span></p>
+
+    <blockquote style="border-left:3px solid #FFD700;padding-left:1rem;color:#aaa;">
+      为 Touhou Little Maid 添加可视化规则编辑器与事件驱动的女仆战斗动作系统。<br>
+      GitHub: <a href="https://github.com/xiaozhaoz1/LittleMaidMoreAction" target="_blank">xiaozhaoz1/LittleMaidMoreAction</a>
+    </blockquote>
+
+    <h2>项目概述</h2>
+    <p>LittleMaidMoreAction 是 Touhou Little Maid (车万女仆/TLM) 的附属模组。通过可视化规则编辑器，玩家可以为女仆配置复杂的战斗动作 —— 无需编写任何代码或 JSON。</p>
+
+    <p><strong>核心流程</strong>: 触发事件 → 条件匹配 (100个条件) → 执行动作序列 (75种动作)</p>
+
+    <table>
+      <tr><th>版本</th><th>条件</th><th>动作</th><th>事件</th><th>源文件</th><th>关键特性</th></tr>
+      <tr><td>v7</td><td>35</td><td>53</td><td>29</td><td>169</td><td>动画系统 Magic-ISS</td></tr>
+      <tr><td>v7.1</td><td>35</td><td>53</td><td>29</td><td>169</td><td>6阶段模块化重构</td></tr>
+      <tr><td>v8</td><td>44</td><td>53</td><td>29</td><td>~200</td><td>条件参数 Pipeline + SelectionScreen</td></tr>
+      <tr><td>v8.1</td><td>56</td><td>53</td><td>29</td><td>~220</td><td>TLM API 条件扩展</td></tr>
+      <tr><td><strong>v8.2</strong></td><td><strong>100</strong></td><td><strong>75</strong></td><td>29</td><td><strong>258</strong></td><td>全维度覆盖 + 文档重写</td></tr>
+    </table>
+
+    <h2>100 个条件 (Conditions)</h2>
+    <p>条件决定了规则在什么情况下触发。分为四大类别：</p>
+
+    <h3>MAID (女仆自身) — 58 个</h3>
+    <table>
+      <tr><th>子类</th><th>数量</th><th>示例</th></tr>
+      <tr><td>数值属性</td><td>18</td><td><code>maid_health</code>, <code>maid_attack_damage</code>, <code>maid_movement_speed</code>, <code>maid_experience</code></td></tr>
+      <tr><td>布尔状态</td><td>32</td><td><code>maid_is_sleeping</code>, <code>maid_is_swimming</code>, <code>maid_is_begging</code>, <code>maid_has_target</code></td></tr>
+      <tr><td>字符串</td><td>8</td><td><code>maid_schedule</code>, <code>maid_model_id</code>, <code>maid_mainhand_tag</code></td></tr>
+    </table>
+
+    <h3>TARGET (目标) — 21 个</h3>
+    <table>
+      <tr><td>数值</td><td>9</td><td><code>target_health</code>, <code>target_armor</code>, <code>target_distance_h</code></td></tr>
+      <tr><td>布尔</td><td>12</td><td><code>target_is_animal</code>, <code>target_is_monster</code>, <code>target_is_player</code></td></tr>
+    </table>
+
+    <h3>OWNER (主人) — 5 个</h3>
+    <p><code>owner_health</code>, <code>owner_health_ratio</code>, <code>owner_distance</code>, <code>owner_armor</code>, <code>owner_holding_item</code></p>
+
+    <h3>WORLD (世界) — 16 个</h3>
+    <p><code>world_time</code>, <code>world_is_day</code>, <code>world_is_thundering</code>, <code>world_moon_phase</code>, <code>world_difficulty</code>, <code>world_biome</code>, <code>world_light_level</code>, <code>dimension</code>, <code>bypasses_armor</code>, <code>is_critical_attack</code>...</p>
+
+    <h2>75 个动作 (Actions)</h2>
+    <table>
+      <tr><th>类别</th><th>数量</th><th>代表动作</th></tr>
+      <tr><td>COMBAT 战斗</td><td>19</td><td><code>deal_damage</code>, <code>execution_kill</code>, <code>bleed</code>, <code>launch</code>, <code>life_steal</code></td></tr>
+      <tr><td>MOVEMENT 移动</td><td>10</td><td><code>teleport</code>, <code>dash</code>, <code>pull</code>, <code>swap_position</code>, <code>freeze_ai</code></td></tr>
+      <tr><td>MAID 控制</td><td>18</td><td><code>set_maid_task</code>, <code>set_glowing</code>, <code>set_invisible</code>, <code>set_schedule</code></td></tr>
+      <tr><td>WORLD 世界</td><td>7</td><td><code>set_weather</code>, <code>set_time</code>, <code>explosion</code>, <code>summon_lightning</code></td></tr>
+      <tr><td>VISUAL 视觉</td><td>5</td><td><code>play_anim</code>, <code>spawn_particle</code>, <code>play_sound</code></td></tr>
+      <tr><td>CONTROL 流程</td><td>8</td><td><code>wait</code>, <code>repeat</code>, <code>conditional</code>, <code>reset_anim</code></td></tr>
+      <tr><td>ITEM 物品</td><td>4</td><td><code>give_item</code>, <code>repair_item</code>, <code>clear_inventory</code></td></tr>
+      <tr><td>EFFECT 效果</td><td>2</td><td><code>apply_effect</code>, <code>clear_effects</code></td></tr>
+      <tr><td>MESSAGE 消息</td><td>2</td><td><code>send_message</code>, <code>send_chat</code></td></tr>
+    </table>
+
+    <h2>技术架构</h2>
+    <p><strong>六边形架构</strong> — 基于 v5 规则引擎设计：</p>
+    <pre>core/ (零 Minecraft 依赖, 可独立单元测试)
+  ├── spi/        类型安全参数系统 (sealed TypedParam)
+  ├── registry/   注解扫描 + 三层回退 (ForgeClassScanner→ClassGraph→BuiltinRegistrar)
+  ├── engine/     异步管道 (ActionPipeline) + 条件匹配器 (ConditionMatcher, params-aware)
+  ├── model/      不可变数据模型 (record) + 树形条件 (AND/OR/NOT)
+  └── cache/      规则索引 (O(1)) + 条件缓存 + 静态预计算
+adapter/
+  ├── tlm/        29 @SubscribeEvent → RuleEngine + MagicCasting Provider (INSTANT/FULL)
+  └── gui/        Visitor 模式动态表单
+impl/
+  ├── condition/  100 @RuleCondition (注解驱动, 自动注册)
+  └── action/     75 @RuleAction</pre>
+
+    <h2>v8.2 关键特性</h2>
+    <ul>
+      <li><strong>条件参数 Pipeline</strong>: ConditionDef → CondRow → ConditionEditScreen → ConditionCache → ConditionMatcher，全程贯通参数化条件</li>
+      <li><strong>SelectionScreen</strong>: 全屏列表选择器，仿 Minecraft LanguageSelectScreen，替代 CycleButton 用于100条件/75动作的选择</li>
+      <li><strong>瞬时条件时间窗口</strong>: is_mainhand_attack 等瞬时条件触发后20tick内保持有效</li>
+      <li><strong>P0 Bug修复</strong>: target_type 命名空间匹配、is_mainhand_attack 反转逻辑、1.20.1 API 兼容</li>
+    </ul>
+
+    <h2>安装与使用</h2>
+    <ol>
+      <li>安装 <strong>Touhou Little Maid</strong> ≥1.5.0 + <strong>Cloth Config</strong></li>
+      <li>下载 <a href="https://github.com/xiaozhaoz1/LittleMaidMoreAction" target="_blank">LittleMaidMoreAction.jar</a> 放入 mods/</li>
+      <li>游戏内 → Forge 模组列表 → LittleMaidMoreAction → 打开规则编辑器</li>
+      <li>自定义动画放入 <code>config/littlemaidmoreaction/animations/</code> → F3+T</li>
+    </ol>
+
+    <h2>3 条预设规则</h2>
+    <table>
+      <tr><th>规则</th><th>事件</th><th>条件</th><th>动作序列</th></tr>
+      <tr><td>处决 Execution</td><td>maid_hurt_target_pre</td><td>damage_type:=:melee + would_lethal</td><td>teleport → play_anim(execution) → wait → deal_damage</td></tr>
+      <tr><td>闪避 Dodge</td><td>maid_attack</td><td>damage_type:=:ranged</td><td>teleport → play_anim(flash) → play_anim(mock)</td></tr>
+      <tr><td>弹反 Parry</td><td>maid_attack</td><td>damage_type:=:ranged + maid_has_shield</td><td>play_anim(parry) → wait → counter_buff</td></tr>
+    </table>
+
+    <hr style="margin-top:2rem;border-color:#333;">
+    <p style="color:#666; font-size:.85rem; text-align:center;">
+      项目地址: <a href="https://github.com/xiaozhaoz1/LittleMaidMoreAction">github.com/xiaozhaoz1/LittleMaidMoreAction</a> · 许可: MIT
+    </p>
+  </article>
+  </div>
+  <script src="/js/pjax.js"></script>
+  <script src="/js/script.js"></script>
+  <script src="/js/aos.js"></script>
+  <script src="/js/pjax_script.js"></script>
+  </body>
+  </html>
